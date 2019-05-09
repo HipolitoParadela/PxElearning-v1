@@ -1,5 +1,7 @@
-
-
+<?php
+    include("aa_cabecera.php");
+    include("aa_barra_navegacion.php");
+?>
             
         </header><!-- .site-header -->
 
@@ -730,4 +732,6 @@
         </div><!-- .gallery-wrap -->
     </section><!-- .home-gallery -->
 
-    
+<?php
+    include("aa_pie.php");
+?>
