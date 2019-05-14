@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Elementoscomunes extends CI_Controller {
+class Usuarios extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -21,18 +21,9 @@ class Elementoscomunes extends CI_Controller {
 	public function index()
 	{   
         $data = array(
-            "TituloPagina" => "Cursos de formación Online, Instituto Jerónimo Luis de Caberar Río Segundo",
+            "TituloPagina" => "Registrar usuarios",
             "Descripcion" => "Cursos de formación Online del Instituto Jerónimo Luis de Caberar Río Segundo, certificados por el Concejo Provincial de Informática de Córdoba y por la UTN Córdoba",
         );
-		$this->load->view('index', $data);
-	}
-
-	public function config()
-	{   
-        $data = array(
-            "TituloPagina" => "Cursos de formación Online, Instituto Jerónimo Luis de Caberar Río Segundo",
-            "Descripcion" => "Cursos de formación Online del Instituto Jerónimo Luis de Caberar Río Segundo, certificados por el Concejo Provincial de Informática de Córdoba y por la UTN Córdoba",
-        );
-		$this->load->view('config', $data);
+		$this->load->view('usuarios_listado', $data);
 	}
 }

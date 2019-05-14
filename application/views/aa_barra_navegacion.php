@@ -11,16 +11,16 @@
                             <nav class="site-navigation flex justify-content-end align-items-center">
                                 <ul class="flex flex-column flex-lg-row justify-content-lg-end align-content-center">
                                     <li class="current-menu-item"><a href="index.html">Home</a></li>
-                                    <li><a href="#">About</a></li>
-                                    <li><a href="#">Courses</a></li>
-                                    <li><a href="#">blog</a></li>
-                                    <li><a href="#">Contact</a></li>
+                                    <li><a href="#">Instituto</a></li>
+                                    <li><a href="#">Cursos</a></li>
+                                    <li><a href="#">Blog</a></li>
+                                    <li><a href="#">Contacto</a></li>
                                 </ul>
 
                                 <div class="hamburger-menu d-lg-none">
                                     <span></span>
                                     <span></span>
-                                    <span></span>
+                                    <span></span>   
                                     <span></span>
                                 </div><!-- .hamburger-menu -->
 

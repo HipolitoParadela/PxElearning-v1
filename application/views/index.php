@@ -11,8 +11,8 @@
                     <div class="col-12">
                         <div class="hero-content-wrap flex flex-column justify-content-center align-items-start">
                             <header class="entry-header">
-                                <h4>Get started with online courses</h4>
-                                <h1>best online<br />Learning system</h1>
+                                <h4>Cursos de formación en linea</h4>
+                                <h1>Desde tu casa<br />En tus tiempos</h1>
                             </header><!-- .entry-header -->
 
                             <div class="entry-content">
@@ -22,7 +22,7 @@
                             </div><!-- .entry-content -->
 
                             <footer class="entry-footer read-more">
-                                <a href="#">read more</a>
+                                <a href="#">leer más</a>
                             </footer><!-- .entry-footer -->
                         </div><!-- .hero-content-wrap -->
                     </div><!-- .col -->
@@ -118,16 +118,16 @@
             <div class="row">
                 <div class="col-12">
                     <header class="heading flex justify-content-between align-items-center">
-                        <h2 class="entry-title">Featured Courses</h2>
+                        <h2 class="entry-title">Cursos gratuitos</h2>
 
-                        <a class="btn mt-4 mt-sm-0" href="#">view all</a>
+                        <a class="btn mt-4 mt-sm-0" href="#">Ver todos</a>
                     </header><!-- .heading -->
                 </div><!-- .col -->
 
                 <div class="col-12 col-lg-6">
                     <div class="course-content flex flex-wrap justify-content-between align-content-lg-stretch">
                         <figure class="course-thumbnail">
-                            <a href="#"><img src="images/1.jpg" alt=""></a>
+                            <a href="#"><img src="<?php echo base_url(); ?>plantilla/images/1.jpg" alt=""></a>
                         </figure><!-- .course-thumbnail -->
 
                         <div class="course-content-wrap">
@@ -163,7 +163,7 @@
                 <div class="col-12 col-lg-6">
                     <div class="course-content flex flex-wrap justify-content-between align-content-lg-stretch">
                         <figure class="course-thumbnail">
-                            <a href="#"><img src="images/2.jpg" alt=""></a>
+                            <a href="#"><img src="<?php echo base_url(); ?>plantilla/images/2.jpg" alt=""></a>
                         </figure><!-- .course-thumbnail -->
 
                         <div class="course-content-wrap">
@@ -204,7 +204,7 @@
             <div class="row">
                 <div class="col-12 col-lg-6 align-content-lg-stretch">
                     <header class="heading">
-                        <h2 class="entry-title">About Ezuca</h2>
+                        <h2 class="entry-title">SOBRE NOSOTROS</h2>
 
                         <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
                             anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem
@@ -239,10 +239,10 @@
                 <div class="col-12 col-lg-6 flex align-content-center mt-5 mt-lg-0">
                     <div class="ezuca-video position-relative">
                         <div class="video-play-btn position-absolute">
-                            <img src="images/video-icon.png" alt="Video Play">
+                            <img src="<?php echo base_url(); ?>plantilla/images/video-icon.png" alt="Video Play">
                         </div><!-- .video-play-btn -->
 
-                        <img src="images/video-screenshot.png" alt="">
+                        <img src="<?php echo base_url(); ?>plantilla/images/video-screenshot.png" alt="">
                     </div><!-- .ezuca-video -->
                 </div><!-- .col -->
             </div><!-- .row -->
@@ -258,7 +258,7 @@
                         <div class="row">
                             <div class="col-12 col-lg-6 order-2 order-lg-1 flex align-items-center mt-5 mt-lg-0">
                                 <figure class="user-avatar">
-                                    <img src="images/user-1.jpg" alt="">
+                                    <img src="<?php echo base_url(); ?>plantilla/images/user-1.jpg" alt="">
                                 </figure><!-- .user-avatar -->
                             </div><!-- .col -->
 
@@ -281,7 +281,7 @@
                         <div class="row">
                             <div class="col-12 col-lg-6 order-2 order-lg-1 flex align-items-center mt-5 mt-lg-0">
                                 <figure class="user-avatar">
-                                    <img src="images/user-2.jpg" alt="">
+                                    <img src="<?php echo base_url(); ?>plantilla/images/user-2.jpg" alt="">
                                 </figure><!-- .user-avatar -->
                             </div><!-- .col -->
 
@@ -305,7 +305,7 @@
                         <div class="row">
                             <div class="col-12 col-lg-6 flex order-2 order-lg-1 align-items-center mt-5 mt-lg-0">
                                 <figure class="user-avatar">
-                                    <img src="images/user-3.jpg" alt="">
+                                    <img src="<?php echo base_url(); ?>plantilla/images/user-3.jpg" alt="">
                                 </figure><!-- .user-avatar -->
                             </div><!-- .col -->
 
@@ -341,7 +341,7 @@
             <div class="row mx-m-25">
                 <div class="col-12 px-25">
                     <header class="heading flex flex-wrap justify-content-between align-items-center">
-                        <h2 class="entry-title">Featured Courses</h2>
+                        <h2 class="entry-title">Cursos destacados</h2>
 
                         <nav class="courses-menu mt-3 mt-lg-0">
                             <ul class="flex flex-wrap justify-content-md-end align-items-center">
@@ -358,7 +358,7 @@
                 <div class="col-12 col-md-6 col-lg-4 px-25">
                     <div class="course-content">
                         <figure class="course-thumbnail">
-                            <a href="#"><img src="images/1.jpg" alt=""></a>
+                            <a href="#"><img src="<?php echo base_url(); ?>plantilla/images/1.jpg" alt=""></a>
                         </figure><!-- .course-thumbnail -->
 
                         <div class="course-content-wrap">
@@ -394,7 +394,7 @@
                 <div class="col-12 col-md-6 col-lg-4 px-25">
                     <div class="course-content">
                         <figure class="course-thumbnail">
-                            <a href="#"><img src="images/2.jpg" alt=""></a>
+                            <a href="#"><img src="<?php echo base_url(); ?>plantilla/images/2.jpg" alt=""></a>
                         </figure><!-- .course-thumbnail -->
 
                         <div class="course-content-wrap">
@@ -431,7 +431,7 @@
                 <div class="col-12 col-md-6 col-lg-4 px-25">
                     <div class="course-content">
                         <figure class="course-thumbnail">
-                            <a href="#"><img src="images/3.jpg" alt=""></a>
+                            <a href="#"><img src="<?php echo base_url(); ?>plantilla/images/3.jpg" alt=""></a>
                         </figure><!-- .course-thumbnail -->
 
                         <div class="course-content-wrap">
@@ -467,7 +467,7 @@
                 <div class="col-12 col-md-6 col-lg-4 px-25">
                     <div class="course-content">
                         <figure class="course-thumbnail">
-                            <a href="#"><img src="images/4.jpg" alt=""></a>
+                            <a href="#"><img src="<?php echo base_url(); ?>plantilla/images/4.jpg" alt=""></a>
                         </figure><!-- .course-thumbnail -->
 
                         <div class="course-content-wrap">
@@ -503,7 +503,7 @@
                 <div class="col-12 col-md-6 col-lg-4 px-25">
                     <div class="course-content">
                         <figure class="course-thumbnail">
-                            <a href="#"><img src="images/5.jpg" alt=""></a>
+                            <a href="#"><img src="<?php echo base_url(); ?>plantilla/images/5.jpg" alt=""></a>
                         </figure><!-- .course-thumbnail -->
 
                         <div class="course-content-wrap">
@@ -540,7 +540,7 @@
                 <div class="col-12 col-md-6 col-lg-4 px-25">
                     <div class="course-content">
                         <figure class="course-thumbnail">
-                            <a href="#"><img src="images/6.jpg" alt=""></a>
+                            <a href="#"><img src="<?php echo base_url(); ?>plantilla/images/6.jpg" alt=""></a>
                         </figure><!-- .course-thumbnail -->
 
                         <div class="course-content-wrap">
@@ -574,7 +574,7 @@
                 </div><!-- .col -->
 
                 <div class="col-12 px-25 flex justify-content-center">
-                    <a class="btn" href="#">view all courses</a>
+                    <a class="btn" href="#">ver todos</a>
                 </div><!-- .col -->
             </div><!-- .row -->
         </div><!-- .container -->
@@ -585,14 +585,14 @@
             <div class="row">
                 <div class="col-12">
                     <header class="heading flex justify-content-between align-items-center">
-                        <h2 class="entry-title">Latest News & Events</h2>
+                        <h2 class="entry-title">Últimas novedades y eventos</h2>
                     </header><!-- .heading -->
                 </div><!-- .col -->
 
                 <div class="col-12 col-lg-6">
                     <div class="featured-event-content">
                         <figure class="event-thumbnail position-relative m-0">
-                            <a href="#"><img src="images/event-1.jpg" alt=""></a>
+                            <a href="#"><img src="<?php echo base_url(); ?>plantilla/images/event-1.jpg" alt=""></a>
 
                             <div class="posted-date position-absolute">
                                 <div class="day">23</div>
@@ -615,7 +615,7 @@
                 <div class="col-12 col-lg-6 mt-5 mt-lg-0">
                     <div class="event-content flex flex-wrap justify-content-between align-content-stretch">
                         <figure class="event-thumbnail">
-                            <a href="#"><img src="images/event-2.jpg" alt=""></a>
+                            <a href="#"><img src="<?php echo base_url(); ?>plantilla/images/event-2.jpg" alt=""></a>
                         </figure><!-- .course-thumbnail -->
 
                         <div class="event-content-wrap">
@@ -642,7 +642,7 @@
 
                     <div class="event-content flex flex-wrap justify-content-between align-content-lg-stretch">
                         <figure class="event-thumbnail">
-                            <a href="#"><img src="images/event-3.jpg" alt=""></a>
+                            <a href="#"><img src="<?php echo base_url(); ?>plantilla/images/event-3.jpg" alt=""></a>
                         </figure><!-- .course-thumbnail -->
 
                         <div class="event-content-wrap">
@@ -675,59 +675,59 @@
     <section class="home-gallery">
         <div class="gallery-wrap flex flex-wrap">
             <div class="gallery-grid gallery-grid1x1">
-                <a href="#"><img src="images/a.jpg" alt=""></a>
+                <a href="#"><img src="<?php echo base_url(); ?>plantilla/images/a.jpg" alt=""></a>
             </div><!-- .gallery-grid -->
 
             <div class="gallery-grid gallery-grid1x1">
-                <a href="#"><img src="images/b.jpg" alt=""></a>
+                <a href="#"><img src="<?php echo base_url(); ?>plantilla/images/b.jpg" alt=""></a>
             </div><!-- .gallery-grid -->
 
             <div class="gallery-grid gallery-grid2x2">
-                <a href="#"><img src="images/c.jpg" alt=""></a>
+                <a href="#"><img src="<?php echo base_url(); ?>plantilla/images/c.jpg" alt=""></a>
             </div><!-- .gallery-grid -->
 
             <div class="gallery-grid gallery-grid1x1">
-                <a href="#"><img src="images/d.jpg" alt=""></a>
+                <a href="#"><img src="<?php echo base_url(); ?>plantilla/images/d.jpg" alt=""></a>
             </div><!-- .gallery-grid -->
 
             <div class="gallery-grid gallery-grid1x1">
-                <a href="#"><img src="images/e.jpg" alt=""></a>
+                <a href="#"><img src="<?php echo base_url(); ?>plantilla/images/e.jpg" alt=""></a>
             </div><!-- .gallery-grid -->
 
             <div class="gallery-grid gallery-grid2x1">
-                <a href="#"><img src="images/g.jpg" alt=""></a>
+                <a href="#"><img src="<?php echo base_url(); ?>plantilla/images/g.jpg" alt=""></a>
             </div><!-- .gallery-grid -->
 
             <div class="gallery-grid gallery-grid2x1">
-                <a href="#"><img src="images/h.jpg" alt=""></a>
+                <a href="#"><img src="<?php echo base_url(); ?>plantilla/images/h.jpg" alt=""></a>
             </div><!-- .gallery-grid -->
 
             <div class="gallery-grid gallery-grid1x1">
-                <a href="#"><img src="images/i.jpg" alt=""></a>
+                <a href="#"><img src="<?php echo base_url(); ?>plantilla/images/i.jpg" alt=""></a>
             </div><!-- .gallery-grid -->
 
             <div class="gallery-grid gallery-grid2x2 ">
-                <a href="#"><img src="images/j.jpg" alt=""></a>
+                <a href="#"><img src="<?php echo base_url(); ?>plantilla/images/j.jpg" alt=""></a>
             </div><!-- .gallery-grid -->
 
             <div class="gallery-grid gallery-grid1x1">
-                <a href="#"><img src="images/k.jpg" alt=""></a>
+                <a href="#"><img src="<?php echo base_url(); ?>plantilla/images/k.jpg" alt=""></a>
             </div><!-- .gallery-grid -->
 
             <div class="gallery-grid gallery-grid1x1">
-                <a href="#"><img src="images/l.jpg" alt=""></a>
+                <a href="#"><img src="<?php echo base_url(); ?>plantilla/images/l.jpg" alt=""></a>
             </div><!-- .gallery-grid -->
 
             <div class="gallery-grid gallery-grid2x1">
-                <a href="#"><img src="images/m.jpg" alt=""></a>
+                <a href="#"><img src="<?php echo base_url(); ?>plantilla/images/m.jpg" alt=""></a>
             </div><!-- .gallery-grid -->
 
             <div class="gallery-grid gallery-grid3x1">
-                <a href="#"><img src="images/n.jpg" alt=""></a>
+                <a href="#"><img src="<?php echo base_url(); ?>plantilla/images/n.jpg" alt=""></a>
             </div><!-- .gallery-grid -->
 
             <div class="gallery-grid gallery-grid1x1">
-                <a href="#"><img src="images/o.jpg" alt=""></a>
+                <a href="#"><img src="<?php echo base_url(); ?>plantilla/images/o.jpg" alt=""></a>
             </div><!-- .gallery-grid -->
         </div><!-- .gallery-wrap -->
     </section><!-- .home-gallery -->

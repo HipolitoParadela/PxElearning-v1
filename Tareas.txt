@@ -1,0 +1,46 @@
+eLearning
+_________
+
+Deberian hacer lo siguiente
+
+- Registrar alumnos
+	--- tabla viculo con cursos
+
+- Crear un curso . Id, Precio, Nombre_curso, Duracion, .... mas info
+	- Presentacion
+	- Unidades
+		(Auxiliares. Categorías de unidad: Video, audio, documento).
+		- Contenido a estudiar
+		- Test
+			mediante formularios hacer preguntas, multiple choise, etc
+			- Ver la manera de diseñar el test con el sistema mismo. Si no lo tengo q hacer a mano por cada curso.
+	- Test final
+
+	--- Noticias del curso
+	--- Calificaciones
+	--- Consultas
+	--- etc
+
+- Profesores
+	- Formacion del profesor
+	
+
+__________________________________________
+
+PAGINAS A TENER
+
+    Usuarios, Profesores
+        - Listado de usuarios
+        - Datos del usuario
+
+    Alumnos
+        - Auto registro
+        - Listado de alumnos
+        - Datos del alumno
+
+    Cursos
+        - Listao de cursos 
+        - Datos y creacion 
+        - Curso en si mismo con todo lo que conlleve
+
+__________________________________________
