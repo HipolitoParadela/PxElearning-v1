@@ -2530,6 +2530,9 @@ ul.author-social-profile li:hover .fa {
 
 .contact-form input[type="text"],
 .contact-form input[type="email"],
+.contact-form input[type="number"],
+.contact-form input[type="password"],
+.contact-form select,
 .contact-form textarea {
     width: 100%;
     padding: 12px 20px;
@@ -2541,14 +2544,20 @@ ul.author-social-profile li:hover .fa {
 
 .contact-form input[type="text"]:focus,
 .contact-form input[type="email"]:focus,
+.contact-form input[type="number"]:focus,
+.contact-form input[type="password"]:focus,
+.contact-form select:focus,
 .contact-form textarea:focus {
     outline: none;
 }
 
 .contact-form input[type="text"]::placeholder,
 .contact-form input[type="email"]::placeholder,
-.contact-form textarea::placeholder {
-    color: #c0c1cd;
+.contact-form input[type="number"]::placeholder,
+.contact-form input[type="password"]::placeholder,
+.contact-form textarea::placeholder,
+.contact-form select::placeholder {
+    color: #8a8a8a;
 }
 
 .contact-form input[type="submit"] {

@@ -133,6 +133,7 @@
     <script src="<?php echo base_url(); ?>js/app.js"></script>
 <script type='text/javascript' src='<?php echo base_url(); ?>plantilla/js/jquery.js'></script>
 <script type='text/javascript' src='<?php echo base_url(); ?>plantilla/js/bootstrap.min.js'></script>
+<script src="<?php echo base_url(); ?>js/toastr.js"></script>
 <script type='text/javascript' src='<?php echo base_url(); ?>plantilla/js/swiper.min.js'></script>
 <script type='text/javascript' src='<?php echo base_url(); ?>plantilla/js/masonry.pkgd.min.js'></script>
 <script type='text/javascript' src='<?php echo base_url(); ?>plantilla/js/jquery.collapsible.min.js'></script>

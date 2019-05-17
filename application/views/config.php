@@ -2,8 +2,7 @@
     
     /// --- SETEANDO VARIABLES DE URL ----- //////
     var pathname = window.location.pathname;
-    var carpeta = '/ERP/' /// carpeta que hay q modificar segun cliente
-    var base_url = window.location.origin + carpeta
+    var base_url = window.location.origin
     var URLactual = window.location.search;
     var Get_Id = URLactual.slice(4); ///ID QUE VIENE POR URL
 
@@ -25,8 +24,8 @@
     var Cookies = document.cookie;
 
     <?php 
-        echo 'var Usuario_id = '. $Usuario_id.';';
-        echo 'var Rol_acceso = '. $Rol_acceso.';';
+        //echo 'var Usuario_id = '. $Usuario_id.';';
+       // echo 'var Rol_acceso = '. $Rol_acceso.';';
     ?>
 
 
