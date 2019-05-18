@@ -56,8 +56,20 @@
 
                             <div class="header-bar-menu">
                                 <ul class="flex justify-content-center align-items-center py-2 pt-md-0">
-                                    <li><a href="#">Registrate</a></li>
-                                    <li><a href="#">Inicia Sesión</a></li>
+                                    <?php 
+                                        if ($this->session->userdata('Login') == true) 
+                                        {
+                                            echo '  <li>'.$this->session->userdata('Nombre').' | </li>
+                                                    <li><a href="'. base_url(). 'login/logout"> <i class="zmdi zmdi-power"></i>Cerrar Sesión</a></li>';
+                                        }
+                                        else
+                                        {
+                                            echo '  <li><a href="#">Registrate</a></li>
+                                                    <li><a href="'. base_url(). '/login">Inicia Sesión</a></li>';
+                                        }
+                                    ?>    
+                                
+                                    
                                 </ul>
                             </div><!-- .header-bar-menu -->
                         </div><!-- .col -->

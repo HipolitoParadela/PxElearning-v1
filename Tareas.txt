@@ -1,5 +1,91 @@
 eLearning
+
 _________
+
+tbl_cursos
+	Id, 
+	Titulo_curso, 
+	Duracion (meses), 
+	Descripcion_corta, 
+	Objetivos_curso, 
+	Descripcion_larga, 
+	Descripcion_privada, 
+	Fecha_cargado,
+	Ult_usuario_id, 
+	Costo_normal,
+	Costo_promocional,
+	Info_promocional,
+	Imagen, 
+	Video_youtube,
+	Ult_actualizacion_info,
+	Ult_actualizacion_modulos, 
+	Visible
+
+tbl_cursos_modulos
+	.Id, 
+	.Curso_id, 
+	.Titulo_modulo,
+	.Imagen, 
+	.Descripcion_modulo, 
+	.Contenido_html, 
+	.Archivo_pdf, 
+	.Visible
+
+tbl_cursos_examen
+	Id, 
+	Curso_id, 
+	Modulo_id, 
+	Titulo_examen, 
+	Contenido_html
+
+///---- OPERATIVAS
+
+	tbl_cursos_alumnos
+		Id, 
+		Curso_id, 
+		Profesor_id, 
+		Alumno_id, 
+		Fecha_inicio, 
+		Fecha_finalizacion, 
+		Estado (interesado, iniciado,
+		finalizado), 
+		nota_final, 
+		monto_abonado, 
+		observaciones, 
+		Visible.
+
+
+	tbl_cursos_examen_alumno
+		Id, 
+		Examen_id, 
+		Fecha_autorizada, 
+		Fecha_realizada, 
+		Fecha_corregida, 
+		Respuesta_html, 
+		Nota, 
+		Observaciones, 
+		Estado, 
+		Visible. 
+
+			(Si el estado del examen del modulo n1, dice que aun no lo rindio, entonces no se habilitaria el modulo n2..., 
+			hasta llegar al ultimo modulo que es la prueba final.)
+
+	tbl_cursos_alumno_seguimiento
+
+	tbl_mensajes
+		Id, 
+		Fecha_envio, 
+		Fecha_leido, 
+		Emisor_id, 
+		Receptor_id, 
+		Contenido, 
+		URL_adjunto, 
+		Visible
+
+
+
+_________
+
 
 Deberian hacer lo siguiente
 
@@ -44,3 +130,22 @@ PAGINAS A TENER
         - Curso en si mismo con todo lo que conlleve
 
 __________________________________________
+
+MENUES
+1- Administración
+	- listado de todos los usuarios
+		- datos del usuario
+		- cursos
+			- Notas 
+			- pagos
+	- listado de todos los cursos
+		- info del curso
+		- info de alumnos anotados
+2- Profesores
+	- Cursos asignados
+		- Info del curso
+		- Info de los alumnos
+3- Alumnos
+	- Mis Cursos
+		- Mis Notas
+		- Mis Pagos 

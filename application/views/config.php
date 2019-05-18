@@ -24,8 +24,8 @@
     var Cookies = document.cookie;
 
     <?php 
-        //echo 'var Usuario_id = '. $Usuario_id.';';
-       // echo 'var Rol_acceso = '. $Rol_acceso.';';
+        echo 'var Usuario_id = '. $Usuario_id.';';
+        echo 'var Rol_acceso = '. $Rol_acceso.';';
     ?>
 
 

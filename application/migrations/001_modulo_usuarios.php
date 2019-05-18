@@ -21,8 +21,13 @@ class Migration_modulo_usuarios extends CI_Migration
                         'Fecha' => array(
                                 'type' => 'DATE'
                         ),
+                        'URL_imagen' => array(
+                                'type' => 'varchar',
+                                'null' => TRUE,
+                        ),
                         'Descripcion' => array(
-                                'type' => 'TEXT'
+                                'type' => 'TEXT',
+                                'constraint' => 100,
                         ),
                         'Usuario_id' => array(
                                 'type' => 'INT',

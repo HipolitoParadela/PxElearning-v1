@@ -6,18 +6,12 @@ class Login extends CI_Controller
 
     public function index()
     {
-        if ($this->session->userdata('Login') == true) 
-        {
-            header("Location: " . base_url() . "index"); /// enviar a pagina de error
-        } 
-        else 
-        {   
-            $data = array(
-                "TituloPagina" => "Bienvenido",
-                "Descripcion" => "Cursos de formación Online del Instituto Jerónimo Luis de Caberar Río Segundo, certificados por el Concejo Provincial de Informática de Córdoba y por la UTN Córdoba",
-            );
-            $this->load->view('login', $data);
-        }
+
+        $data = array(
+            "TituloPagina" => "Iniciar Sesión",
+            "Descripcion" => "Cursos de formación Online del Instituto Jerónimo Luis de Caberar Río Segundo, certificados por el Concejo Provincial de Informática de Córdoba y por la UTN Córdoba",
+        );
+        $this->load->view('login', $data);
     }
 
     public function iniciar_session()
@@ -45,8 +39,7 @@ class Login extends CI_Controller
                     $this->session->set_userdata($data);
 
                     header("Location: " . base_url() . "dashboard");
-                } 
-                else /// si no es admin
+                } else /// si no es admin
                 {
                     if ($fila->Presencia == 1) /// si tiene activo el control de presencia y con un rol distinto a 1 y a 5
                     {
@@ -61,19 +54,16 @@ class Login extends CI_Controller
                         $this->session->set_userdata($data);
 
                         header("Location: " . base_url() . "dashboard");
-                    } 
-                    else /// si tiene NO esta activo el control de presencia
+                    } else /// si tiene NO esta activo el control de presencia
                     {
                         header("Location: " . base_url() . "login?Error=3");
                     }
                 }
-            } 
-            else /// si la contraseña NO es correcta
+            } else /// si la contraseña NO es correcta
             {
                 header("Location: " . base_url() . "login?Error=1");
             }
-        } 
-        else //// si el usuario NO existe
+        } else //// si el usuario NO existe
         {
             header("Location: " . base_url() . "login?Error=2");
         }
@@ -85,5 +75,4 @@ class Login extends CI_Controller
         header("Location: " . base_url() . "login"); /// enviar a pagina de error
 
     }
-
 }

@@ -10,7 +10,7 @@ include("aa_barra_navegacion.php");
         <div class="row">
             <div class="col-12">
                 <header class="entry-header">
-                    <h1>LISTADO DE USUARIOS</h1>
+                    <h1><?= $TituloPagina; ?></h1>
                 </header><!-- .entry-header -->
             </div><!-- .col -->
         </div><!-- .row -->
@@ -21,17 +21,21 @@ include("aa_barra_navegacion.php");
 <!-- <div class="container-fluid" id="app"> -->
 <div class="container-fluid" id="app_id">
     <div class="row">
+        
         <div class="col-12">
             <div class="breadcrumbs">
                 <ul class="flex flex-wrap align-items-center p-0 m-0">
                     <li><a href="<?php echo base_url(); ?>"><i class="fa fa-home"></i> Home</a></li>
-                    <li><a href="<?php echo base_url(); ?>usuarios"><i class="fa fa-users"></i> Listado usuarios</a></li>
+                    <li><a href="<?php echo base_url(); ?>usuarios"><i class="fa fa-users"></i> <?= $TituloPagina; ?></a></li>
                     <li>{{datosFormularioPrincipal.Nombre}}</li>
                 </ul>
             </div><!-- .breadcrumbs -->
         </div><!-- .col -->
     </div><!-- .row -->
     <div class="row">
+        
+        
+
         <div class="col-lg-2">
             <div class="card">
                 <div class="card-header">
@@ -59,7 +63,7 @@ include("aa_barra_navegacion.php");
         </div>
 
         <!-- SECCION FICHA USUARIO -->
-        <div class="col-lg-10">
+        <div class="col-lg-8">
 
             <ul class="nav nav-tabs">
                 <li class="nav-item">
@@ -354,6 +358,10 @@ include("aa_barra_navegacion.php");
                     </DIV>
                 </DIV>
             </div>
+        </div>
+
+        <div class="col-2">
+            <?php include("aa-barra-navegacion-login.php"); ?>
         </div>
     </div>
 

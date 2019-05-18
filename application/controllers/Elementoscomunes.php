@@ -1,7 +1,8 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Elementoscomunes extends CI_Controller {
+class Elementoscomunes extends CI_Controller
+{
 
 	/**
 	 * Index Page for this controller.
@@ -19,109 +20,104 @@ class Elementoscomunes extends CI_Controller {
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
 	public function index()
-	{   
-        $data = array(
-            "TituloPagina" => "Cursos de formación Online, Instituto Jerónimo Luis de Caberar Río Segundo",
-            "Descripcion" => "Cursos de formación Online del Instituto Jerónimo Luis de Caberar Río Segundo, certificados por el Concejo Provincial de Informática de Córdoba y por la UTN Córdoba",
-        );
+	{
+		$data = array(
+			"TituloPagina" => "Cursos de formación Online, Instituto Jerónimo Luis de Caberar Río Segundo",
+			"Descripcion" => "Cursos de formación Online del Instituto Jerónimo Luis de Caberar Río Segundo, certificados por el Concejo Provincial de Informática de Córdoba y por la UTN Córdoba",
+		);
 		$this->load->view('index', $data);
 	}
 
-	public function config()
-	{   
-        $data = array(
-            "TituloPagina" => "Cursos de formación Online, Instituto Jerónimo Luis de Caberar Río Segundo",
-            "Descripcion" => "Cursos de formación Online del Instituto Jerónimo Luis de Caberar Río Segundo, certificados por el Concejo Provincial de Informática de Córdoba y por la UTN Córdoba",
-        );
-		$this->load->view('config', $data);
+//// DATOS USUARIO JS | VISTA | PRODUCCION
+public function config()
+{
+	if ($this->session->userdata('Login') != true) {
+		header("Location: " . base_url() . "login"); /// enviar a pagina de error
+	} 
+	else 
+	{
+		$Datos = array( 'Rol_acceso' => $this->session->userdata('Rol_acceso'),
+						'Usuario_id' => $this->session->userdata('Id'));
+
+		$this->load->view('config', $Datos);
+	}
+}
+
+//// 			| ELIMINAR ALGO
+	public function eliminar()
+	{
+		$CI = &get_instance();
+		$CI->load->database();
+
+		$token = @$CI->db->token;
+		$this->datosObtenidos = json_decode(file_get_contents('php://input'));
+		if ($this->datosObtenidos->token != $token) {
+			exit("No coinciden los token");
+		}
+
+		$Id = NULL;
+		$tabla = NULL;
+
+		if (isset($this->datosObtenidos->Id)) {
+			$Id = $this->datosObtenidos->Id;
+		}
+
+		if (isset($this->datosObtenidos->tabla)) {
+			$tabla = $this->datosObtenidos->tabla;
+		}
+
+		$this->load->model('App_model');
+		$insert_id = $this->App_model->eliminar($Id, $tabla);
 	}
 
-	 //// 			| ELIMINAR ALGO
-	 public function eliminar()
-	 {
-		 $CI =& get_instance();
-		 $CI->load->database();
-		 
-		 $token = @$CI->db->token;
-		 $this->datosObtenidos = json_decode(file_get_contents('php://input'));
-		 if ($this->datosObtenidos->token != $token)
-		 { 
-			 exit("No coinciden los token");
-		 }
- 
-		 $Id = NULL;
-		 $tabla = NULL;
- 
-		 if(isset($this->datosObtenidos->Id))
-		 {
-			 $Id = $this->datosObtenidos->Id;
-		 }
- 
-		 if(isset($this->datosObtenidos->tabla))
-		 {
-			 $tabla = $this->datosObtenidos->tabla;
-		 }
-		 
-		 $this->load->model('App_model');
-		 $insert_id = $this->App_model->eliminar($Id, $tabla);
-				 
-	 }
-
-//// IMAGENES
+	//// IMAGENES
 	public function subirImagen()
 	{
 		$status = "";
 		$msg = "";
-        $file_element_name = 'Archivo';
-        $this->datosObtenidos = json_decode(file_get_contents('php://input'));
-		
-		if ($status != "error")
-		{
+		$file_element_name = 'Archivo';
+		$this->datosObtenidos = json_decode(file_get_contents('php://input'));
+
+		if ($status != "error") {
 			$config['upload_path'] = './uploads/imagenes';
 			$config['allowed_types'] = 'gif|jpg|jpeg|png';
 			$config['max_size'] = 1024 * 8;
 			$config['encrypt_name'] = TRUE;
-	
+
 			$this->load->library('upload', $config);
-	
-			if (!$this->upload->do_upload($file_element_name))
-			{
+
+			if (!$this->upload->do_upload($file_element_name)) {
 				$status = 'error';
 				$msg = $this->upload->display_errors('', '');
-			}
-			else
-			{
+			} else {
 				/// coloco el dato en la base de datos
-                    $Id 	= $_GET["Id"];
-                    $tabla 	= $_GET["tabla"];
-					
-					$data = $this->upload->data();
-					
-					$file_info = $this->upload->data();
-					$nombre_imagen = $file_info['file_name'];
-					
-					$data = array(    
-						'Imagen' =>		$nombre_imagen,
-					);
+				$Id 	= $_GET["Id"];
+				$tabla 	= $_GET["tabla"];
 
-					$this->load->model('App_model');
-					$insert_id = $this->App_model->insertar($data, $Id, $tabla);
-					
-					// $file_id = $this->files_model->insert_file($data['file_name'], $_POST['title']);
-					if($insert_id > 0)
-					{
-						$status = 1;
-						$msg = "File successfully uploaded";
-					}
-					else
-					{
-						unlink($data['full_path']);
-						$status = 0;
-						$msg = "Something went wrong when saving the file, please try again.";
-					}
+				$data = $this->upload->data();
+
+				$file_info = $this->upload->data();
+				$nombre_imagen = $file_info['file_name'];
+
+				$data = array(
+					'Imagen' =>		$nombre_imagen,
+				);
+
+				$this->load->model('App_model');
+				$insert_id = $this->App_model->insertar($data, $Id, $tabla);
+
+				// $file_id = $this->files_model->insert_file($data['file_name'], $_POST['title']);
+				if ($insert_id > 0) {
+					$status = 1;
+					$msg = "File successfully uploaded";
+				} else {
+					unlink($data['full_path']);
+					$status = 0;
+					$msg = "Something went wrong when saving the file, please try again.";
+				}
 			}
 			@unlink($_FILES[$file_element_name]);
 		}
 		echo json_encode(array('status' => $status, 'Imagen' => $nombre_imagen));
-    }
+	}
 }
