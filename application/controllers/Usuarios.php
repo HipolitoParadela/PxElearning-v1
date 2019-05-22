@@ -52,7 +52,7 @@ class Usuarios extends CI_Controller
     }
 
 //// USUARIOS 	    | OBTENER LISTADO
-	public function obtener_Usuarios()
+	public function obtener_listado_principal()
     {
 			
         //Esto siempre va es para instanciar la base de datos

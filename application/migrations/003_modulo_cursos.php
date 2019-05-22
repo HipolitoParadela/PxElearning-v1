@@ -15,6 +15,10 @@ class Migration_modulo_cursos extends CI_Migration
                 'unsigned' => TRUE,
                 'auto_increment' => TRUE
             ),
+            'Categoria_id' => array(
+                'type' => 'INT',
+                'constraint' => 2,
+            ),
             'Titulo_curso' => array(
                 'type' => 'VARCHAR',
                 'constraint' => 100
@@ -143,6 +147,31 @@ class Migration_modulo_cursos extends CI_Migration
         ));
         $this->dbforge->add_key('Id', TRUE);
         $this->dbforge->create_table('tbl_cursos_modulos');
+
+        /// tbl_cursos_categorias - tabla donde se registran los modulos de los cursos creados
+        $this->dbforge->add_field(array(
+            'Id' => array(
+                'type' => 'INT',
+                'constraint' => 10,
+                'unsigned' => TRUE,
+                'auto_increment' => TRUE
+            ),
+            'Nombre_categoria' => array(
+                'type' => 'VARCHAR',
+                'constraint' => 100
+            ),
+            'Descripcion' => array(
+                'type' => 'TEXT',
+                'null' => TRUE,
+            ),
+            'Visible' => array(
+                'type' => 'INT',
+                'constraint' => 1,
+            ),
+
+        ));
+        $this->dbforge->add_key('Id', TRUE);
+        $this->dbforge->create_table('tbl_cursos_categorias');
 
         /// tbl_cursos_examen - tabla donde se registran los examenes de los modulos de los cursos creados
         $this->dbforge->add_field(array(
@@ -428,11 +457,48 @@ class Migration_modulo_cursos extends CI_Migration
         ));
         $this->dbforge->add_key('Id', TRUE);
         $this->dbforge->create_table('tbl_mensajes');
+
+        /// tbl_cursos_seguimiento - mensajes entre profesores y alumnos
+        $this->dbforge->add_field(array(
+            'Id' => array(
+                    'type' => 'INT',
+                    'constraint' => 10,
+                    'unsigned' => TRUE,
+                    'auto_increment' => TRUE
+            ),
+            'Curso_seguimiento_id' => array(
+                    'type' => 'INT',
+                    'constraint' => 10,
+            ),
+            'Fecha' => array(
+                    'type' => 'DATE'
+            ),
+            'Url_archivo' => array(
+                    'type' => 'varchar',
+                    'null' => TRUE,
+            ),
+            'Descripcion' => array(
+                    'type' => 'TEXT',
+                    'constraint' => 100,
+            ),
+            'Usuario_id' => array(
+                    'type' => 'INT',
+                    'constraint' => 10,
+            ),
+            'Visible' => array(
+                    'type' => 'TINYINT',
+                    'constraint' => 1,
+                    'null' => TRUE,
+            ),
+    ));
+    $this->dbforge->add_key('Id', TRUE);
+    $this->dbforge->create_table('tbl_cursos_seguimiento');
     }
 
     public function down()
     {
         $this->dbforge->drop_table('tbl_cursos');
+        $this->dbforge->drop_table('tbl_cursos_categorias');
         $this->dbforge->drop_table('tbl_cursos_modulos');
         $this->dbforge->drop_table('tbl_cursos_examen');
         $this->dbforge->drop_table('tbl_cursos_alumnos');

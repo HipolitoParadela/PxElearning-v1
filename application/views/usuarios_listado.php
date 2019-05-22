@@ -40,7 +40,7 @@ include("aa_barra_navegacion.php");
                 <div class="col-5">
                     <select class="form-control-sm form-control" v-model="filtro_1" v-on:change="getListadoPrincipal('/usuarios/obtener_Usuarios')">
                         <option selected="selected" v-bind:value="0">Todos los roles</option>
-                        <option v-for="rol in listaRoles" v-bind:value="rol.Acceso">{{rol.Nombre_rol}} -{{rol.Descripcion}} </option>
+                        <option v-for="rol in listaFiltro_1" v-bind:value="rol.Acceso">{{rol.Nombre_rol}} -{{rol.Descripcion}} </option>
                     </select>
 
                 </div>
@@ -137,7 +137,7 @@ include("aa_barra_navegacion.php");
                             <input type="number" placeholder="Teléfono" v-model="datosFormularioPrincipal.Telefono" required>
                             <input type="password" placeholder="Contraseña" v-model="datosFormularioPrincipal.Pass" pattern=".{8,}" required>
                             <select v-model="datosFormularioPrincipal.Rol_acceso" placeholder="Seleccionar rol" required>
-                                <option v-for="rol in listaRoles" v-bind:value="rol.Acceso">{{rol.Nombre_rol}} -{{rol.Descripcion}} </option>
+                                <option v-for="rol in listaFiltro_1" v-bind:value="rol.Acceso">{{rol.Nombre_rol}} -{{rol.Descripcion}} </option>
                             </select>
                             <!-- <textarea placeholder="Your Message" rows="4"></textarea -->
 

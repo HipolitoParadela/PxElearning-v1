@@ -31,7 +31,7 @@ Vue.filter('FechaB_datos', function (fecha)
         fecha = fecha.split(' ');
 
         //var fecha_dia = fecha[0].replace(/^(\d{4})-(\d{2})-(\d{2})$/g, '$3/$2/$1');
-        var fecha_dia = fecha[0].replace(/^(\d{4})-(\d{2})-(\d{2})$/g, '$3/$2');
+        var fecha_dia = fecha[0].replace(/^(\d{4})-(\d{2})-(\d{2})$/g, '$3/$2/$1');
 
         var fecha_hora = fecha[1].split(':');
         fecha_hora = fecha_hora[0] + ':' + fecha_hora[1];
@@ -123,59 +123,62 @@ new Vue({
 
     created: function () {        
         
-        switch (pathname) {
+        switch (pathname) 
+        {
             case '/usuarios':
-            this.getListadoPrincipal('/usuarios/obtener_Usuarios');
-            this.getListadoRoles();
-            break;
+                this.getListadoPrincipal('/usuarios/obtener_listado_principal');
+                this.getFiltro_1('/usuarios/obtener_roles');
+                break; 
+
+            case '/cursos':
+                this.getListadoPrincipal('/cursos/obtener_listado_principal');
+                this.getFiltro_1('/cursos/obtener_categorias');
+                break; 
         }
     },
 
     data:
     {
-        Rol_usuario: '',
+        
         /// FORMULARIO PRINCIPAL
+            listaPrincipal: [],
             datosFormularioPrincipal: [],
+        
+        /// IMAGEN PRINCIPAL
+            datosFoto: { 'Id': '', 'Nombre_principal': '', 'Imagen': '' },
             Archivo: '',
             preloader: '0',
-            infoModal: {'Observaciones':''},
-            listaRoles: [],
+        
+        /// FILTROS
             buscar: '',
+
+            filtro_Data: {},
+
+            listaFiltro_1: [],
+            filtro_1: "0",
+
+            listaFiltro_2: [],
+            filtro_2: "0",
+
+            listaFiltro_3: [],
+            filtro_3: '0',
+
+            listaFiltro_4: [],
+            filtro_4: '0',
+
+            listaFiltro_5: [],
+            filtro_5: '0',
+
+        /// OTROS 
+            infoModal: {'Observaciones':''},
             mostrar: '1',
             texto_boton: "Cargar",
-            filtro_1: "0",
-            filtro_2: "0",
-            filtro_3: '0',
-            filtro_4: '0',
-            filtro_5: '0',
-            datosFoto: { 'Id': '', 'Nombre_principal': '', 'Imagen': '' },
-
-                //listaEmpresas: [],
-                //empresaDatos: { 'Id': '', 'Nombre_empresa': '', 'Descripcion': '' },
-                //listaPuestos: [],
-            puesto: { 'Id': '', 'Nombre_puesto': '', 'Descripcion': '' },
-
-            listaPrincipal: [],
-        
+            Rol_usuario: '',
     },
 
     methods:
     {
-        
-        //// PRINCIPAL COMUN |  Carga el formulario para editar
-        editarFormulario(datos) {
-            //this.datos = {};
-            this.datosFormularioPrincipal = datos;
-            this.texto_boton = "Actualizar";
-        },
-
-        ////   PRINCIPAL COMUN |  LIMPIAR EL FORMULARIO DE CREAR
-        limpiarFormulario() {
-            this.datosFormularioPrincipal = {}
-            this.texto_boton = "Cargar";
-        },
-
-        
+             
         //// PRINCIPAL COMUN | MOSTRAR LISTADO  
         getListadoPrincipal: function (url_controller) {
             //var url = base_url + '/usuarios/obtener_Usuarios/?estado=' + estado; // url donde voy a mandar los datos
@@ -215,8 +218,14 @@ new Vue({
                 /// UNICA PARTE DEL CÓDIGO A GENERAR POR CADA LISTA
                 switch (pathname) {
                     case '/usuarios':
-                    this.getListadoPrincipal('/usuarios/obtener_Usuarios'); break;
+                        this.getListadoPrincipal('/usuarios/obtener_Usuarios'); 
+                        break;
+
+                    case '/cursos':
+                        this.getListadoPrincipal('/cursos/obtener_listado_principal');  
+                        break; 
                 }
+                
 
             }).catch(error => {
                 
@@ -225,12 +234,25 @@ new Vue({
             });
         },
 
+        //// PRINCIPAL COMUN |  Carga el formulario para editar
+        editarFormulario(datos) {
+            //this.datos = {};
+            this.datosFormularioPrincipal = datos;
+            this.texto_boton = "Actualizar";
+        },
+
+        ////   PRINCIPAL COMUN |  LIMPIAR EL FORMULARIO DE CREAR
+        limpiarFormulario() {
+            this.datosFormularioPrincipal = {}
+            this.texto_boton = "Cargar";
+        },
+
         //// ELIMINAR ALGO
         eliminar: function (Id, tbl) {
             var url = base_url + '/elementoscomunes/eliminar'; // url donde voy a mandar los datos
 
             //SOLICITANDO CONFIRMACIÓN PARA ELIMINAR
-            var opcion = confirm("¿Esta seguro de eliminar a este usuario?");
+            var opcion = confirm("¿Esta seguro de eliminar esta información?");
             if (opcion == true) {
 
                 axios.post(url, {
@@ -241,6 +263,12 @@ new Vue({
                     switch (pathname) {
                         case '/usuarios':
                         this.getListadoPrincipal('/usuarios/obtener_Usuarios');
+                        break;
+                    }
+                    switch (pathname) {
+                        case '/cursos':
+                            this.getListadoPrincipal('/cursos/obtener_listado_principal');
+                            this.getFiltro_1('/cursos/obtener_categorias');
                         break;
                     }
                     toastr.success('Eliminado correctamente', '-')
@@ -329,18 +357,92 @@ new Vue({
             this.texto_boton = "Actualizar";
         },
 
-        ////  ROLES | MOSTRAR LISTADO  
-        getListadoRoles: function () {
-            var url = base_url + '/usuarios/obtener_roles'; // url donde voy a mandar los datos
+
+        //// FILTROS |  Carga el formulario para editar
+        editarFormulario_filtro(datos) {
+            //this.datos = {};
+            this.filtro_Data = datos;
+            this.texto_boton = "Actualizar";
+        },
+
+        ////   FILTROS |  LIMPIAR EL FORMULARIO DE CREAR
+        limpiarFormulario_filtro() {
+            this.filtro_Data = {}
+            this.texto_boton = "Cargar";
+        },
+
+        ////  Filtro COMUN |  CREAR O EDITAR ITEM
+        crearItemFiltro: function (url_controller) {
+            var url = base_url + url_controller; // url donde voy a mandar los datos
+            
+            axios.post(url, {
+                token: token,
+                Datos: this.filtro_Data
+            }).then(response => {
+
+                toastr.success('Proceso realizado correctamente', 'SISTEMA')
+
+                this.filtro_Data.Id = response.data.Id;
+                this.texto_boton = "Actualizar"
+
+                /// PARTE EDITABLE -------------------
+                    switch (pathname) {
+                        case '/cursos':
+                            this.getFiltro_1('/cursos/obtener_categorias'); 
+                            break;
+                    }
+                /// ---------
+
+            }).catch(error => {
+                
+                //console.log(error.response.data)
+                toastr.error('Error en la recuperación de los datos', 'SISTEMA')
+            });
+        },
+
+        
+        ////  FILTRO_1 | MOSTRAR LISTADO  
+        getFiltro_1: function (url_controller) {
+            var url = base_url + url_controller; // url donde voy a mandar los datos
 
             axios.post(url, {
                 token: token
             }).then(response => {
-                this.listaRoles = response.data
+                this.listaFiltro_1 = response.data
             }).catch(error => {
                 
                 console.log(error.response.data)
-                toastr.error('Error en la recuperación de los datos', 'Usuarios')
+                toastr.error('Error en la recuperación de los datos', 'Sistema')
+            });
+        },
+
+        ////  FILTRO_2 | MOSTRAR LISTADO  
+        getFiltro_2: function (url_controller) {
+            var url = base_url + url_controller; // url donde voy a mandar los datos
+
+            axios.post(url, {
+                token: token
+            }).then(response => {
+                this.listaFiltro_2 = response.data
+            }).catch(error => {
+                
+                console.log(error.response.data)
+                toastr.error('Error en la recuperación de los datos', 'Sistema')
+            });
+        },
+
+        ////  FILTRO_3 | MOSTRAR LISTADO  
+        getFiltro_3: function (url_controller) {
+            var url = base_url + url_controller; // url donde voy a mandar los datos
+
+            axios.post(url, {
+                token: token
+            }).then(response => {
+                this.listaFiltro_3 = response.data
+            }).catch(error => {
+                
+                console.log(error.response.data)
+                toastr.error('Error en la recuperación de los datos', 'Sistema')
             });
         },
 
@@ -456,6 +558,311 @@ new Vue({
             });
         },
 
+
+        //// CREAR O EDITAR una formación
+        crear_contenido_2: function (url_controller, url_controller_get) {
+            
+            var url = base_url + url_controller + '/?Id=' + Get_Id; // url donde voy a mandar los datos
+            console.log(url)
+            axios.post(url, {
+                token: token,
+                Datos: this.cont2Data
+            }).then(response => {
+
+                toastr.success('Datos actualizados correctamente', 'Usuarios')
+
+                this.cont2Data.Id = response.data.Id;
+                this.texto_boton = "Actualizar"
+                this.get_contenido_2(url_controller_get);
+
+            }).catch(error => {
+                console.log(error.response.data)
+                toastr.error('Error en la recuperación de los datos', 'Usuarios')
+            });
+        },
+
+        //// MOSTRAR LISTADO DE FORMACIONES
+        get_contenido_2: function (url_controller) {
+            var url = base_url + url_controller + '/?Id=' + Get_Id;  //// averiguar como tomar el Id que viene por URL aca
+
+            axios.post(url, {
+                token: token
+            }).then(response => {
+                    
+                this.mostrar = 2
+                this.listaContenido_2 = response.data
+
+            }).catch(error => {
+                toastr.error('Error en la recuperación de los datos', 'Sistema')
+                console.log(error.response.data)
+            });
+        },
+
+        editarForm_cont_2: function (formacion) {
+            this.cont2Data = formacion;
+        },
+
+        //// LIMPIAR FORMULARIO FORMACION
+        limpiarForm_cont_2: function () {
+            this.cont2Data = { 'Id': '', 'Titulo': '', 'Establecimiento': '', 'Anio_inicio': '', 'Anio_finalizado': '', 'Descripcion_titulo': '' }
+        },
+
+        //// SUBIR FOTO
+        archivoSeleccionado(event) {
+            this.Archivo = event.target.files[0]
+            //this.texto_boton = "Actualizar"
+        },
+
+        //// SUBIR FOTO
+        upload(Id, tabla) {
+            //this.texto_boton = "Actualizar"
+            var url = base_url + '/elementoscomunes/subirImagen/?Id='+Id+'&tabla='+tabla; // url donde voy a mandar los datos
+            this.preloader = 1;
+            //const formData = event.target.files[0];
+            const formData = new FormData();
+            formData.append("Archivo", this.Archivo);
+
+            formData.append('_method', 'PUT');
+
+            //Enviamos la petición
+            axios.post(url, formData)
+                .then(response => {
+
+                    ////DEBO HACER FUNCIONAR BIEN ESTO PARA QUE SE ACTUALICE LA FOTO QUE CARGO EN EL MOMENTO, SI NO PARECE Q NO SE CARGARA NADA
+                    this.datosFoto.Imagen = response.data.Imagen;
+                    
+                    /// UNICA PARTE DEL CÓDIGO A GENERAR POR CADA LISTA
+                    switch (pathname) {
+                        case '/usuarios':
+                        this.getListadoPrincipal('/usuarios/obtener_Usuarios'); break;
+                    }
+                    
+                    toastr.success('Proceso realizado correctamente', 'Usuarios')
+
+                    this.preloader = 0;
+                }).catch(error => {
+                    toastr.error('Error en la recuperación de los datos', 'Usuarios')
+                    console.log(error.response.data)
+                    this.preloader = 0;
+                });
+        },
+
+        //// SUBIR FOTO
+        editarFormularioFoto(datos) {
+            this.datosFoto = datos;
+            this.texto_boton = "Actualizar";
+        },
+
+        //// SEGUIMIENTO | MOSTRAR LISTADO
+        getListadoSeguimiento: function (url_controller) {
+            var url = base_url + url_controller + '/?Id=' + Get_Id; // url donde voy a mandar los datos
+
+            axios.post(url, {
+                token: token
+            }).then(response => {
+                this.listaSeguimiento = response.data;
+                this.mostrar = '4'
+            });
+        },
+
+        //// SEGUIMIENTO |  CREAR O EDITAR
+        crearSeguimiento: function (url_controller, url_controller_upload, url_controller_get) {
+            var url = base_url + url_controller; // url donde voy a mandar los datos
+
+            axios.post(url, {
+                token: token,
+                Datos: this.seguimientoData, 
+                Id: Get_Id
+            }).then(response => {
+
+                this.seguimientoData.Id = response.data.Id;
+
+                /// si eso se ralizó bien, debe comprobar si hay un archivo a cargar.
+                if (this.Archivo != null) {
+                    var url = base_url + url_controller_upload+'/?Id=' + this.seguimientoData.Id;
+                    this.preloader = 1;
+
+                    //const formData = event.target.files[0];
+                    const formData = new FormData();
+                    formData.append("Archivo", this.Archivo);
+
+                    formData.append('_method', 'PUT');
+
+                    //Enviamos la petición
+                    axios.post(url, formData)
+                        .then(response => {
+
+                            this.seguimientoData.Url_archivo = response.data.Url_archivo;
+
+                            toastr.success('El archivo se cargo correctamente', 'Proveedores')
+                            this.preloader = 0;
+                            this.getListadoSeguimiento(url_controller_get);
+
+                        }).catch(error => {
+                            alert("MAL LA CARGA EN FUNCIÓN DE CARGAR ARCHIVO");
+                            this.preloader = 0;
+                            //this.seguimientoData.Url_archivo = response.data.Url_archivo;
+                        });
+                }
+                // si lo hay lo carga, si no lo hay no hace nada
+
+                this.getListadoSeguimiento(url_controller_get);
+                this.Archivo = null
+                this.texto_boton = "Actualizar"
+                toastr.success('Datos actualizados correctamente', 'Proveedores')
+
+            }).catch(error => {
+                alert("MAL LA CARGA EN FUNCIÓN DE CARGAR DATOS");
+            });
+        },
+
+        /// SEGUIMIENTO | EDITAR UN SEGUIMIENTO
+        editarFormularioSeguimiento: function (dato) {
+            this.seguimientoData = dato;
+        },
+
+        //// SEGUIMIENTO | LIMPIAR FORMULARIO SEGUIMIENTO
+        limpiarFormularioSeguimiento: function () {
+            this.seguimientoData = {}
+        },
+
+        //// ELIMINAR ALGO
+        eliminar: function (Id, tbl) {
+            var url = base_url + '/elementoscomunes/eliminar'; // url donde voy a mandar los datos
+
+            //SOLICITANDO CONFIRMACIÓN PARA ELIMINAR
+            var opcion = confirm("¿Esta seguro de eliminar a este usuario?");
+            if (opcion == true) {
+
+                axios.post(url, {
+                    token: token,
+                    Id: Id, tabla: tbl
+                }).then(_response => {
+
+                    switch (pathname) {
+                        case '/usuarios':
+                        this.getListadoPrincipal('/usuarios/obtener_Usuarios');
+                        break;
+                    }
+                    toastr.success('Eliminado correctamente', '-')
+
+                }).catch(error => {
+                    toastr.error('Error en la recuperación de los datos', 'Usuarios')
+                    console.log(error.response.data)
+                });
+            }
+        },
+
+    },
+
+    ////// ACCIONES COMPUTADAS     
+    computed:
+    {
+
+    }
+});
+
+///         --------------------------------------------------------------------   ////
+//// Elemento para el manejo de CURSOS por Id
+new Vue({
+    el: '#app_cursos',
+
+    created: function () {
+        this.getDatosPrincipal('/cursos/obtener_curso');
+        this.getFiltro_1('/cursos/obtener_categorias');
+        //this.getSuperiores();
+        //this.getListadoEmpresas();
+        //this.getListadoPuesto();
+    },
+
+    data: {
+
+        mostrar: "1",
+        preloader: 0,
+        datosFormularioPrincipal : {},
+
+        datosFoto: { 'Id': '', 'Nombre_principal': '', 'Imagen': '' },
+        Archivo: '',
+
+        listaSuperiores: [],
+
+        listaRoles: [],
+        texto_boton: "Cargar",
+
+        listaContenido_2: [],
+        cont2Data: {},
+
+        listaSeguimiento: [],
+        seguimientoData: {
+                            'Id': '',
+                            'Fecha': '',
+                            'Nombre_principal': '', 
+                            'Url_archivo': '',
+                            'Descripcion': ''},
+
+        listaFiltro_1: [],
+        /* listaPuestos: [], */
+    },
+
+    methods:
+    {
+
+        //// OBTENER DATOS PRINCIPALES
+        getDatosPrincipal: function (url_controller) {
+            var url = base_url + url_controller +'/?Id=' + Get_Id;  //// averiguar como tomar el Id que viene por URL aca
+
+            axios.post(url, {
+                token: token
+            }).then(response => {
+                this.datosFormularioPrincipal = response.data[0]
+            }).catch(error => {
+                toastr.error('Error en la recuperación de los datos', 'Sistema')
+                console.log(error.response.data)
+            });
+        },
+        
+        ////  FILTRO_1 | MOSTRAR LISTADO  
+        getFiltro_1: function (url_controller) {
+            var url = base_url + url_controller; // url donde voy a mandar los datos
+
+            axios.post(url, {
+                token: token
+            }).then(response => {
+                this.listaFiltro_1 = response.data
+            }).catch(error => {
+                
+                console.log(error.response.data)
+                toastr.error('Error en la recuperación de los datos', 'Sistema')
+            });
+        },
+
+        ////  PRINCIPAL COMUN |  CREAR O EDITAR ITEM
+        crearItemPrincipal: function (url_controller) {
+            //var url = base_url + '/usuarios/cargar_Usuarios'; // url donde voy a mandar los datos
+            var url = base_url + url_controller +'/?Id=' + Get_Id; // url donde voy a mandar los datos
+            
+            axios.post(url, {
+                token: token,
+                Datos: this.datosFormularioPrincipal
+            }).then(response => {
+
+                toastr.success('Proceso realizado correctamente', 'Usuarios')
+
+                this.datosFormularioPrincipal.Id = response.data.Id;
+                this.texto_boton = "Actualizar"
+
+                /// UNICA PARTE DEL CÓDIGO A GENERAR POR CADA LISTA
+                switch (pathname) {
+                    case '/usuarios':
+                    this.getListadoPrincipal('/usuarios/obtener_Usuarios'); break;
+                }
+
+            }).catch(error => {
+                
+                console.log(error.response.data)
+                toastr.error('Error en la recuperación de los datos', 'Usuarios')
+            });
+        },
 
         //// CREAR O EDITAR una formación
         crear_contenido_2: function (url_controller, url_controller_get) {
