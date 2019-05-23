@@ -25,8 +25,8 @@ include("aa_barra_navegacion.php");
             <div class="breadcrumbs">
                 <ul class="flex flex-wrap align-items-center p-0 m-0">
                     <li><a href="<?php echo base_url(); ?>"><i class="fa fa-home"></i> Home</a></li>
-                    <li><a href="<?php echo base_url(); ?>usuarios"><i class="fa fa-users"></i> <?= $TituloPagina; ?></a></li>
-                    <li>{{datosFormularioPrincipal.Nombre}}</li>
+                    <li><a href="<?php echo base_url(); ?>cursos"><i class="fas fa-book"></i> Cursos</a></li>
+                    <li>{{datosFormularioPrincipal.Nombre_principal}}</li>
                 </ul>
             </div><!-- .breadcrumbs -->
         </div><!-- .col -->
@@ -174,7 +174,7 @@ include("aa_barra_navegacion.php");
                                                 <th>Ult. Actualización</th>
                                                 <th>
                                                     <button class="btn btn-primary" v-on:click="limpiarForm_cont_2()" data-toggle="modal" data-target="#modalModulos" data-placement="top" title="Edición rápida">
-                                                        <i class="ti-plus"></i> Añadir módulo
+                                                        <i class="fas fa-plus"></i> Módulo
                                                     </button>
                                                 </th>
                                             </tr>
@@ -188,7 +188,7 @@ include("aa_barra_navegacion.php");
                                                     </a>
                                                 </td>
                                                 <td>
-                                                    <a v-bind:href="'cursos/modulo/?Id=' + modulo.Id" class="btn btn-outline">
+                                                    <a v-bind:href="'../../cursos/modulo/?Id=' + modulo.Id" class="btn btn-outline">
                                                         {{ modulo.Titulo_modulo }}
                                                     </a>
                                                 </td>

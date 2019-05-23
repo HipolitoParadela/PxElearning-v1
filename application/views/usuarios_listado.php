@@ -46,7 +46,7 @@ include("aa_barra_navegacion.php");
                 </div>
                 <div class="col-2">
                     <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#exampleModalLong" v-on:click="limpiarFormulario()">
-                        <i class="fas fa-user-plus"></i> Crear usuario
+                        <i class="fas fa-plus"></i> Crear usuario
                     </button>
                 </div>
             </div>

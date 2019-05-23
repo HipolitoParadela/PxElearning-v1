@@ -61,7 +61,7 @@ include("aa_barra_navegacion.php");
                                 <th scope="col">
 
                                 </th>
-                                <th scope="col">Nombre curso</th>
+                                <th scope="col">Curso</th>
                                 <th scope="col">Categoría</th>
                                 <th scope="col">Duración</th>
                                 <th scope="col">Costo normal</th>

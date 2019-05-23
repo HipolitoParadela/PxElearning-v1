@@ -70,7 +70,7 @@ public function config()
 		$insert_id = $this->App_model->eliminar($Id, $tabla);
 	}
 
-	//// IMAGENES
+//// IMAGENES
 	public function subirImagen()
 	{
 		$status = "";

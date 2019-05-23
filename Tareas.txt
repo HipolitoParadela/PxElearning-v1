@@ -1,6 +1,35 @@
 eLearning
 
+__________________________________________
 
+
+En la pagina del curso, donde dice alumnos deberia tener
+
+	- Ver listado de alumnos
+		. Interesados en ese curso
+		. Inscriptos
+		. Terminados
+
+	- Inscribir un alumno a un curso
+		Ver listado de alumnos completos, y agregarlos como hago en lo de piñata, mismo script.
+
+	- entrar a una seccion donde gestionar el curso con ese alumno ----- mismo acceso que veria desde alumnos, cursos 
+		. aca deberia tener info del alumno, y del curso.
+		. una funcion para irle habilitando modulos
+			tendria la lista de los modulos con un boton, de habilitarlo para que lo vea, y luego habilitarle el examen. 
+			de aca accederia al examen completado y ahi poder ponerle una nota.
+	
+	- vista del alumno ---- 	esta misma vista deberia compartirse con el profe, donde pudiera tener mas opciones como habilitar el modulo, corregir y lo que sea necesario. 
+		. Mis cursos, 
+			listado de los cursos inscripto
+			listado de los cursos que le interesan
+		. Vista del curso
+			. listado de todos los modulos, los que esten habilitados, se le permite un acceso y a los otros no.
+		- Vista del modulo
+			. Un pestaña para ver el Contenido
+			. Una pestaña para realizar la prueba
+
+__________________________________________
 
 Deberian hacer lo siguiente
 
@@ -20,29 +49,7 @@ Deberian hacer lo siguiente
 	--- Noticias del curso
 	--- Calificaciones
 	--- Consultas
-	--- etc
-
-- Profesores
-	- Formacion del profesor
-	
-
-__________________________________________
-
-PAGINAS A TENER
-
-    Usuarios, Profesores
-        - Listado de usuarios
-        - Datos del usuario
-
-    Alumnos
-        - Auto registro
-        - Listado de alumnos
-        - Datos del alumno
-
-    Cursos
-        - Listao de cursos 
-        - Datos y creacion 
-        - Curso en si mismo con todo lo que conlleve
+	--- etc	
 
 __________________________________________
 

@@ -121,7 +121,7 @@ class Migration_modulo_cursos extends CI_Migration
                 'constraint' => 100,
                 'null' => TRUE,
             ),
-            'Archivo_pdf' => array(
+            'Url_archivo' => array(
                 'type' => 'VARCHAR',
                 'constraint' => 100,
                 'null' => TRUE,
@@ -206,7 +206,7 @@ class Migration_modulo_cursos extends CI_Migration
                 'constraint' => 100,
                 'null' => TRUE,
             ),
-            'Archivo_pdf' => array(
+            'Url_archivo' => array(
                 'type' => 'VARCHAR',
                 'constraint' => 100,
                 'null' => TRUE,
@@ -274,7 +274,7 @@ class Migration_modulo_cursos extends CI_Migration
                 'constraint' => 5,
                 'null' => TRUE,
             ),
-            'Archivo_pdf' => array(
+            'Url_archivo' => array(
                 'type' => 'VARCHAR',
                 'constraint' => 100,
                 'null' => TRUE,
@@ -334,7 +334,7 @@ class Migration_modulo_cursos extends CI_Migration
             ),
 
 
-            'Archivo_pdf' => array(
+            'Url_archivo' => array(
                 'type' => 'VARCHAR',
                 'constraint' => 100,
                 'null' => TRUE,

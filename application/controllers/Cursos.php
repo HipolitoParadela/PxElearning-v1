@@ -51,6 +51,29 @@ class Cursos extends CI_Controller
         }
     }
 
+//// CURSOS MÓDULO | VISTA | DATOS
+    public function modulo()
+    {
+        if ($this->session->userdata('Login') != true) 
+        {
+            header("Location: " . base_url() . "login"); /// enviar a pagina de error
+        } 
+        else 
+        {
+            if ($this->session->userdata('Rol_acceso') > 3) 
+            {
+                $data = array(
+                    "TituloPagina" => "Control de modulo de un curso",
+                    "Descripcion" => "Cursos de formación Online del Instituto Jerónimo Luis de Caberar Río Segundo, certificados por el Concejo Provincial de Informática de Córdoba y por la UTN Córdoba",
+                );
+                $this->load->view('cursos_datos_modulo', $data);
+                
+            } else {
+                header("Location: " . base_url() . "login"); /// enviar a pagina de error
+            }
+        }
+    }
+
 //// CURSOS	    | OBTENER LISTADO PRINCIPAL
 	public function obtener_listado_principal()
     {
@@ -345,9 +368,6 @@ class Cursos extends CI_Controller
         /// , A TENER EN CUENTA PARA LLEVAR UN SEGUIMIENTO DE QUIEN ELIMINO A ESTE USUARIO
     }
 
-
-    
-
 //// MODULOS 	| OBTENER MODULOS
     public function obtener_modulos()
     {
@@ -367,8 +387,47 @@ class Cursos extends CI_Controller
 
         $this->db->select('*');
         $this->db->from('tbl_cursos_modulos');
-        $this->db->where('Curso_id', $Id);
-        $this->db->order_by("Id", "asc");
+        $this->db->where('Id', $Id);
+        
+        $query = $this->db->get();
+        $result = $query->result_array();
+
+        echo json_encode($result);
+
+    }
+    
+
+//// MODULOS 	| OBTENER UN MODULO
+    public function obtener_un_modulo()
+    {
+
+        //Esto siempre va es para instanciar la base de datos
+        $CI = &get_instance();
+        $CI->load->database();
+        
+        //Seguridad
+        $token = @$CI->db->token;
+        $this->datosObtenidos = json_decode(file_get_contents('php://input'));
+        if ($this->datosObtenidos->token != $token) {
+            exit("No coinciden los token");
+        }
+
+        $Id = $_GET["Id"];
+
+        $this->db->select(' tbl_cursos_modulos.*,
+                            tbl_cursos_modulos.Titulo_modulo as Nombre_principal,
+                            tbl_cursos.Titulo_curso,
+                            tbl_cursos.Id as Curso_id,
+                            tbl_creador.Nombre as Nombre_creador,
+                            tbl_actualizador.Nombre as Nombre_actualizador');
+
+        $this->db->from('tbl_cursos_modulos');
+        $this->db->join('tbl_cursos', 'tbl_cursos.Id = tbl_cursos_modulos.Curso_id', 'left');
+        $this->db->join('tbl_usuarios as tbl_creador', 'tbl_creador.Id = tbl_cursos.Usuario_creador_id', 'left');
+        $this->db->join('tbl_usuarios as tbl_actualizador', 'tbl_actualizador.Id = tbl_cursos.Ult_usuario_id', 'left');
+
+        $this->db->where('tbl_cursos_modulos.Id', $Id);
+
         $query = $this->db->get();
         $result = $query->result_array();
 
@@ -396,7 +455,7 @@ class Cursos extends CI_Controller
         $Titulo_modulo = null;          if (isset($this->datosObtenidos->Datos->Titulo_modulo))         { $Titulo_modulo = $this->datosObtenidos->Datos->Titulo_modulo; }
         $Descripcion_modulo = null;     if (isset($this->datosObtenidos->Datos->Descripcion_modulo))    { $Descripcion_modulo = $this->datosObtenidos->Datos->Descripcion_modulo; }
         $Contenido_html = null;         if (isset($this->datosObtenidos->Datos->Contenido_html))        { $Contenido_html = $this->datosObtenidos->Datos->Contenido_html; }
-        $Archivo_pdf = null;            if (isset($this->datosObtenidos->Datos->Archivo_pdf))           { $Archivo_pdf = $this->datosObtenidos->Datos->Archivo_pdf; }
+        $URL_archivo = null;            if (isset($this->datosObtenidos->Datos->URL_archivo))           { $URL_archivo = $this->datosObtenidos->Datos->URL_archivo; }
         $Usuario_creador_id = $this->session->userdata('Id');     if (isset($this->datosObtenidos->Datos->Usuario_creador_id))    { $Usuario_creador_id = $this->datosObtenidos->Datos->Usuario_creador_id; }
 
         $data = array(
@@ -405,7 +464,7 @@ class Cursos extends CI_Controller
             'Titulo_modulo' =>      $Titulo_modulo,
             'Descripcion_modulo' => $Descripcion_modulo,
             'Contenido_html' =>     $Contenido_html,
-            'Archivo_pdf' =>        $Archivo_pdf,
+            'URL_archivo' =>        $URL_archivo,
             'Usuario_creador_id' => $Usuario_creador_id,
             'Ult_usuario_id' =>     $this->session->userdata('Id'),
         );
@@ -420,8 +479,8 @@ class Cursos extends CI_Controller
         }
     }
 
-//// SEGUIMIENTOS 	| SUBIR FOTO 
-    public function subirFotoModulo()
+//// MODULOS 	| SUBIR ARCHIVO 
+    public function subir_archivo()
     {
         $status = "";
         $msg = "";
@@ -450,7 +509,7 @@ class Cursos extends CI_Controller
                     $nombre_archivo = $file_info['file_name'];
                     
                     $data = array(    
-                        'URL_imagen' =>	$nombre_archivo,
+                        'Url_archivo' =>	$nombre_archivo,
                     );
 
                     $this->load->model('App_model');
@@ -547,7 +606,7 @@ class Cursos extends CI_Controller
         }
     }
 
-//// SEGUIMIENTOS 	| SUBIR FOTO 
+//// SEGUIMIENTOS 	| SUBIR ARCHIVO 
     public function subirFotoSeguimiento()
     {
         $status = "";
@@ -584,6 +643,175 @@ class Cursos extends CI_Controller
 
                     $this->load->model('App_model');
                     $insert_id = $this->App_model->insertar($data, $Id, 'tbl_cursos_seguimiento');
+                    
+                    // $file_id = $this->files_model->insert_file($data['file_name'], $_POST['title']);
+                    if($insert_id > 0)
+                    {
+                        $status = 1;
+                        $msg = "File successfully uploaded";
+                    }
+                    else
+                    {
+                        unlink($data['full_path']);
+                        $status = 0;
+                        $msg = "Something went wrong when saving the file, please try again.";
+                    }
+            }
+            @unlink($_FILES[$file_element_name]);
+        }
+        echo json_encode(array('status' => $status, 'Url_archivo' => $nombre_archivo));
+    }
+
+//// EXAMEN 	| OBTENER EXAMEN
+    public function obtener_examens()
+    {
+
+        //Esto siempre va es para instanciar la base de datos
+        $CI = &get_instance();
+        $CI->load->database();
+        
+        //Seguridad
+        $token = @$CI->db->token;
+        $this->datosObtenidos = json_decode(file_get_contents('php://input'));
+        if ($this->datosObtenidos->token != $token) {
+            exit("No coinciden los token");
+        }
+
+        $Id = $_GET["Id"];
+
+        $this->db->select('*');
+        $this->db->from('tbl_cursos_examen');
+        $this->db->where('Modulo_id', $Id);
+        
+        $query = $this->db->get();
+        $result = $query->result_array();
+
+        echo json_encode($result);
+
+    }
+
+
+//// EXAMEN 	| OBTENER UN MODULO
+    public function obtener_un_examen()
+    {
+
+        //Esto siempre va es para instanciar la base de datos
+        $CI = &get_instance();
+        $CI->load->database();
+        
+        //Seguridad
+        $token = @$CI->db->token;
+        $this->datosObtenidos = json_decode(file_get_contents('php://input'));
+        if ($this->datosObtenidos->token != $token) {
+            exit("No coinciden los token");
+        }
+
+        $Id = $_GET["Id"];
+
+        $this->db->select(' tbl_cursos_examens.*,
+                            tbl_cursos_examens.Titulo_examen as Nombre_principal,
+                            tbl_cursos.Titulo_curso,
+                            tbl_cursos.Id as Curso_id,
+                            tbl_cursos_modulos.Id as Modulo_id,
+                            tbl_creador.Nombre as Nombre_creador,
+                            tbl_actualizador.Nombre as Nombre_actualizador');
+
+        $this->db->from('tbl_cursos_examens');
+        $this->db->join('tbl_cursos', 'tbl_cursos.Id = tbl_cursos_examens.Curso_id', 'left');
+        $this->db->join('tbl_cursos_modulos', 'tbl_cursos_modulos.Id = tbl_cursos_examens.Modulo_id', 'left');
+        $this->db->join('tbl_usuarios as tbl_creador', 'tbl_creador.Id = tbl_cursos.Usuario_creador_id', 'left');
+        $this->db->join('tbl_usuarios as tbl_actualizador', 'tbl_actualizador.Id = tbl_cursos.Ult_usuario_id', 'left');
+
+        $this->db->where('tbl_cursos_examens.Id', $Id);
+
+        $query = $this->db->get();
+        $result = $query->result_array();
+
+        echo json_encode($result);
+
+    }
+
+//// EXAMEN 	| CARGAR O EDITAR
+    public function cargar_examen()
+    {
+        $CI = &get_instance();
+        $CI->load->database();
+
+        $token = @$CI->db->token;
+        $this->datosObtenidos = json_decode(file_get_contents('php://input'));
+        if ($this->datosObtenidos->token != $token)
+        { 
+            exit("No coinciden los token");
+        }
+
+        $Id = null; if (isset($this->datosObtenidos->Datos->Id)) { $Id = $this->datosObtenidos->Datos->Id; }
+        
+        $Modulo_id = $_GET["Id"];
+        $Curso_id = $this->datosObtenidos->Curso_id;
+        
+        $Titulo_examen = null;          if (isset($this->datosObtenidos->Datos->Titulo_examen))         { $Titulo_examen = $this->datosObtenidos->Datos->Titulo_examen; }
+        $Descripcion_examen = null;     if (isset($this->datosObtenidos->Datos->Descripcion_examen))    { $Descripcion_examen = $this->datosObtenidos->Datos->Descripcion_examen; }
+        $Contenido_html = null;         if (isset($this->datosObtenidos->Datos->Contenido_html))        { $Contenido_html = $this->datosObtenidos->Datos->Contenido_html; }
+        $URL_archivo = null;            if (isset($this->datosObtenidos->Datos->URL_archivo))           { $URL_archivo = $this->datosObtenidos->Datos->URL_archivo; }
+        $Usuario_creador_id = $this->session->userdata('Id');     if (isset($this->datosObtenidos->Datos->Usuario_creador_id))    { $Usuario_creador_id = $this->datosObtenidos->Datos->Usuario_creador_id; }
+
+        $data = array(
+
+            'Curso_id' =>           $Curso_id,
+            'Modulo_id' =>          $Modulo_id,
+            'Titulo_examen' =>      $Titulo_examen,
+            'Descripcion_examen' => $Descripcion_examen,
+            'Contenido_html' =>     $Contenido_html,
+            'URL_archivo' =>        $URL_archivo,
+            'Usuario_creador_id' => $Usuario_creador_id,
+            'Ult_usuario_id' =>     $this->session->userdata('Id'),
+        );
+
+        $this->load->model('App_model');
+        $insert_id = $this->App_model->insertar($data, $Id, 'tbl_cursos_examen');
+
+        if ($insert_id >= 0) {
+            echo json_encode(array("Id" => $insert_id));
+        } else {
+            echo json_encode(array("Id" => 0));
+        }
+    }
+
+//// EXAMEN 	| SUBIR ARCHIVO 
+    public function subir_archivo_examen()
+    {
+        $status = "";
+        $msg = "";
+        $file_element_name = 'Archivo';
+        
+        if ($status != "error")
+        {
+            $config['upload_path'] = './uploads/imagenes';
+            $config['allowed_types'] = 'jpg|jpeg|doc|docx|xlsx|pdf';
+            $config['max_size'] = 0;
+            $config['encrypt_name'] = TRUE;
+
+            $this->load->library('upload', $config);
+
+            if (!$this->upload->do_upload($file_element_name))
+            {
+                $status = 'error';
+                $msg = $this->upload->display_errors('', '');
+            }
+            else
+            {
+                /// coloco el dato en la base de datos
+                    $Id = $_GET["Id"];
+                    $data = $this->upload->data();
+                    $file_info = $this->upload->data();
+                    $nombre_archivo = $file_info['file_name'];
+                    
+                    $data = array(    
+                        'Url_archivo' =>	$nombre_archivo,
+                    );
+
+                    $this->load->model('App_model');
+                    $insert_id = $this->App_model->insertar($data, $Id, 'tbl_cursos_examen');
                     
                     // $file_id = $this->files_model->insert_file($data['file_name'], $_POST['title']);
                     if($insert_id > 0)
