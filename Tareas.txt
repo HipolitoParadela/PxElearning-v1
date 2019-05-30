@@ -12,6 +12,7 @@ En la pagina del curso, donde dice alumnos deberia tener
 
 	- Inscribir un alumno a un curso
 		Ver listado de alumnos completos, y agregarlos como hago en lo de piñata, mismo script.
+		Hacerlo con un datalist
 
 	- entrar a una seccion donde gestionar el curso con ese alumno ----- mismo acceso que veria desde alumnos, cursos 
 		. aca deberia tener info del alumno, y del curso.
@@ -28,6 +29,14 @@ En la pagina del curso, donde dice alumnos deberia tener
 		- Vista del modulo
 			. Un pestaña para ver el Contenido
 			. Una pestaña para realizar la prueba
+
+	- vista de Profesore
+		. listado de cursos e inscriptos a atender
+		. misma vista de alumno donde pueda ir viendo modulos, habilitandolos, examenes, calificando, etc.
+
+	- mensajería
+		. mismo para todos, listado de conversaciones
+		ANALIZAR ESTA PARTE, SE PUEDE HACER ALGO COPADO.
 
 __________________________________________
 

@@ -317,6 +317,14 @@ class Migration_modulo_cursos extends CI_Migration
                 'type' => 'INT',
                 'constraint' => 10,
             ),
+            'Curso_alumno_id' => array(
+                'type' => 'INT',
+                'constraint' => 10,
+            ),
+            'Modulo_id' => array(
+                'type' => 'INT',
+                'constraint' => 10,
+            ),
             'Fecha_habilitado' => array(
                 'type' => 'DATE'
             ),
@@ -351,6 +359,10 @@ class Migration_modulo_cursos extends CI_Migration
 
 
             'Observaciones' => array(
+                'type' => 'TEXT',
+                'null' => TRUE,
+            ),
+            'Observaciones_correccion' => array(
                 'type' => 'TEXT',
                 'null' => TRUE,
             ),

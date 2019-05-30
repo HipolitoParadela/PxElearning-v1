@@ -50,21 +50,22 @@ include("aa_barra_navegacion.php");
         </div>
 
         <!-- SECCION FICHA USUARIO -->
-        <div class="col-lg-8">
+        <div class="col-lg-9">
 
             <ul class="nav nav-tabs">
                 <li class="nav-item">
                     <a class="nav-link" v-bind:class="{ active: mostrar == 1 }" href="#" v-on:click.prevent="mostrar = 1">Ficha</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" v-bind:class="{ active: mostrar == 4 }" href="#" v-on:click.prevent="getListadoSeguimiento('/cursos/obtener_seguimientos')">Seguimiento</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" v-bind:class="{ active: mostrar == 2 }" href="#" v-on:click.prevent="get_contenido_2('/cursos/obtener_modulos')">Módulos</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" v-bind:class="{ active: mostrar == 3 }" href="#" v-on:click.prevent="mostrar = 3">Alumnos</a>
+                    <a class="nav-link" v-bind:class="{ active: mostrar == 3 }" href="#" v-on:click.prevent="get_contenido_3('/cursos/obtener_personas_curso')">Gestionar inscripciones</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" v-bind:class="{ active: mostrar == 4 }" href="#" v-on:click.prevent="getListadoSeguimiento('/cursos/obtener_seguimientos')">Seguimiento</a>
-                </li>
+                
             </ul>
 
             <!-- SECCION DATOS EDITABLES DEL USUARIO -->
@@ -154,7 +155,6 @@ include("aa_barra_navegacion.php");
                 </div>
             </div>
 
-
             <!-- SECCION DATOS DE FORMACIÓN -->
             <div class="row" v-show="mostrar == '2'">
                 <div class="col-lg-12">
@@ -199,6 +199,79 @@ include("aa_barra_navegacion.php");
                                                         <i class="fas fa-pen-square"></i>
                                                     </button>
                                                     <button v-on:click="desactivarUsuario(modulo.Id)" class="item" data-toggle="tooltip" data-placement="top" title="Eliminar">
+                                                        <i class="fas fa-eraser"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </DIV>
+                </DIV>
+            </div>
+
+            <!-- SECCION DATOS DE FORMACIÓN -->
+            <div class="row" v-show="mostrar == '3'">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <strong>Gestionar personas inscriptas e interesadas</strong>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-5">
+                                    <input type="text" class="form-control-sm form-control" placeholder="Buscar persona" v-model="buscar">
+                                </div>
+                                <div class="col-5">
+                                    <select class="form-control-sm form-control" v-model="filtro_1" v-on:change="get_contenido_3('/cursos/obtener_personas_curso')">
+                                        <option value="1">Personas inscriptas al curso</option>
+                                        <option value="0">Personas interesadas en el curso</option>
+                                        <option value="3">Personas que realizaron curso</option>
+                                    </select>
+                                </div>
+                                <div class="col-2">
+                                    <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#modalInscriptos" v-on:click="limpiarForm_cont_3()">
+                                        <i class="fas fa-plus"></i> Nueva inscripción
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="bootstrap-data-table-panel col-lg-12">
+                                <div class="table-responsive">
+                                    <table id="table2excel" class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th>Alumno</th>
+                                                <th>Profesor</th>
+                                                <th>F. Inscr.</th>
+                                                <th>Email</th>
+                                                <th>Teléfono</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr v-for="inscripto in buscarInscripto">
+                                                <td>
+
+                                                    <img class="img-rounded" v-if="inscripto.Imagen != null" v-bind:src="'<?php echo base_url(); ?>uploads/imagenes/'+inscripto.Imagen" width="60px">
+                                                    <img class="img-rounded" v-else src="<?php echo base_url(); ?>uploads/addimagen.jpg" width="50px" alt="">
+
+                                                </td>
+                                                <td>
+                                                    <a v-bind:href="'../../cursos/cursado/?Id=' + inscripto.Id" class="btn btn-outline">
+                                                        {{ inscripto.Nombre_alumno }}
+                                                    </a>
+                                                </td>
+                                                <td>{{ inscripto.Nombre_profesor }}</td>
+                                                <td>{{ inscripto.Fecha_inicio | Fecha }}</td>
+                                                <td>{{ inscripto.Email }}</td>
+                                                <td>{{ inscripto.Telefono}}</td>
+                                                <td>
+                                                    <button v-on:click="eliminar(inscripto.Id, 'tbl_cursos_alumnos')" class="item" data-toggle="tooltip" data-placement="top" title="Eliminar">
                                                         <i class="fas fa-eraser"></i>
                                                     </button>
                                                 </td>
@@ -262,7 +335,7 @@ include("aa_barra_navegacion.php");
             </div>
         </div>
 
-        <div class="col-2">
+        <div class="col-1">
             <?php include("aa-barra-navegacion-login.php"); ?>
         </div>
     </div>
@@ -436,6 +509,44 @@ include("aa_barra_navegacion.php");
                             </div>
                         </form>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.modal -->
+    <!-- Modal CONTENIDO 3 || INSCRIPTOS -->
+    <div class="modal fade" id="modalInscriptos" tabindex="-1" role="dialog" aria-labelledby="modalInscriptos" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalItemsCartaTitle">{{texto_boton}} módulo</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="post" v-on:submit.prevent="crear_contenido_3('/cursos/cargar_inscripto', '/cursos/obtener_personas_curso')">
+                        <div class="horizontal-form">
+                            <label class="control-label">Alumno</label>
+                            <input list="alumnos" class="form-control" v-model="cont3Data.Alumno_id" required>
+                                <datalist id="alumnos">
+                                    <option v-for="alumno in listaAlumnos" v-bind:value="alumno.Id">{{alumno.Nombre_principal}} </option>
+                                </datalist>
+
+                            <label class="control-label">Profesor a cargo</label>
+                            <input list="profesores" class="form-control" v-model="cont3Data.Profesor_id" required>
+                                <datalist id="profesores">
+                                    <option v-for="profesor in listaProfesores" v-bind:value="profesor.Id">{{profesor.Nombre_principal}} </option>
+                                </datalist>
+
+                            <label class="control-label">Observaciones</label>
+                            <textarea class="form-control" placeholder="" v-model="cont3Data.Observaciones" cols="30" rows="6"></textarea>
+
+                            <hr>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                            <button type="submit" class="btn btn-success">Inscribir a este curso</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

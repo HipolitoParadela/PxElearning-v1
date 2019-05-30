@@ -22,6 +22,8 @@ class Elementoscomunes extends CI_Controller
 	public function index()
 	{
 		$data = array(
+			"body_class" => '',
+            "div_inicial_class" => 'class="hero-content"',
 			"TituloPagina" => "Cursos de formación Online, Instituto Jerónimo Luis de Caberar Río Segundo",
 			"Descripcion" => "Cursos de formación Online del Instituto Jerónimo Luis de Caberar Río Segundo, certificados por el Concejo Provincial de Informática de Córdoba y por la UTN Córdoba",
 		);

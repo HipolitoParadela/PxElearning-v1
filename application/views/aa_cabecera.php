@@ -28,8 +28,8 @@
     <link rel="stylesheet" href="<?php echo base_url(); ?>plantilla/style.css">
 </head>
 
-<body>
-    <div class="hero-content">
+<body <?= $body_class; ?>>
+    <div <?= $div_inicial_class; ?>>
         <header class="site-header">
             <div class="top-header-bar">
                 <div class="container-fluid">
