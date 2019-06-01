@@ -611,7 +611,7 @@ class Usuarios extends CI_Controller
         
         if ($status != "error")
         {
-            $config['upload_path'] = './uploads/imagenes';
+            $config['upload_path'] = './uploads/seguimientos';
             $config['allowed_types'] = 'jpg|jpeg|doc|docx|xlsx|pdf';
             $config['max_size'] = 0;
             $config['encrypt_name'] = TRUE;

@@ -99,7 +99,7 @@ include("aa_barra_navegacion.php");
                                                 <textarea class="form-control" rows="5" placeholder="" v-model="datosFormularioPrincipal.Descripcion_corta"></textarea>
                                             </div>
                                             <div class="form-group">
-                                                <label class="control-label">Objetivos larga</label>
+                                                <label class="control-label">Descripción larga</label>
                                                 <textarea class="form-control" rows="5" placeholder="" v-model="datosFormularioPrincipal.Descripcion_larga"></textarea>
                                             </div>
                                             <div class="form-group">
@@ -212,7 +212,7 @@ include("aa_barra_navegacion.php");
                 </DIV>
             </div>
 
-            <!-- SECCION DATOS DE FORMACIÓN -->
+            <!-- SECCION DATOS DE INSCRIPTOS -->
             <div class="row" v-show="mostrar == '3'">
                 <div class="col-lg-12">
                     <div class="card">

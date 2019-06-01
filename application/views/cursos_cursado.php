@@ -57,7 +57,7 @@ include("aa_barra_navegacion.php");
             <div class="single-course-wrap">
                 <div class="course-info flex flex-wrap align-items-center">
                     <div class="course-author flex flex-wrap align-items-center mt-3">
-                        <img v-if="datosFormularioPrincipal.Imagen_alumno != null" v-bind:src="'<?php echo base_url(); ?>uploads/imagenes/'+datosFormularioPrincipal.Imagen_alumno" alt=""> 
+                        <img v-if="datosFormularioPrincipal.Imagen_alumno != null" v-bind:src="'<?php echo base_url(); ?>uploads/imagenes/'+datosFormularioPrincipal.Imagen_alumno" alt="">
                         <img v-else src="<?php echo base_url(); ?>uploads/addimagen.jpg" alt="">
                         <div class="author-wrap">
                             <label class="m-0">Alumno</label>
@@ -72,7 +72,7 @@ include("aa_barra_navegacion.php");
 
                     <div class="course-students mt-3">
                         <label class="m-0">Programa</label>
-                        <div class="author-name">{{ listaFiltro_1.cantidad }} módulos</div>
+                        <div class="author-name"> <?= count($Modulos); ?> módulos</div>
                     </div><!-- .course-students -->
 
                     <div class="course-students mt-3">
@@ -104,89 +104,76 @@ include("aa_barra_navegacion.php");
                     <header class="entry-header flex flex-wrap justify-content-between align-items-center">
                         <h2>Programa</h2>
 
-                        <div class="number-of-lectures">5 módulos</div>
+                        <div class="number-of-lectures"><?= count($Modulos); ?> módulos</div>
 
-                        <div class="total-lectures-time">4 meses</div>
-                    </header><!-- .entry-header -->     
+                        <div class="total-lectures-time">{{datosFormularioPrincipal.Duracion}} meses</div>
+                    </header><!-- .entry-header -->
 
                     <div class="entry-contents">
                         <div class="accordion-wrap type-accordion">
-                            
+
                             <?php
 
-                            foreach ($Modulos as $modulo) 
-                            {
+                            foreach ($Modulos as $modulo) {
                                 echo '<h3 class="entry-title flex flex-wrap justify-content-between align-items-lg-center">
                                     <span class="arrow-r"><i class="fa fa-plus"></i><i class="fa fa-minus"></i></span>
-                                    <span class="lecture-group-title">'. $modulo["Datos_modulo"]["Titulo_modulo"].'</span>';
-                                
-                                if($modulo["Estado"] == 0)
-                                {   
+                                    <span class="lecture-group-title">' . $modulo["Datos_modulo"]["Titulo_modulo"] . '</span>';
+
+                                if ($modulo["Estado"] == 0) {
                                     echo '
                                     <span class="number-of-lectures">No habilitado</span> 
                                     <span class="total-lectures-time">-</span>';
-                                }
-                                else if($modulo["Estado"] == 1)
-                                {   
+                                } else if ($modulo["Estado"] == 1) {
                                     echo '
                                     <span class="number-of-lectures">
-                                        <a href="/cursos/cursado_modulo?Id='.$modulo["Info_examen"]["Id"].'">Ver módulo</a>
+                                        <a href="/cursos/cursado_modulo?Id=' . $modulo["Info_examen"]["Id"] . '">Ver módulo</a>
                                     </span> 
                                     <span class="total-lectures-time">
-                                        <a href="/cursos/cursado_modulo?Id='.$modulo["Info_examen"]["Id"].'#examen">Realizar examen</a>
+                                        <a href="/cursos/cursado_modulo?Id=' . $modulo["Info_examen"]["Id"] . '#examen">Realizar examen</a>
                                     </span>';
-                                }
-
-                                else if($modulo["Estado"] == 2)
-                                {   
+                                } else if ($modulo["Estado"] == 2) {
                                     echo '
                                     <span class="number-of-lectures">
-                                        <a href="/cursos/cursado_modulo?Id='.$modulo["Info_examen"]["Id"].'">Ver módulo</a>
+                                        <a href="/cursos/cursado_modulo?Id=' . $modulo["Info_examen"]["Id"] . '">Ver módulo</a>
                                     </span> 
                                     <span class="total-lectures-time">
                                         Nota: En corrección
                                     </span>';
-                                }
-
-                                else if($modulo["Estado"] == 3)
-                                {   
+                                } else if ($modulo["Estado"] == 3) {
                                     echo '
                                     <span class="number-of-lectures">
-                                        <a href="/cursos/cursado_modulo?Id='.$modulo["Info_examen"]["Id"].'">Ver módulo</a>
+                                        <a href="/cursos/cursado_modulo?Id=' . $modulo["Info_examen"]["Id"] . '">Ver módulo</a>
                                     </span> 
                                     <span class="total-lectures-time">
-                                        Nota:'. $modulo["Info_examen"]["Nota"] .'
+                                        Nota: <b>' . $modulo["Info_examen"]["Nota"] . '</b>
                                     </span>';
                                 }
-                                    
 
-                                
-                                
-                                    echo'
+
+
+
+                                echo '
                                 </h3>
 
                                 <div class="entry-content">
                                     
-                                    <p> '. $modulo["Datos_modulo"]["Descripcion_modulo"].' </p>';
+                                    <p> ' . $modulo["Datos_modulo"]["Descripcion_modulo"] . ' </p>';
 
-                                    if($modulo["Estado"] == 0) // Si es profe de este curso
+                                    if ($modulo["Estado"] == 0) // Si es profe de este curso
                                     {
-                                        echo '<a href="#" data-toggle="modal" data-target="#modalInscriptos" v-on:click="modal_generar_examen('.$modulo["Datos_modulo"]["Id"].')"> >> Habilitar módulo</a>';
+                                        echo '<a v-show=" Rol_acceso > 2" href="#" data-toggle="modal" data-target="#modalInscriptos" v-on:click="modal_generar_examen(' . $modulo["Datos_modulo"]["Id"] . ')"> >> Habilitar módulo</a>';
+                                    } else if ($modulo["Estado"] == 2) {
+                                        echo '<a v-show=" Rol_acceso > 2" href="/cursos/cursado_modulo?Id=' . $modulo["Info_examen"]["Id"] . '#examen"> >> Corregir examen</a>';
                                     }
-
-                                    else if($modulo["Estado"] == 2)
-                                {   
-                                    echo '<a href="#"> >> Corregir examen</a>';
-                                }
-                                echo'
+                                    echo '
                                         
                                 </div>';
                             }
-                            
-                            
+
+
                             ?>
 
-                            
+
                         </div>
                     </div><!-- .entry-contents -->
                 </div><!-- .single-course-accordion-cont  -->
@@ -201,23 +188,24 @@ include("aa_barra_navegacion.php");
                             <img v-if="datosFormularioPrincipal.Imagen_profesor != null" v-bind:src="'<?php echo base_url(); ?>uploads/imagenes/'+datosFormularioPrincipal.Imagen_profesor" alt="">
                             <img v-else src="<?php echo base_url(); ?>uploads/addimagen.jpg" alt="">
 
-                            <ul class="p-0 m-0 mt-3">
+                            <!-- <ul class="p-0 m-0 mt-3">
                                 <li><i class="fa fa-star"></i> 4.7 .7 Average rating</li>
                                 <li><i class="fa fa-comment"></i> 25,182 Reviews</li>
                                 <li><i class="fa fa-user"></i> 11,085 Students</li>
                                 <li><i class="fa fa-play-circle"></i> 2 Courses</li>
-                            </ul>
+                            </ul> -->
                         </div><!-- .instructors-stats -->
 
                         <div class="instructors-details">
-                            <div class="ratings flex align-items-center">
+                            <!-- <div class="ratings flex align-items-center">
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star-o"></i>
                                 <span> (4 votes)</span>
-                            </div><!-- .ratings -->
+                            </div> -->
+                            <!-- .ratings -->
 
                             <h2 class="entry-title mt-3">{{ datosFormularioPrincipal.Titulo_curso }}</h2>
 
@@ -240,11 +228,11 @@ include("aa_barra_navegacion.php");
                     </header><!-- .entry-heading -->
 
                     <div class="row mx-m-25">
-                        
-                    
-                    
-                    
-                    
+
+
+
+
+
                         <div class="col-12 col-lg-6 px-25" v-for="curso in listaContenido_2">
                             <div class="course-content">
                                 <figure class="course-thumbnail">
@@ -264,10 +252,10 @@ include("aa_barra_navegacion.php");
                                     </header><!-- .entry-header -->
 
                                     <footer class="entry-footer flex flex-wrap justify-content-between align-items-center">
-                                        <div class="course-cost" v-if="curso.Costo_promocional != null" >
+                                        <div class="course-cost" v-if="curso.Costo_promocional != null">
                                             {{curso.Costo_promocional}} <span class="price-drop">{{curso.Costo_normal}}</span>
                                         </div><!-- .course-cost -->
-                                        <div  v-else class="course-cost">
+                                        <div v-else class="course-cost">
                                             {{curso.Costo_normal}} <span class="price-drop">{{curso.Costo_promocional}}</span>
                                         </div><!-- .course-cost -->
 
@@ -285,7 +273,7 @@ include("aa_barra_navegacion.php");
                             </div><!-- .course-content -->
                         </div><!-- .col -->
 
-                        
+
 
 
 
@@ -313,8 +301,8 @@ include("aa_barra_navegacion.php");
                         <div class="horizontal-form">
                             <label class="control-label">Seleccionar Examen</label>
                             <select class="form-control" v-model="cont3Data.Examen_id" required>
-                                    <option v-for="examen in listaContenido_3" v-bind:value="examen.Id">{{examen.Titulo_examen}} </option>
-                            </select>   
+                                <option v-for="examen in listaContenido_3" v-bind:value="examen.Id">{{examen.Titulo_examen}} </option>
+                            </select>
 
                             <label class="control-label">Observaciones</label>
                             <textarea class="form-control" placeholder="" v-model="cont3Data.Observaciones" cols="30" rows="6"></textarea>

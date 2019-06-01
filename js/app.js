@@ -459,6 +459,337 @@ new Vue({
     }   
 });
 
+/// ELEMENTOS COMUNES PARA EL INDEX
+new Vue({
+    el: '#index',
+
+    created: function () {        
+        
+        this.getAlumnosCurzando();
+        this.getMovimientosExamenes();
+        this.getCantidad_inscriptos();
+        this.getCantidad_cursos();
+        this.getCantidad_profesores();
+        this.getCantidad_cursos_activos();
+
+        this.getCursosAlumno();
+
+        this.setVariablesUsuario(Usuario_id, Rol_acceso);
+    },
+
+    data:
+    {
+        Usuario_id: '',
+        Rol_acceso: '',
+      
+        lista_alumnos_cursando: [],
+            
+        lista_movimientos_examen: [],
+
+        cantidad_inscriptos: '',
+        cantidad_cursos: '',
+        cantidad_profesores: '',
+        cantidad_cursos_activos: '',
+        
+        lista_cursos_alumno: [],
+    },
+
+    methods:
+    {
+        
+        //// OBTENER DATOS PRINCIPALES
+        setVariablesUsuario: function (Usuario_id, Rol_acceso) {
+            this.Usuario_id = Usuario_id;
+            this.Rol_acceso = Rol_acceso;
+        },
+
+        //// PRINCIPAL COMUN | MOSTRAR LISTADO  
+        getAlumnosCurzando: function () {
+
+            var url = base_url + '/dashboard/obtener_alumnos_curzando'; // url donde voy a mandar los datos
+
+            axios.post(url, {
+                token: token,
+                
+            }).then(response => {
+                this.lista_alumnos_cursando = response.data
+            }).catch(error => {
+                toastr.error('Error en la recuperación de los datos', 'Sistema')
+                console.log(error.response.data)
+            });
+        },
+
+        //// PRINCIPAL COMUN | MOSTRAR LISTADO  
+        getMovimientosExamenes: function () {
+
+            var url = base_url + '/dashboard/obtener_movimientos_examenes'; // url donde voy a mandar los datos
+
+            axios.post(url, {
+                token: token,
+                
+            }).then(response => {
+                this.lista_movimientos_examen = response.data
+            }).catch(error => {
+                toastr.error('Error en la recuperación de los datos', 'Sistema')
+                console.log(error.response.data)
+            });
+        },
+
+        //// PRINCIPAL COMUN | MOSTRAR LISTADO  
+        getCantidad_cursos_activos: function () {
+
+            var url = base_url + '/dashboard/cantidad_cursos_activos'; // url donde voy a mandar los datos
+
+            axios.post(url, {
+                token: token,
+                
+            }).then(response => {
+                this.cantidad_cursos_activos = response.data
+            }).catch(error => {
+                toastr.error('Error en la recuperación de los datos', 'Sistema')
+                console.log(error.response.data)
+            });
+        },
+
+        //// PRINCIPAL COMUN | MOSTRAR LISTADO  
+        getCantidad_inscriptos: function () {
+
+            var url = base_url + '/dashboard/cantidad_inscriptos'; // url donde voy a mandar los datos
+
+            axios.post(url, {
+                token: token,
+                
+            }).then(response => {
+                this.cantidad_inscriptos = response.data
+            }).catch(error => {
+                toastr.error('Error en la recuperación de los datos', 'Sistema')
+                console.log(error.response.data)
+            });
+        },
+
+        //// PRINCIPAL COMUN | MOSTRAR LISTADO  
+        getCantidad_profesores: function () {
+
+            var url = base_url + '/dashboard/cantidad_profesores'; // url donde voy a mandar los datos
+
+            axios.post(url, {
+                token: token,
+                
+            }).then(response => {
+                this.cantidad_profesores = response.data
+            }).catch(error => {
+                toastr.error('Error en la recuperación de los datos', 'Sistema')
+                console.log(error.response.data)
+            });
+        },
+
+        //// PRINCIPAL COMUN | MOSTRAR LISTADO  
+        getCantidad_cursos: function () {
+
+            var url = base_url + '/dashboard/cantidad_cursos'; // url donde voy a mandar los datos
+
+            axios.post(url, {
+                token: token,
+                
+            }).then(response => {
+                this.cantidad_cursos = response.data
+            }).catch(error => {
+                toastr.error('Error en la recuperación de los datos', 'Sistema')
+                console.log(error.response.data)
+            });
+        },
+        
+        //// PRINCIPAL COMUN | MOSTRAR LISTADO  
+        getCursosAlumno: function () {
+
+            var url = base_url + '/dashboard/obtener_cursos_deun_alumno'; // url donde voy a mandar los datos
+
+            axios.post(url, {
+                token: token,
+                
+            }).then(response => {
+                this.lista_cursos_alumno = response.data
+            }).catch(error => {
+                toastr.error('Error en la recuperación de los datos', 'Sistema')
+                console.log(error.response.data)
+            });
+        },
+        
+        
+    },
+
+    ////// ACCIONES COMPUTADAS     
+    computed:
+    {
+
+    }   
+});
+
+/// ELEMENTOS COMUNES PARA LOS DASHBOARDS
+new Vue({
+    el: '#dashboard',
+
+    created: function () {        
+        
+        this.getAlumnosCurzando();
+        this.getMovimientosExamenes();
+        this.getCantidad_inscriptos();
+        this.getCantidad_cursos();
+        this.getCantidad_profesores();
+        this.getCantidad_cursos_activos();
+
+        this.getCursosAlumno();
+
+        this.setVariablesUsuario(Usuario_id, Rol_acceso);
+    },
+
+    data:
+    {
+        Usuario_id: '',
+        Rol_acceso: '',
+      
+        lista_alumnos_cursando: [],
+            
+        lista_movimientos_examen: [],
+
+        cantidad_inscriptos: '',
+        cantidad_cursos: '',
+        cantidad_profesores: '',
+        cantidad_cursos_activos: '',
+        
+        lista_cursos_alumno: [],
+    },
+
+    methods:
+    {
+        
+        //// OBTENER DATOS PRINCIPALES
+        setVariablesUsuario: function (Usuario_id, Rol_acceso) {
+            this.Usuario_id = Usuario_id;
+            this.Rol_acceso = Rol_acceso;
+        },
+
+        //// PRINCIPAL COMUN | MOSTRAR LISTADO  
+        getAlumnosCurzando: function () {
+
+            var url = base_url + '/dashboard/obtener_alumnos_curzando'; // url donde voy a mandar los datos
+
+            axios.post(url, {
+                token: token,
+                
+            }).then(response => {
+                this.lista_alumnos_cursando = response.data
+            }).catch(error => {
+                toastr.error('Error en la recuperación de los datos', 'Sistema')
+                console.log(error.response.data)
+            });
+        },
+
+        //// PRINCIPAL COMUN | MOSTRAR LISTADO  
+        getMovimientosExamenes: function () {
+
+            var url = base_url + '/dashboard/obtener_movimientos_examenes'; // url donde voy a mandar los datos
+
+            axios.post(url, {
+                token: token,
+                
+            }).then(response => {
+                this.lista_movimientos_examen = response.data
+            }).catch(error => {
+                toastr.error('Error en la recuperación de los datos', 'Sistema')
+                console.log(error.response.data)
+            });
+        },
+
+        //// PRINCIPAL COMUN | MOSTRAR LISTADO  
+        getCantidad_cursos_activos: function () {
+
+            var url = base_url + '/dashboard/cantidad_cursos_activos'; // url donde voy a mandar los datos
+
+            axios.post(url, {
+                token: token,
+                
+            }).then(response => {
+                this.cantidad_cursos_activos = response.data
+            }).catch(error => {
+                toastr.error('Error en la recuperación de los datos', 'Sistema')
+                console.log(error.response.data)
+            });
+        },
+
+        //// PRINCIPAL COMUN | MOSTRAR LISTADO  
+        getCantidad_inscriptos: function () {
+
+            var url = base_url + '/dashboard/cantidad_inscriptos'; // url donde voy a mandar los datos
+
+            axios.post(url, {
+                token: token,
+                
+            }).then(response => {
+                this.cantidad_inscriptos = response.data
+            }).catch(error => {
+                toastr.error('Error en la recuperación de los datos', 'Sistema')
+                console.log(error.response.data)
+            });
+        },
+
+        //// PRINCIPAL COMUN | MOSTRAR LISTADO  
+        getCantidad_profesores: function () {
+
+            var url = base_url + '/dashboard/cantidad_profesores'; // url donde voy a mandar los datos
+
+            axios.post(url, {
+                token: token,
+                
+            }).then(response => {
+                this.cantidad_profesores = response.data
+            }).catch(error => {
+                toastr.error('Error en la recuperación de los datos', 'Sistema')
+                console.log(error.response.data)
+            });
+        },
+
+        //// PRINCIPAL COMUN | MOSTRAR LISTADO  
+        getCantidad_cursos: function () {
+
+            var url = base_url + '/dashboard/cantidad_cursos'; // url donde voy a mandar los datos
+
+            axios.post(url, {
+                token: token,
+                
+            }).then(response => {
+                this.cantidad_cursos = response.data
+            }).catch(error => {
+                toastr.error('Error en la recuperación de los datos', 'Sistema')
+                console.log(error.response.data)
+            });
+        },
+        
+        //// PRINCIPAL COMUN | MOSTRAR LISTADO  
+        getCursosAlumno: function () {
+
+            var url = base_url + '/dashboard/obtener_cursos_deun_alumno'; // url donde voy a mandar los datos
+
+            axios.post(url, {
+                token: token,
+                
+            }).then(response => {
+                this.lista_cursos_alumno = response.data
+            }).catch(error => {
+                toastr.error('Error en la recuperación de los datos', 'Sistema')
+                console.log(error.response.data)
+            });
+        },
+        
+        
+    },
+
+    ////// ACCIONES COMPUTADAS     
+    computed:
+    {
+
+    }   
+});
 
 ///         --------------------------------------------------------------------   ////
 //// Elemento para el manejo de usuarios por Id
@@ -1472,8 +1803,9 @@ new Vue({
 
     created: function () {
         this.getDatosPrincipal('/cursos/obtener_curso_alumno');
-        //this.getFiltro_1('/cursos/obtener_modulos');
+        this.getFiltro_1('/cursos/obtener_modulos');
         this.get_contenido_2('/cursos/obtener_cursos_recomendados');
+        
     },
 
     data: {
@@ -1531,7 +1863,7 @@ new Vue({
         
         ////  FILTRO_1 | MOSTRAR LISTADO  
         getFiltro_1: function (url_controller) {
-            var url = base_url + url_controller+'?Curso_id='+this.datosFormularioPrincipal.Curso_id; // url donde voy a mandar los datos
+            var url = base_url + url_controller+'?Id='+this.datosFormularioPrincipal.Curso_id; // url donde voy a mandar los datos
 
             axios.post(url, {
                 token: token
@@ -1539,7 +1871,7 @@ new Vue({
                 this.listaFiltro_1 = response.data,
                 this.listaFiltro_1.cantidad = this.listaFiltro_1.length
 
-                console.info(this.listaFiltro_1)
+                //console.info(this.listaFiltro_1)
 
             }).catch(error => {
                 
@@ -1855,12 +2187,16 @@ new Vue({
 
     created: function () {
         this.getDatosPrincipal('/cursos/obtener_curso_alumno');
-        //this.getFiltro_1('/cursos/obtener_curso_examen_alumno');
+        this.getFiltro_1('/cursos/obtener_curso_examen_alumno');
         this.get_contenido_2('/cursos/obtener_cursos_recomendados');
+
+        this.setVariablesUsuario(Usuario_id, Rol_acceso);
     },
 
     data: {
-
+        Usuario_id: '',
+        Rol_acceso: '',
+        
         mostrar: 1,
         preloader: 0,
         datosFormularioPrincipal : {},
@@ -1901,6 +2237,12 @@ new Vue({
     {
 
         //// OBTENER DATOS PRINCIPALES
+        setVariablesUsuario: function (Usuario_id, Rol_acceso) {
+            this.Usuario_id = Usuario_id;
+            this.Rol_acceso = Rol_acceso;
+        },
+
+        //// OBTENER DATOS PRINCIPALES
         getDatosPrincipal: function (url_controller) {
             var url = base_url + url_controller +'/?Id=' + Get_Id;  //// averiguar como tomar el Id que viene por URL aca
 
@@ -1926,7 +2268,7 @@ new Vue({
             }).then(response => {
                 this.datosExamen_curso = response.data[0];
 
-                console.log(this.datosExamen_curso)
+                //console.log(this.datosExamen_curso)
 
             }).catch(error => {
                 

@@ -13,7 +13,7 @@ class Cursos extends CI_Controller
 		} 
 		else 
 		{
-			if ($this->session->userdata('Rol_acceso') > 3) 
+			if ($this->session->userdata('Rol_acceso') > 2) 
 			{
 				$data = array(
                     "body_class" => 'class="courses-page"',
@@ -39,7 +39,7 @@ class Cursos extends CI_Controller
         } 
         else 
         {
-            if ($this->session->userdata('Rol_acceso') > 3) 
+            if ($this->session->userdata('Rol_acceso') > 2) 
             {
                 $data = array(
                     "body_class" => 'class="courses-page"',
@@ -64,7 +64,7 @@ class Cursos extends CI_Controller
         } 
         else 
         {
-            if ($this->session->userdata('Rol_acceso') > 3) 
+            if ($this->session->userdata('Rol_acceso') > 2) 
             {
                 $data = array(
                     "body_class" => 'class="single-courses-page"',
@@ -82,89 +82,98 @@ class Cursos extends CI_Controller
 
 //// CURSOS CURSADO | VISTA | DATOS
     public function cursado()
-    {
+    {   
+        
         if ($this->session->userdata('Login') != true) 
         {
             header("Location: " . base_url() . "login"); /// enviar a pagina de error
         } 
         else 
         {
-            if ($this->session->userdata('Rol_acceso') > 3) 
-            {
-                
-                //Esto siempre va es para instanciar la base de datos
-                $CI = &get_instance();
-                $CI->load->database();
+            /// REALIZO LA BUSQUEDA PRIMERO PARA PODER URGAR ALGUNOS DATOS NECESARIOS A SABER
+            //Esto siempre va es para instanciar la base de datos
+            $CI = &get_instance();
+            $CI->load->database();
 
-                $Id = $_GET["Id"];
-  
-                ////BUSCANDO DATOS DEL CURSO
-                    $this->db->select('tbl_cursos.*');
-                    $this->db->from('tbl_cursos_alumnos');
-                    $this->db->join('tbl_cursos', 'tbl_cursos.Id = tbl_cursos_alumnos.Curso_id', 'left');
-                    $this->db->where('tbl_cursos_alumnos.Id', $Id);
+            $Id = $_GET["Id"];
+
+            ////BUSCANDO DATOS DEL CURSO
+                $this->db->select(' tbl_cursos.*,
+                                    tbl_cursos_alumnos.*');
+                $this->db->from('tbl_cursos_alumnos');
+                $this->db->join('tbl_cursos', 'tbl_cursos.Id = tbl_cursos_alumnos.Curso_id', 'left');
+                $this->db->where('tbl_cursos_alumnos.Id', $Id);
+                $query = $this->db->get();
+                $result = $query->result_array();
+
+            /// BUSCANDO DATOS DE LOS MODULOS DE ESTE CURSO
+                $this->db->select('*');
+                $this->db->from('tbl_cursos_modulos');
+                $this->db->where('Curso_id', $result[0]["Id"]);
+                
+                $query = $this->db->get();
+                $array_modulos = $query->result_array();
+                
+                $Datos_modulos = array();
+                
+                foreach ($array_modulos as $modulo) 
+                {
+                        
+                    $this->db->select(' Id, 
+                                        Examen_id, 
+                                        Estado, 
+                                        Nota');
+                    $this->db->from('tbl_cursos_examen_alumno');
+                    $this->db->where('Curso_alumno_id', $Id); 
+                    $this->db->where('Modulo_id', $modulo["Id"]);
+
                     $query = $this->db->get();
-                    $result = $query->result_array();
+                    $result_modulo = $query->result_array();
+                    $cant = $query->num_rows();
+                        
+                        if($cant > 0) 
+                        { 
+                            $estado = $result_modulo[0]["Estado"];
+                            $info_examen = $result_modulo[0];
+                        }
+                        
+                        else
+                        {
+                            $estado = 0;
+                            $info_examen = null;
+                        }
 
-                /// BUSCANDO DATOS DE LOS MODULOS DE ESTE CURSO
-                    $this->db->select('*');
-                    $this->db->from('tbl_cursos_modulos');
-                    $this->db->where('Curso_id', $result[0]["Id"]);
+                    $datos_modulo = array('Datos_modulo' => $modulo, 'Estado' => $estado, 'Info_examen' => $info_examen);  
+
+                    array_push($Datos_modulos, $datos_modulo);
+                }
+            
+            $data = array(
+                "body_class" => ' class="single-courses-page"',
+                "div_inicial_class" => 'class="page-header"',
+                "TituloPagina" => $result[0]["Titulo_curso"],
+                "Curso" => $result[0],
+                "Descripcion" => "Cursos de formación Online del Instituto Jerónimo Luis de Caberar Río Segundo, certificados por el Concejo Provincial de Informática de Córdoba y por la UTN Córdoba",
+                "Modulos" => $Datos_modulos,
+            );
+            
+            /// podrá acceder al modulo si se cumple lo siguiente
+                // que este logueado
+                // que tenga rol 4 o mas
+                // que sea el profe a cargo
+                // que sea el alumno en cuestión
+            
+                if ($this->session->userdata('Rol_acceso') > 3 || $this->session->userdata('Id') == $result[0]["Profesor_id"]  || $this->session->userdata('Id') == $result[0]["Alumno_id"]) 
+                {
                     
-                    $query = $this->db->get();
-                    $array_modulos = $query->result_array();
+                    $this->load->view('cursos_cursado', $data);
                     
-                    $Datos_modulos = array();
-                    
-                    foreach ($array_modulos as $modulo) 
-                    {
-                            
-                        $this->db->select(' Id, 
-                                            Examen_id, 
-                                            Estado, 
-                                            Nota');
-                        $this->db->from('tbl_cursos_examen_alumno');
-                        $this->db->where('Curso_alumno_id', $Id); 
-                        $this->db->where('Modulo_id', $modulo["Id"]);
+                } 
 
-                        $query = $this->db->get();
-                        $result_modulo = $query->result_array();
-                        $cant = $query->num_rows();
-                            
-                            if($cant > 0) 
-                            { 
-                                $estado = $result_modulo[0]["Estado"];
-                                $info_examen = $result_modulo[0];
-                            }
-                            
-                            else
-                            {
-                                $estado = 0;
-                                $info_examen = null;
-                            }
-
-                        $datos_modulo = array('Datos_modulo' => $modulo, 'Estado' => $estado, 'Info_examen' => $info_examen);  
-
-                        array_push($Datos_modulos, $datos_modulo);
-                    }
-                
-                $data = array(
-                    "body_class" => ' class="single-courses-page"',
-                    "div_inicial_class" => 'class="page-header"',
-                    "TituloPagina" => $result[0]["Titulo_curso"],
-                    "Curso" => $result[0],
-                    "Descripcion" => "Cursos de formación Online del Instituto Jerónimo Luis de Caberar Río Segundo, certificados por el Concejo Provincial de Informática de Córdoba y por la UTN Córdoba",
-                    "Modulos" => $Datos_modulos,
-                );
-                
-                $this->load->view('cursos_cursado', $data);
-                
-            } 
-
-            else 
-            {
-                header("Location: " . base_url() . "login"); /// enviar a pagina de error
-            }
+                else 
+                {
+                    header("Location: " . base_url() . "dashboard"); /// enviar a pagina de error
+                }
         }
     }
 
@@ -177,7 +186,7 @@ class Cursos extends CI_Controller
         } 
         else 
         {
-            if ($this->session->userdata('Rol_acceso') > 3) 
+            if ($this->session->userdata('Rol_acceso') > 2) 
             {
                 
                 //Esto siempre va es para instanciar la base de datos
@@ -191,8 +200,11 @@ class Cursos extends CI_Controller
                     $this->db->select(' tbl_cursos_examen.*,
                                         tbl_cursos_examen.Id as Examen_id,
                                         tbl_cursos_examen.Contenido_html as Contenido_html_examen,
+                                        tbl_cursos_examen.Url_archivo as Url_archivo_examen,
                                         tbl_cursos_modulos.*,
                                         tbl_cursos_modulos.Id as Modulo_id,
+                                        tbl_cursos_modulos.Imagen as Imagen_modulo,
+                                        tbl_cursos_modulos.Url_archivo as Url_archivo_modulo,
                                         tbl_cursos_modulos.Contenido_html as Contenido_html_modulo,
                                         tbl_cursos_examen_alumno.*,
                                         tbl_cursos_examen_alumno.Id as Examen_alumno_id'); // BUSCAR SOLO DATOS NECESARIOS
@@ -259,7 +271,12 @@ class Cursos extends CI_Controller
         $this->db->join('tbl_cursos_categorias', 'tbl_cursos_categorias.Id = tbl_cursos.Categoria_id','left');
 
         if($Categoria_id > 0) { $this->db->where('tbl_cursos.Categoria_id', $Categoria_id); }
-       // if ($puesto > 0) { $this->db->where('tbl_cursos.Puesto_Id', $puesto); } 
+        
+        // SI ES PROFESOR, SOLO PUEDE VER LOS CURSOS CREADOS POR ÉL
+        if($this->session->userdata('Rol_acceso') < 4 )
+        {
+            $this->db->where('tbl_cursos.Usuario_creador_id', $this->session->userdata('Id'));
+        }
 
 		$this->db->order_by("tbl_cursos.Titulo_curso", "asc");
         $query = $this->db->get();
@@ -767,7 +784,7 @@ class Cursos extends CI_Controller
         
         if ($status != "error")
         {
-            $config['upload_path'] = './uploads/imagenes';
+            $config['upload_path'] = './uploads/seguimientos';
             $config['allowed_types'] = 'jpg|jpeg|doc|docx|xlsx|pdf';
             $config['max_size'] = 0;
             $config['encrypt_name'] = TRUE;
@@ -843,7 +860,7 @@ class Cursos extends CI_Controller
     }
 
 
-//// EXAMEN 	    | OBTENER UN MODULO
+//// EXAMEN 	    | OBTENER 
     public function obtener_un_examen()
     {
 
@@ -1015,6 +1032,7 @@ class Cursos extends CI_Controller
         $this->db->join('tbl_usuarios as tbl_profesor', 'tbl_profesor.Id = tbl_cursos_alumnos.Profesor_id', 'left');
 
         $this->db->where('tbl_cursos_alumnos.Estado', $Estado);
+        $this->db->where('tbl_cursos_alumnos.Curso_id', $Id);
 
         
         $query = $this->db->get();
@@ -1125,14 +1143,21 @@ class Cursos extends CI_Controller
         }
 
         $this->db->select(' tbl_cursos_alumnos.*,
+
                             tbl_cursos.*,
+                            tbl_cursos.Imagen as Imagen_curso,
+
                             tbl_alumno.Nombre as Nombre_alumno,
                             tbl_alumno.Imagen as Imagen_alumno,
+
                             tbl_profesor.Nombre as Nombre_profesor,
                             tbl_profesor.Observaciones as Observaciones_profesor,
                             tbl_profesor.Imagen as Imagen_profesor,
+
                             tbl_cursos_categorias.Nombre_categoria,
+
                             tbl_creador.Nombre as Nombre_creador,
+
                             tbl_actualizador.Nombre as Nombre_actualizador');
 
         $this->db->from('tbl_cursos_alumnos');
@@ -1234,9 +1259,10 @@ class Cursos extends CI_Controller
         $Observaciones_correccion = null;   if (isset($this->datosObtenidos->Datos->Observaciones_correccion))    { $Observaciones_correccion = $this->datosObtenidos->Datos->Observaciones_correccion; }
         $Respuesta_html = null;             if (isset($this->datosObtenidos->Datos->Respuesta_html))    { $Respuesta_html = $this->datosObtenidos->Datos->Respuesta_html; }
     
-        $Fecha_realizado = null;            if ($Estado == 2)  { $Fecha_realizado = date("Y-m-d"); }
+        $Fecha_realizado = null;   if ($Estado == 2)  { $Fecha_realizado = date("Y-m-d"); }
         
-        $Fecha_corregido = null;            if (isset($this->datosObtenidos->Datos->Fecha_corregido))    { $Fecha_corregido = $this->datosObtenidos->Datos->Fecha_corregido; }
+        $Fecha_corregido = null;   if ($Estado == 3)  { $Fecha_corregido = date("Y-m-d"); $Fecha_realizado = $this->datosObtenidos->Datos->Fecha_realizado; }
+
         $Url_archivo = null;                if (isset($this->datosObtenidos->Datos->Url_archivo))    { $Url_archivo = $this->datosObtenidos->Datos->Url_archivo; }
         $Nota = null;                       if (isset($this->datosObtenidos->Datos->Nota))    { $Nota = $this->datosObtenidos->Datos->Nota; }
         $Usuario_creador_id = $this->session->userdata('Id');     if (isset($this->datosObtenidos->Datos->Usuario_creador_id))    { $Usuario_creador_id = $this->datosObtenidos->Datos->Usuario_creador_id; }
@@ -1278,7 +1304,7 @@ class Cursos extends CI_Controller
         
         if ($status != "error")
         {
-            $config['upload_path'] = './uploads/imagenes';
+            $config['upload_path'] = './uploads/archivos';
             $config['allowed_types'] = 'jpg|jpeg|doc|docx|xlsx|pdf';
             $config['max_size'] = 0;
             $config['encrypt_name'] = TRUE;

@@ -27,16 +27,25 @@ include("aa_barra_navegacion.php");
 </div><!-- .page-header -->
 
 <div class="container" id="app_cursos_curzado_examen">
-    <!--<div class="row">
+    <?php
+    if ($Datos["Imagen_modulo"] == null) {
+        echo "<!-- ";
+    }
+    ?>
+    <div class="row">
         <div class="col-12 offset-lg-1 col-lg-10">
             <div class="featured-image">
-                <img v-if="datosFormularioPrincipal.Imagen != null" v-bind:src="'<?php echo base_url(); ?>uploads/imagenes/'+datosFormularioPrincipal.Imagen" alt="">
-                <img v-else src="<?php echo base_url(); ?>uploads/addimagen.jpg" alt="">
+                <img src="<?php echo base_url(); ?>uploads/imagenes/<?= $Datos["Imagen_modulo"]; ?>" alt="">
 
-                <div class="course-cost">En curso</div>
             </div>
         </div>
-    </div> .row -->
+    </div>
+    <?php
+    if ($Datos["Imagen_modulo"] == null) {
+        echo " --> ";
+    }
+    ?>
+    <!--.row -->
 
     <div class="row">
         <!-- <div class="col-12 offset-lg-1 col-lg-1">
@@ -67,7 +76,7 @@ include("aa_barra_navegacion.php");
 
                     <div class="course-students mt-3">
                         <label class="m-0">Curso</label>
-                        <div class="author-name"><a href="#">{{ datosFormularioPrincipal.Titulo_curso }}</a></div>
+                        <div class="author-name"><a v-bind:href="'cursado/?Id='+datosFormularioPrincipal.Curso_id">{{ datosFormularioPrincipal.Titulo_curso }}</a></div>
                     </div><!-- .course-students -->
 
                     <div class="course-cats mt-3">
@@ -84,6 +93,26 @@ include("aa_barra_navegacion.php");
                 </div><!-- .course-info -->
 
                 <div class="single-course-cont-section">
+                    <?php
+                    if($Datos["Url_archivo_modulo"] == null) 
+                    {
+                        echo '<!--';
+                    }
+                    ?>
+                    <div class="float-right" v-if="datosExamen_curso.Url_archivo != null">
+                        <p align="center">
+                            <a target="_blank" href="<?php echo base_url(); ?>uploads/imagenes/<?= $Datos["Url_archivo_modulo"]; ?> ">
+                                <img width="150" src="<?php echo base_url(); ?>uploads/descargar.png" alt="">
+                                <br>Adjunto Módulo
+                            </a>
+                        </p>
+                    </div>
+                    <?php
+                    if($Datos["Url_archivo_modulo"] == null) 
+                    {
+                        echo ' -->';
+                    }
+                    ?>
                     <h3>
                         <?= $Datos["Descripcion_modulo"]; ?>
                     </h3>
@@ -110,6 +139,26 @@ include("aa_barra_navegacion.php");
                     </header><!-- .entry-heading -->
 
                     <h4><?= $Datos["Titulo_examen"]; ?></h4>
+                    <?php
+                    if($Datos["Url_archivo_examen"] == null) 
+                    {
+                        echo '<!--';
+                    }
+                    ?>
+                    <div class="float-right" v-if="datosExamen_curso.Url_archivo != null">
+                        <p align="center">
+                            <a target="_blank" href="<?php echo base_url(); ?>uploads/imagenes/<?= $Datos["Url_archivo_examen"]; ?> ">
+                                <img width="150" src="<?php echo base_url(); ?>uploads/descargar.png" alt="">
+                                <br>Adjunto examen
+                            </a>
+                        </p>
+                    </div>
+                    <?php
+                    if($Datos["Url_archivo_examen"] == null) 
+                    {
+                        echo ' -->';
+                    }
+                    ?>
                     <em>
                         <?= $Datos["Descripcion_examen"]; ?>
                     </em>
@@ -119,12 +168,12 @@ include("aa_barra_navegacion.php");
                     </div>
                     <hr>
                     <hr>
-                    <h3>Completa el examen</h3>
+                    <h4>Completa el examen</h4>
                     <form action="post" v-on:submit.prevent="crearItemPrincipal('/cursos/generar_examen', '/cursos/subir_archivo_respuesta_examen', 2)">
                         <div class="horizontal-form">
-                            
+
                             <label class="control-label">Escribe aquí tus respuestas</label>
-                            <textarea class="form-control" placeholder="" v-model="datosExamen_curso.Respuesta_html" cols="30" rows="20" :disabled="datosExamen_curso.Estado != 0"></textarea>
+                            <textarea class="form-control" placeholder="" v-model="datosExamen_curso.Respuesta_html" cols="30" rows="20" :disabled="datosExamen_curso.Estado != 1"></textarea>
                             <hr>
                             <label class="control-label">Si se lo solicita puede adjuntar un archivo aquí</label>
                             <div class="form-group">
@@ -132,11 +181,11 @@ include("aa_barra_navegacion.php");
                                     <input @change="archivoSeleccionado" type="file" class="form-control" name="Imagen">
                                 </div>
                                 <div class="col-sm-12" v-if="datosExamen_curso.Url_archivo != null">
-                                    
+
                                     <p align="center">
                                         <a target="_blank" v-bind:href="'<?php echo base_url(); ?>uploads/imagenes/'+datosExamen_curso.Url_archivo">
-                                            <img src="<?php echo base_url(); ?>uploads/descargar.png" alt="">
-                                            Descargar archivo
+                                            <img width="150" src="<?php echo base_url(); ?>uploads/descargar.png" alt="">
+                                            <br>Adjunto respuesta
                                         </a>
                                     </p>
                                 </div>
@@ -151,10 +200,21 @@ include("aa_barra_navegacion.php");
                             </DIV>
                             <hr>
                             <button type="submit" class="btn btn-success" v-show="datosExamen_curso.Estado == 1">Enviar respuestas</button>
-                            
-                            <p v-show="datosExamen_curso.Estado == 2">Su examen se encuentra en etapa de corrección</p>
+
+                            <p v-show="datosExamen_curso.Estado == 2 & Rol_acceso == 2">Su examen se encuentra en etapa de corrección</p>
                         </div>
                     </form>
+                    <div v-show="datosExamen_curso.Estado > 1">
+                        <form action="post" v-on:submit.prevent="crearItemPrincipal('/cursos/generar_examen', '/cursos/subir_archivo_respuesta_examen', 3)">
+                            <label class="control-label">Nota</label>
+                            <input class="form-control" v-model="datosExamen_curso.Nota" type="number" :disabled="datosExamen_curso.Estado != 2 || Rol_acceso < 3">
+
+                            <label class="control-label">Observaciones sobre la corrección</label>
+                            <textarea class="form-control" v-model="datosExamen_curso.Observaciones_correccion" cols="30" rows="3" :disabled="datosExamen_curso.Estado != 2 || Rol_acceso < 3"></textarea>
+                            <br>
+                            <button type="submit" class="btn btn-success" v-show="datosExamen_curso.Estado == 2 & Rol_acceso > 2">Enviar correción y nota</button>
+                        </form>
+                    </div>
                 </div>
 
                 <a name="profesor"></a>
@@ -168,23 +228,24 @@ include("aa_barra_navegacion.php");
                             <img v-if="datosFormularioPrincipal.Imagen_profesor != null" v-bind:src="'<?php echo base_url(); ?>uploads/imagenes/'+datosFormularioPrincipal.Imagen_profesor" alt="">
                             <img v-else src="<?php echo base_url(); ?>uploads/addimagen.jpg" alt="">
 
-                            <ul class="p-0 m-0 mt-3">
+                            <!-- <ul class="p-0 m-0 mt-3">
                                 <li><i class="fa fa-star"></i> 4.7 .7 Average rating</li>
                                 <li><i class="fa fa-comment"></i> 25,182 Reviews</li>
                                 <li><i class="fa fa-user"></i> 11,085 Students</li>
                                 <li><i class="fa fa-play-circle"></i> 2 Courses</li>
-                            </ul>
+                            </ul> -->
                         </div><!-- .instructors-stats -->
 
                         <div class="instructors-details">
-                            <div class="ratings flex align-items-center">
+                            <!-- <div class="ratings flex align-items-center">
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star-o"></i>
                                 <span> (4 votes)</span>
-                            </div><!-- .ratings -->
+                            </div> -->
+                            <!-- .ratings -->
 
                             <h2 class="entry-title mt-3">{{ datosFormularioPrincipal.Titulo_curso }}</h2>
 
@@ -265,7 +326,7 @@ include("aa_barra_navegacion.php");
         </div><!-- .col -->
     </div><!-- .row -->
 
-    
+
 
 </div><!-- .container -->
 <!-- Modal -->

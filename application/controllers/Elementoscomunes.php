@@ -45,6 +45,9 @@ public function config()
 	}
 }
 
+
+
+
 //// 			| ELIMINAR ALGO
 	public function eliminar()
 	{

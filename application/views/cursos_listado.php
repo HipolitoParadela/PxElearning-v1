@@ -38,7 +38,7 @@ include("aa_barra_navegacion.php");
                 </div>
                 <div class="col-4">
                     <select class="form-control-sm form-control" v-model="filtro_1" v-on:change="getListadoPrincipal('/cursos/obtener_listado_principal')">
-                        <option value="0">Todas las categorias</option>
+                        <option value="0"> Todas las categorias </option>
                         <option v-for="categoria in listaFiltro_1" v-bind:value="categoria.Id">{{categoria.Nombre_categoria}}</option>
                     </select>
                 </div>
@@ -129,8 +129,9 @@ include("aa_barra_navegacion.php");
                     </div>
                     <div class="modal-body">
                         <div class="contact-form">
+                            Seleccionar categoría
                             <select v-model="datosFormularioPrincipal.Categoria_id" required>
-                                <option value="0">Elegir categoria del curso</option>
+                                
                                 <option v-for="categoria in listaFiltro_1" v-bind:value="categoria.Id">{{categoria.Nombre_categoria}}</option>
                             </select>
                             <input type="text" placeholder="Título del curso" v-model="datosFormularioPrincipal.Titulo_curso" required>

@@ -2,37 +2,44 @@ eLearning
 
 __________________________________________
 
+Registro de dominio .edu.ar 
+https://www.riu.edu.ar/fd.html
+
+__________________________________________
+
+index, listado de cursos...
+
+mensajeria interna, podria trabajarlo con facebook 
+
+--- analizar como autentificarce con cuenta de googl
+	https://developers.google.com/identity/sign-in/web/
+
+	Client ID
+	644903989514-13bi47lrjv1g5bil0alffv8tilf1hujn.apps.googleusercontent.com
+
+	Client Secret
+	eGv8Oo5QsFlE6yXzsdOIVufV
+
+Dashboard para usuarios
+
+Index
+
+
+
+__________________________________________
+
+
 
 En la pagina del curso, donde dice alumnos deberia tener
 
-	- Ver listado de alumnos
-		. Interesados en ese curso
-		. Inscriptos
-		. Terminados
-
-	- Inscribir un alumno a un curso
-		Ver listado de alumnos completos, y agregarlos como hago en lo de piñata, mismo script.
-		Hacerlo con un datalist
-
-	- entrar a una seccion donde gestionar el curso con ese alumno ----- mismo acceso que veria desde alumnos, cursos 
-		. aca deberia tener info del alumno, y del curso.
-		. una funcion para irle habilitando modulos
-			tendria la lista de los modulos con un boton, de habilitarlo para que lo vea, y luego habilitarle el examen. 
-			de aca accederia al examen completado y ahi poder ponerle una nota.
+	
 	
 	- vista del alumno ---- 	esta misma vista deberia compartirse con el profe, donde pudiera tener mas opciones como habilitar el modulo, corregir y lo que sea necesario. 
 		. Mis cursos, 
 			listado de los cursos inscripto
-			listado de los cursos que le interesan
-		. Vista del curso
-			. listado de todos los modulos, los que esten habilitados, se le permite un acceso y a los otros no.
-		- Vista del modulo
-			. Un pestaña para ver el Contenido
-			. Una pestaña para realizar la prueba
-
-	- vista de Profesore
-		. listado de cursos e inscriptos a atender
-		. misma vista de alumno donde pueda ir viendo modulos, habilitandolos, examenes, calificando, etc.
+			listado de los cursos que le interesan CURSOS QUE LE INTERESAN AL ALUMNO, ver como hacerlo
+		
+		
 
 	- mensajería
 		. mismo para todos, listado de conversaciones
@@ -42,8 +49,6 @@ __________________________________________
 
 Deberian hacer lo siguiente
 
-- Registrar alumnos
-	--- tabla viculo con cursos
 
 - Crear un curso . Id, Precio, Nombre_curso, Duracion, .... mas info
 	- Presentacion
@@ -69,13 +74,8 @@ MENUES
 		- cursos
 			- Notas 
 			- pagos
-	- listado de todos los cursos
-		- info del curso
-		- info de alumnos anotados
-2- Profesores
-	- Cursos asignados
-		- Info del curso
-		- Info de los alumnos
+	
+
 3- Alumnos
 	- Mis Cursos
 		- Mis Notas
