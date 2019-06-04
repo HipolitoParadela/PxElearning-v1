@@ -157,6 +157,7 @@ include("aa_barra_navegacion.php");
     <section class="latest-news-events">
         <div class="container-fluid">
             <div class="row">
+            <div class="col-xl-1"></div>
                 <div class="col-xl-5">
                     <h3>Alumnos curzando</h3>
                     <table class="table">
@@ -204,7 +205,7 @@ include("aa_barra_navegacion.php");
 
 
                 </div>
-                <div class="col-xl-4">
+                <div class="col-xl-5">
 
                     <h3>Últimos movimientos en examenes</h3>
                     <table class="table">
@@ -240,16 +241,15 @@ include("aa_barra_navegacion.php");
                     </table>
 
                 </div>
-                <div class="col-xl-3">
-                    <h3>Próximos cumpleaños</h3>
-
-                </div>
+                <div class="col-xl-1"></div>
+                
             </div>
         </div>
     </section>
     <section class="about-section">
         <div class="container-fluid">
             <div class="row">
+                <div class="col-xl-1"></div>
                 <div class="col-sm-4">
                     <h2>Facebook</h2>
                     <p>
@@ -260,11 +260,12 @@ include("aa_barra_navegacion.php");
                         </div>
                     </p>
                 </div>
-                <div class="col-sm-8">
+                <div class="col-sm-7">
                     <h2>Noticias del rubro</h2>
                     Cumpleaños en los próximos 7 días
 
                 </div>
+                <div class="col-xl-1"></div>
             </div>
         </div><!-- .container -->
     </section><!-- .about-section -->

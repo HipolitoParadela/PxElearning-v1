@@ -97,7 +97,7 @@ include("aa_barra_navegacion.php");
                     <h2>Descripción</h2>
 
                     <?= $Curso["Descripcion_larga"]; ?>
-
+                    <hr>
                 </div>
 
                 <div class="single-course-accordion-cont mt-3">
