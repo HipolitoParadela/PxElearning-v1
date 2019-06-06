@@ -228,7 +228,7 @@ include("aa_barra_navegacion.php");
                                     <select class="form-control-sm form-control" v-model="filtro_1" v-on:change="get_contenido_3('/cursos/obtener_personas_curso')">
                                         <option value="1">Personas inscriptas al curso</option>
                                         <option value="0">Personas interesadas en el curso</option>
-                                        <option value="3">Personas que realizaron curso</option>
+                                        <option value="3">Personas que finalizaron el curso</option>
                                     </select>
                                 </div>
                                 <div class="col-2">
