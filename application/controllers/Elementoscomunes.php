@@ -33,8 +33,15 @@ class Elementoscomunes extends CI_Controller
 //// DATOS USUARIO JS | VISTA | PRODUCCION
 public function config()
 {
-	if ($this->session->userdata('Login') != true) {
-		header("Location: " . base_url() . "login"); /// enviar a pagina de error
+	if ($this->session->userdata('Login') != true) 
+	{
+		//header("Location: " . base_url() . "login"); /// enviar a pagina de error
+		$Datos = array( 
+						'Rol_acceso' => 0,
+						'Usuario_id' => 0
+						);
+
+		$this->load->view('config', $Datos);
 	} 
 	else 
 	{

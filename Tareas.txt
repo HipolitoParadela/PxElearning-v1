@@ -1,5 +1,27 @@
 eLearning
 
+
+__________________________________________
+
+PAGINA DE TODOS LOS CURSOS, QUE SE PUEDA FILTRAR POR CATEGORIAS
+
+
+PAGINA DE UN CURSO, PARA PREINSCRIBIRSE O PARA INSCRIBIRSE PAGANDO DIRECTAMENTE. analizar esta cuestión
+
+ARMAR FORMULARIO DE Registro, CON CUENTA DE GOOGLE SI SE PUEDE Y CAPTCHA 
+
+PRE INSCRIPCION A CURSOS PAGOS, E INSCRIPCIÓN A CURSOS GRATUITOS
+
+
+BLOG, RAPIDITO Y FUNCIONAL, CON COMENTARIOS DE FACEBOOK Y VINCULADO A UNA CUENTA developers
+
+
+
+CAMPO PARA AÑADIR BOTON DE PAGO DE MERCADO PAGO, Y PAGINA DE RECEPCIÓN PARA PAGOS REALIZADOS. 
+
+
+
+
 __________________________________________
 
 Registro de dominio .edu.ar 
@@ -26,6 +48,11 @@ Index
 
 GOOGLE CAPTCHA TAMBIÉN
 
+__________________________________________
+
+SECCIÓN NOVEDADES
+
+A todo meterle richtsnipets, una vez que la web este online
 __________________________________________
 
 VER EL TEMA DE LOS ESTADOS DE LOS CURSOS, 

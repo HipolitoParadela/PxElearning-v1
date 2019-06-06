@@ -1,36 +1,35 @@
 <?php
-    include("aa_cabecera.php");
-    include("aa_barra_navegacion.php");
+include("aa_cabecera.php");
+include("aa_barra_navegacion.php");
 ?>
-            
-        </header><!-- .site-header -->
 
-        <div class="hero-content-overlay">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="hero-content-wrap flex flex-column justify-content-center align-items-start">
-                            <header class="entry-header">
-                                <h4>Cursos de formación en linea</h4>
-                                <h1>Desde tu casa<br />En tus tiempos</h1>
-                            </header><!-- .entry-header -->
+</header><!-- .site-header -->
 
-                            <div class="entry-content">
-                                <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-                                    mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit
-                                    voluptatem accusantium doloremque laudantium</p>
-                            </div><!-- .entry-content -->
+<div class="hero-content-overlay">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="hero-content-wrap flex flex-column justify-content-center align-items-start">
+                    <header class="entry-header">
+                        <h4>Cursos de formación en linea con certificado Nacional</h4>
+                        <h1>Desde tu casa<br />En tus tiempos</h1>
+                    </header><!-- .entry-header -->
 
-                            <footer class="entry-footer read-more">
-                                <a href="#">leer más</a>
-                            </footer><!-- .entry-footer -->
-                        </div><!-- .hero-content-wrap -->
-                    </div><!-- .col -->
-                </div><!-- .row -->
-            </div><!-- .container -->
-        </div><!-- .hero-content-hero-content-overlay -->
-    </div><!-- .hero-content -->
+                    <div class="entry-content">
+                        <p>Brindamos el mejor servicio de capacitación informática personalizada, para que todos puedan formarte con un nivel de aprendizaje superior.</p>
+                        <h4>Más de 25 años de trayectoria avalan nuestra experiencia</h4>
+                    </div><!-- .entry-content -->
 
+                    <footer class="entry-footer read-more">
+                        <a href="#">leer más</a>
+                    </footer><!-- .entry-footer -->
+                </div><!-- .hero-content-wrap -->
+            </div><!-- .col -->
+        </div><!-- .row -->
+    </div><!-- .container -->
+</div><!-- .hero-content-hero-content-overlay -->
+</div><!-- .hero-content -->
+<div id="index">
     <div class="icon-boxes">
         <div class="container-fluid">
             <div class="flex flex-wrap align-items-stretch">
@@ -124,10 +123,13 @@
                     </header><!-- .heading -->
                 </div><!-- .col -->
 
-                <div class="col-12 col-lg-6">
+                <div class="col-12 col-lg-6" v-for="curso_gratis in listaCursosGratis">
                     <div class="course-content flex flex-wrap justify-content-between align-content-lg-stretch">
                         <figure class="course-thumbnail">
-                            <a href="#"><img src="<?php echo base_url(); ?>plantilla/images/1.jpg" alt=""></a>
+                            <a v-bind:href="'cursos/informaciondelcurso/?Id=' + curso_gratis.Id">
+                                <img v-if="curso_gratis.Imagen != null" v-bind:src="'<?php echo base_url(); ?>uploads/imagenes/'+curso_gratis.Imagen" alt="">
+                                <img v-else src="<?php echo base_url(); ?>uploads/addimagen.jpg" alt="">
+                            </a>
                         </figure><!-- .course-thumbnail -->
 
                         <div class="course-content-wrap">
@@ -139,62 +141,28 @@
                                     <span class="fa fa-star checked"></span>
                                     <span class="fa fa-star-o"></span>
 
-                                    <span class="course-ratings-count">(4 votes)</span>
+                                    <span class="course-ratings-count">(4 votos)</span>
                                 </div><!-- .course-ratings -->
 
-                                <h2 class="entry-title"><a href="#">The Complete Android Developer Course</a></h2>
+                                <h2 class="entry-title"><a v-bind:href="'cursos/informaciondelcurso/?Id=' + curso_gratis.Id">{{ curso_gratis.Titulo_curso }}</a></h2>
 
-                                <div class="entry-meta flex flex-wrap align-items-center">
-                                    <div class="course-author"><a href="#">Ms. Lara Croft </a></div>
+                                <!--  <div class="entry-meta flex flex-wrap align-items-center">
+                                    <div class="course-author"><a  v-bind:href="'cursos/informaciondelcurso/?Id=' + curso_gratis.Id">Ms. Lara Croft </a></div>
 
                                     <div class="course-date">July 21, 2018</div>
-                                </div><!-- .course-date -->
+                                </div> -->
+                                <!-- .course-date -->
                             </header><!-- .entry-header -->
 
                             <footer class="entry-footer flex justify-content-between align-items-center">
                                 <div class="course-cost">
-                                    <span class="free-cost">Free</span>
+                                    <span class="free-cost">GRATIS</span>
                                 </div><!-- .course-cost -->
                             </footer><!-- .entry-footer -->
                         </div><!-- .course-content-wrap -->
                     </div><!-- .course-content -->
                 </div><!-- .col -->
 
-                <div class="col-12 col-lg-6">
-                    <div class="course-content flex flex-wrap justify-content-between align-content-lg-stretch">
-                        <figure class="course-thumbnail">
-                            <a href="#"><img src="<?php echo base_url(); ?>plantilla/images/2.jpg" alt=""></a>
-                        </figure><!-- .course-thumbnail -->
-
-                        <div class="course-content-wrap">
-                            <header class="entry-header">
-                                <div class="course-ratings flex align-items-center">
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star-o"></span>
-
-                                    <span class="course-ratings-count">(4 votes)</span>
-                                </div><!-- .course-ratings -->
-
-                                <h2 class="entry-title"><a href="#">Learn Photoshop, Web Design & Profitable</a></h2>
-
-                                <div class="entry-meta flex flex-wrap align-items-center">
-                                    <div class="course-author"><a href="#">Mr. John Wick</a></div>
-
-                                    <div class="course-date">Aug 21, 2018</div>
-                                </div><!-- .course-date -->
-                            </header><!-- .entry-header -->
-
-                            <footer class="entry-footer flex justify-content-between align-items-center">
-                                <div class="course-cost">
-                                    $32 <span class="price-drop">$59</span>
-                                </div><!-- .course-cost -->
-                            </footer><!-- .entry-footer -->
-                        </div><!-- .course-content-wrap -->
-                    </div><!-- .course-content -->
-                </div><!-- .col -->
             </div><!-- .row -->
         </div><!-- .container -->
     </section><!-- .courses-wrap -->
@@ -204,33 +172,33 @@
             <div class="row">
                 <div class="col-12 col-lg-6 align-content-lg-stretch">
                     <header class="heading">
-                        <h2 class="entry-title">SOBRE NOSOTROS</h2>
+                        <h2 class="entry-title">Formación certificada</h2>
 
-                        <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-                            anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                            accusantium.</p>
+                        <p>Certificación oficial a nivel Provincial CPCIPC, Consejo Profesional de ciencias Informáticas de la Provincia de Córdoba. (Ley 7.642)<br>
+
+                            Certificación Oficial Nacional UTN, Universidad Tecnológica Nacional (FRVM)</p>
                     </header><!-- .heading -->
 
                     <div class="entry-content ezuca-stats">
                         <div class="stats-wrap flex flex-wrap justify-content-lg-between">
                             <div class="stats-count">
-                                50<span>M+</span>
-                                <p>STUDENTS LEARNING</p>
+                                {{cantidad_inscriptos}}<!-- <span>M+</span> -->
+                                <p>INSCRIPTOS</p>
                             </div><!-- .stats-count -->
 
                             <div class="stats-count">
-                                30<span>K+</span>
-                                <p>ACTIVE COURSES</p>
+                                {{cantidad_cursos_gratuitos}}<!-- <span>K+</span> -->
+                                <p>CURSOS GRATUITOS</p>
                             </div><!-- .stats-count -->
 
                             <div class="stats-count">
-                                340<span>M+</span>
-                                <p>INSTRUCTORS ONLINE</p>
+                                {{cantidad_profesores}}<!-- <span>M+</span> -->
+                                <p>INSTRUCTORES</p>
                             </div><!-- .stats-count -->
 
                             <div class="stats-count">
-                                20<span>+</span>
-                                <p>Country Reached</p>
+                                {{cantidad_cursos}}<!-- <span>+</span> -->
+                                <p>CURSOS OFICIALES</p>
                             </div><!-- .stats-count -->
                         </div><!-- .stats-wrap -->
                     </div><!-- .ezuca-stats -->
@@ -341,40 +309,45 @@
             <div class="row mx-m-25">
                 <div class="col-12 px-25">
                     <header class="heading flex flex-wrap justify-content-between align-items-center">
-                        <h2 class="entry-title">Cursos destacados</h2>
+                        <h2 class="entry-title">Cursos en línea</h2>
 
                         <nav class="courses-menu mt-3 mt-lg-0">
                             <ul class="flex flex-wrap justify-content-md-end align-items-center">
-                                <li class="active"><a href="#">All</a></li>
-                                <li><a href="#">Business</a></li>
-                                <li><a href="#">Design</a></li>
-                                <li><a href="#">Web Development</a></li>
-                                <li><a href="#">Photography</a></li>
+                                <li v-for="categoria in listaFiltro_1"><a href="#">{{categoria.Nombre_categoria}}</a></li>
+
                             </ul>
                         </nav><!-- .courses-menu -->
                     </header><!-- .heading -->
                 </div><!-- .col -->
 
-                <div class="col-12 col-md-6 col-lg-4 px-25">
+                <div class="col-12 col-md-6 col-lg-4 px-25" v-for="curso in lista_cursos">
                     <div class="course-content">
                         <figure class="course-thumbnail">
-                            <a href="#"><img src="<?php echo base_url(); ?>plantilla/images/1.jpg" alt=""></a>
+                            <a v-bind:href="'cursos/informaciondelcurso/?Id=' + curso.Id">
+                                <img v-if="curso.Imagen != null" v-bind:src="'<?php echo base_url(); ?>uploads/imagenes/'+curso.Imagen" alt="">
+                                <img v-else src="<?php echo base_url(); ?>uploads/addimagen.jpg" alt="">
+                            </a>
                         </figure><!-- .course-thumbnail -->
+                        
 
                         <div class="course-content-wrap">
                             <header class="entry-header">
-                                <h2 class="entry-title"><a href="#">The Complete Android Developer Course</a></h2>
+                                <h2 class="entry-title"><a v-bind:href="'cursos/informaciondelcurso/?Id=' + curso.Id">{{curso.Nombre_principal}}</a></h2> 
+                                 <div class="entry-meta flex align-items-center">
+                                    <div class="course-author">{{curso.Nombre_categoria}}</div>
 
-                                <div class="entry-meta flex align-items-center">
-                                    <div class="course-author"><a href="#">Ms. Lara Croft </a></div>
-
-                                    <div class="course-date">July 21, 2018</div>
-                                </div><!-- .course-date -->
+                                    <div class="course-date">{{curso.Duracion}} Meses</div>
+                                </div>
+                                <!-- .course-date -->
                             </header><!-- .entry-header -->
 
                             <footer class="entry-footer flex justify-content-between align-items-center">
-                                <div class="course-cost">
-                                    $45 <span class="price-drop">$68</span>
+                                <div class="course-cost" v-if="curso.Costo_promocional == null || curso.Costo_promocional == 0">
+                                   
+                                   $ {{curso.Costo_normal | Moneda}} <!-- <span class="price-drop">{{curso.Costo_promocional}}</span> -->
+                                </div><!-- .course-cost -->
+                                <div class="course-cost"  v-if="curso.Costo_promocional > 0" >
+                                    $ {{curso.Costo_promocional | Moneda}} <span class="price-drop">$ {{curso.Costo_normal | Moneda}}</span>
                                 </div><!-- .course-cost -->
 
                                 <div class="course-ratings flex justify-content-end align-items-center">
@@ -384,194 +357,14 @@
                                     <span class="fa fa-star checked"></span>
                                     <span class="fa fa-star-o"></span>
 
-                                    <span class="course-ratings-count">(4 votes)</span>
+                                    <span class="course-ratings-count">(4 votos)</span>
                                 </div><!-- .course-ratings -->
                             </footer><!-- .entry-footer -->
                         </div><!-- .course-content-wrap -->
                     </div><!-- .course-content -->
                 </div><!-- .col -->
 
-                <div class="col-12 col-md-6 col-lg-4 px-25">
-                    <div class="course-content">
-                        <figure class="course-thumbnail">
-                            <a href="#"><img src="<?php echo base_url(); ?>plantilla/images/2.jpg" alt=""></a>
-                        </figure><!-- .course-thumbnail -->
 
-                        <div class="course-content-wrap">
-                            <header class="entry-header">
-                                <h2 class="entry-title"><a href="#">The Ultimate Drawing Course Beginner to Advanced</a>
-                                </h2>
-
-                                <div class="entry-meta flex align-items-center">
-                                    <div class="course-author"><a href="#">Michelle Golden</a></div>
-
-                                    <div class="course-date">Mar 14, 2018</div>
-                                </div><!-- .course-date -->
-                            </header><!-- .entry-header -->
-
-                            <footer class="entry-footer flex justify-content-between align-items-center">
-                                <div class="course-cost">
-                                    <span class="free-cost">Free</span>
-                                </div><!-- .price-drop -->
-
-                                <div class="course-ratings flex justify-content-end align-items-center">
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star-o"></span>
-
-                                    <span class="course-ratings-count">(4 votes)</span>
-                                </div><!-- .course-ratings -->
-                            </footer><!-- .entry-footer -->
-                        </div><!-- .course-content-wrap -->
-                    </div><!-- .course-content -->
-                </div><!-- .col -->
-
-                <div class="col-12 col-md-6 col-lg-4 px-25">
-                    <div class="course-content">
-                        <figure class="course-thumbnail">
-                            <a href="#"><img src="<?php echo base_url(); ?>plantilla/images/3.jpg" alt=""></a>
-                        </figure><!-- .course-thumbnail -->
-
-                        <div class="course-content-wrap">
-                            <header class="entry-header">
-                                <h2 class="entry-title"><a href="#">The Complete Digital Marketing Course</a></h2>
-
-                                <div class="entry-meta flex align-items-center">
-                                    <div class="course-author"><a href="#">Ms. Lucius</a></div>
-
-                                    <div class="course-date">Dec 18, 2018</div>
-                                </div><!-- .course-date -->
-                            </header><!-- .entry-header -->
-
-                            <footer class="entry-footer flex justify-content-between align-items-center">
-                                <div class="course-cost">
-                                    $55 <span class="price-drop">$78</span>
-                                </div><!-- .course-cost -->
-
-                                <div class="course-ratings flex justify-content-end align-items-center">
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star-o"></span>
-
-                                    <span class="course-ratings-count">(4 votes)</span>
-                                </div><!-- .course-ratings -->
-                            </footer><!-- .entry-footer -->
-                        </div><!-- .course-content-wrap -->
-                    </div><!-- .course-content -->
-                </div><!-- .col -->
-
-                <div class="col-12 col-md-6 col-lg-4 px-25">
-                    <div class="course-content">
-                        <figure class="course-thumbnail">
-                            <a href="#"><img src="<?php echo base_url(); ?>plantilla/images/4.jpg" alt=""></a>
-                        </figure><!-- .course-thumbnail -->
-
-                        <div class="course-content-wrap">
-                            <header class="entry-header">
-                                <h2 class="entry-title"><a href="#">The Unreal Engine Developer Course</a></h2>
-
-                                <div class="entry-meta flex align-items-center">
-                                    <div class="course-author"><a href="#">Mr. John Wick</a></div>
-
-                                    <div class="course-date">Otc 17, 2018</div>
-                                </div><!-- .course-date -->
-                            </header><!-- .entry-header -->
-
-                            <footer class="entry-footer flex justify-content-between align-items-center">
-                                <div class="course-cost">
-                                    <span class="free-cost">Free</span>
-                                </div><!-- .course-cost -->
-
-                                <div class="course-ratings flex justify-content-end align-items-center">
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star-o"></span>
-
-                                    <span class="course-ratings-count">(4 votes)</span>
-                                </div><!-- .course-ratings -->
-                            </footer><!-- .entry-footer -->
-                        </div><!-- .course-content-wrap -->
-                    </div><!-- .course-content -->
-                </div><!-- .col -->
-
-                <div class="col-12 col-md-6 col-lg-4 px-25">
-                    <div class="course-content">
-                        <figure class="course-thumbnail">
-                            <a href="#"><img src="<?php echo base_url(); ?>plantilla/images/5.jpg" alt=""></a>
-                        </figure><!-- .course-thumbnail -->
-
-                        <div class="course-content-wrap">
-                            <header class="entry-header">
-                                <h2 class="entry-title"><a href="#">Progressive Web Apps (PWA) - The Complete Guide</a>
-                                </h2>
-
-                                <div class="entry-meta flex align-items-center">
-                                    <div class="course-author"><a href="#">Mr. Tom Redder</a></div>
-
-                                    <div class="course-date">Sep 14, 2018</div>
-                                </div><!-- .course-date -->
-                            </header><!-- .entry-header -->
-
-                            <footer class="entry-footer flex justify-content-between align-items-center">
-                                <div class="course-cost">
-                                    $38 <span class="price-drop">$48</span>
-                                </div><!-- .course-cost -->
-
-                                <div class="course-ratings flex justify-content-end align-items-center">
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star-o"></span>
-
-                                    <span class="course-ratings-count">(4 votes)</span>
-                                </div><!-- .course-ratings -->
-                            </footer><!-- .entry-footer -->
-                        </div><!-- .course-content-wrap -->
-                    </div><!-- .course-content -->
-                </div><!-- .col -->
-
-                <div class="col-12 col-md-6 col-lg-4 px-25">
-                    <div class="course-content">
-                        <figure class="course-thumbnail">
-                            <a href="#"><img src="<?php echo base_url(); ?>plantilla/images/6.jpg" alt=""></a>
-                        </figure><!-- .course-thumbnail -->
-
-                        <div class="course-content-wrap">
-                            <header class="entry-header">
-                                <h2 class="entry-title"><a href="#">Cryptocurrency Investment Course 2018</a></h2>
-
-                                <div class="entry-meta flex align-items-center">
-                                    <div class="course-author"><a href="#">Russell Stephens</a></div>
-
-                                    <div class="course-date">Nov 06, 2018</div>
-                                </div><!-- .course-date -->
-                            </header><!-- .entry-header -->
-
-                            <footer class="entry-footer flex justify-content-between align-items-center">
-                                <div class="course-cost">
-                                    <span class="free-cost">Free</span>
-                                </div><!-- .course-cost -->
-
-                                <div class="course-ratings flex justify-content-end align-items-center">
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star-o"></span>
-
-                                    <span class="course-ratings-count">(4 votes)</span>
-                                </div><!-- .course-ratings -->
-                            </footer><!-- .entry-footer -->
-                        </div><!-- .course-content-wrap -->
-                    </div><!-- .course-content -->
-                </div><!-- .col -->
 
                 <div class="col-12 px-25 flex justify-content-center">
                     <a class="btn" href="#">ver todos</a>
@@ -731,7 +524,7 @@
             </div><!-- .gallery-grid -->
         </div><!-- .gallery-wrap -->
     </section><!-- .home-gallery -->
-
+</div>
 <?php
-    include("aa_pie.php");
+include("aa_pie.php");
 ?>

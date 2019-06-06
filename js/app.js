@@ -128,12 +128,14 @@ new Vue({
             case '/usuarios':
                 this.getListadoPrincipal('/usuarios/obtener_listado_principal');
                 this.getFiltro_1('/usuarios/obtener_roles');
-                break; 
+                    break; 
 
             case '/cursos':
                 this.getListadoPrincipal('/cursos/obtener_listado_principal');
                 this.getFiltro_1('/cursos/obtener_categorias');
-                break; 
+                    break;
+
+           
         }
     },
 
@@ -459,7 +461,7 @@ new Vue({
     }   
 });
 
-/// ELEMENTOS COMUNES PARA EL INDEX
+/// ELEMENTOS COMUNES PARA EL INDEX                                              ELIMINAR SI NO SE USA
 new Vue({
     el: '#index',
 
@@ -472,9 +474,14 @@ new Vue({
         this.getCantidad_profesores();
         this.getCantidad_cursos_activos();
 
-        this.getCursosAlumno();
+        this.getCursos();
 
+        //this.getListadoPrincipal('/cursos/obtener_listado_principal');
+        this.getCursosGratis();
+        this.getCantidad_cursos_gratis();
         this.setVariablesUsuario(Usuario_id, Rol_acceso);
+
+        this.getFiltro_1('/cursos/obtener_categorias');
     },
 
     data:
@@ -492,6 +499,12 @@ new Vue({
         cantidad_cursos_activos: '',
         
         lista_cursos_alumno: [],
+        listaCursosGratis: [],
+        cantidad_cursos_gratuitos: 0,
+
+        listaFiltro_1: [],
+
+        lista_cursos: []
     },
 
     methods:
@@ -501,6 +514,22 @@ new Vue({
         setVariablesUsuario: function (Usuario_id, Rol_acceso) {
             this.Usuario_id = Usuario_id;
             this.Rol_acceso = Rol_acceso;
+        },
+
+        //// PRINCIPAL COMUN | MOSTRAR LISTADO  
+        getCursosGratis: function () {
+
+            var url = base_url + '/cursos/obtener_cursos_gratis_index'; // url donde voy a mandar los datos
+
+            axios.post(url, {
+                token: token,
+                
+            }).then(response => {
+                this.listaCursosGratis = response.data
+            }).catch(error => {
+                toastr.error('Error en la recuperación de los datos', 'Sistema')
+                console.log(error.response.data)
+            });
         },
 
         //// PRINCIPAL COMUN | MOSTRAR LISTADO  
@@ -552,6 +581,22 @@ new Vue({
         },
 
         //// PRINCIPAL COMUN | MOSTRAR LISTADO  
+        getCantidad_cursos_gratis: function () {
+
+            var url = base_url + '/cursos/cantidad_cursos_gratis'; // url donde voy a mandar los datos
+
+            axios.post(url, {
+                token: token,
+                
+            }).then(response => {
+                this.cantidad_cursos_gratuitos = response.data
+            }).catch(error => {
+                toastr.error('Error en la recuperación de los datos', 'Sistema')
+                console.log(error.response.data)
+            });
+        },
+        
+        //// PRINCIPAL COMUN | MOSTRAR LISTADO  
         getCantidad_inscriptos: function () {
 
             var url = base_url + '/dashboard/cantidad_inscriptos'; // url donde voy a mandar los datos
@@ -600,21 +645,36 @@ new Vue({
         },
         
         //// PRINCIPAL COMUN | MOSTRAR LISTADO  
-        getCursosAlumno: function () {
+        getCursos: function () {
 
-            var url = base_url + '/dashboard/obtener_cursos_deun_alumno'; // url donde voy a mandar los datos
+            var url = base_url + '/cursos/obtener_listado_principal_publico'; // url donde voy a mandar los datos
 
             axios.post(url, {
                 token: token,
+                Filtro_1: 0
                 
             }).then(response => {
-                this.lista_cursos_alumno = response.data
+                this.lista_cursos = response.data
             }).catch(error => {
                 toastr.error('Error en la recuperación de los datos', 'Sistema')
                 console.log(error.response.data)
             });
         },
         
+        ////  FILTRO_1 | MOSTRAR LISTADO  
+        getFiltro_1: function (url_controller) {
+            var url = base_url + url_controller; // url donde voy a mandar los datos
+
+            axios.post(url, {
+                token: token
+            }).then(response => {
+                this.listaFiltro_1 = response.data
+            }).catch(error => {
+                
+                console.log(error.response.data)
+                toastr.error('Error en la recuperación de los datos', 'Sistema')
+            });
+        },
         
     },
 
@@ -2598,3 +2658,5 @@ new Vue({
         },
     }   
 });
+
+

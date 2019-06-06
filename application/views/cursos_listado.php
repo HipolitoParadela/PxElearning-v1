@@ -131,10 +131,9 @@ include("aa_barra_navegacion.php");
                         <div class="contact-form">
                             Seleccionar categoría
                             <select v-model="datosFormularioPrincipal.Categoria_id" required>
-                                
                                 <option v-for="categoria in listaFiltro_1" v-bind:value="categoria.Id">{{categoria.Nombre_categoria}}</option>
                             </select>
-                            <input type="text" placeholder="Título del curso" v-model="datosFormularioPrincipal.Titulo_curso" required>
+                            <input type="text" placeholder="Título del curso" v-model="datosFormularioPrincipal.Nombre_principal" required>
                             <input type="number" placeholder="Duración estimada en meses" v-model="datosFormularioPrincipal.Duracion" required>
                             <input type="number" placeholder="Costo Normal" v-model="datosFormularioPrincipal.Costo_normal" required>
                             <textarea rows="2" placeholder="Descripcion corta del curso" v-model="datosFormularioPrincipal.Descripcion_corta" required></textarea>
