@@ -260,7 +260,6 @@ class Usuarios extends CI_Controller
                     
                     'Presencia' =>                  1,
                     'Visible' => 			        1,
-                    'Ultima_actualizacion' =>       $fecha,
                     'Ultimo_editor_id' => 		    $this->session->userdata('Id') 
                     
                 );

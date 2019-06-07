@@ -1,5 +1,24 @@
 eLearning
 
+
+__________________________________________
+
+
+PAGINA DE UN CURSO, PARA PREINSCRIBIRSE O PARA INSCRIBIRSE PAGANDO DIRECTAMENTE. analizar esta cuestión
+
+ARMAR FORMULARIO DE Registro, CON CUENTA DE GOOGLE SI SE PUEDE Y CAPTCHA 
+
+PRE INSCRIPCION A CURSOS PAGOS, E INSCRIPCIÓN A CURSOS GRATUITOS
+
+BLOG, RAPIDITO Y FUNCIONAL, CON COMENTARIOS DE FACEBOOK Y VINCULADO A UNA CUENTA developers
+
+
+
+CAMPO PARA AÑADIR BOTON DE PAGO DE MERCADO PAGO, Y PAGINA DE RECEPCIÓN PARA PAGOS REALIZADOS. 
+
+
+
+
 __________________________________________
 
 Registro de dominio .edu.ar 
@@ -28,6 +47,11 @@ GOOGLE CAPTCHA TAMBIÉN
 
 __________________________________________
 
+SECCIÓN NOVEDADES
+
+A todo meterle richtsnipets, una vez que la web este online
+__________________________________________
+
 VER EL TEMA DE LOS ESTADOS DE LOS CURSOS, 
 	0 para interesados, 1 para iniciados, 2 para finalizados
 
@@ -39,19 +63,6 @@ Armar formulario para autoregistro
 
 SI EL CURSO ES GRATUITO LA PREINSCRIPCIÓN DEBERÍA SER SUFICIENTE
 __________________________________________
-
-En la pagina del curso, donde dice alumnos deberia tener
-
-	
-	
-	- vista del alumno ---- 	esta misma vista deberia compartirse con el profe, donde pudiera tener mas opciones como habilitar el modulo, corregir y lo que sea necesario. 
-		. Mis cursos, 
-			listado de los cursos inscripto
-
-			listado de los cursos que le interesan CURSOS QUE LE INTERESAN AL ALUMNO, ver como hacerlo
-				PREINSCRIPTOS, 
-		
-		
 
 	- mensajería
 		. mismo para todos, listado de conversaciones
@@ -76,19 +87,3 @@ Deberian hacer lo siguiente
 	--- Calificaciones
 	--- Consultas
 	--- etc	
-
-__________________________________________
-
-MENUES
-1- Administración
-	- listado de todos los usuarios
-		- datos del usuario
-		- cursos
-			- Notas 
-			- pagos
-	
-
-3- Alumnos
-	- Mis Cursos
-		- Mis Notas
-		- Mis Pagos 
