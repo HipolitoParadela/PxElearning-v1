@@ -21,7 +21,7 @@ include("aa_barra_navegacion.php");
                     </div><!-- .entry-content -->
 
                     <footer class="entry-footer read-more">
-                        <a href="#">leer más</a>
+                        <a href="<?php echo base_url(); ?>cursos/listado">CONOCÉ NUESTROS CURSOS</a>
                     </footer><!-- .entry-footer -->
                 </div><!-- .hero-content-wrap -->
             </div><!-- .col -->
@@ -39,17 +39,16 @@ include("aa_barra_navegacion.php");
                     </div><!-- .icon -->
 
                     <header class="entry-header">
-                        <h2 class="entry-title">Learn From The Experts</h2>
+                        <h2 class="entry-title">Aprende de expertos</h2>
                     </header><!-- .entry-header -->
 
                     <div class="entry-content">
-                        <p>Lorem Ipsum available, but the majority have suffered alteration in some form, by injected
-                            humour.</p>
+                        <p>Contamos con un grupo de profesores de primer nivel en sus materias. Los cuales tendrás como tutor en tu camino de aprendizaje.</p>
                     </div><!-- .entry-content -->
 
-                    <footer class="entry-footer read-more">
+                    <!-- <footer class="entry-footer read-more">
                         <a href="#">read more<i class="fa fa-long-arrow-right"></i></a>
-                    </footer><!-- .entry-footer -->
+                    </footer> --><!-- .entry-footer -->
                 </div><!-- .icon-box -->
 
                 <div class="icon-box">
@@ -58,17 +57,16 @@ include("aa_barra_navegacion.php");
                     </div><!-- .icon -->
 
                     <header class="entry-header">
-                        <h2 class="entry-title">Book Library & Store</h2>
+                        <h2 class="entry-title">Material teorico y práctico</h2>
                     </header><!-- .entry-header -->
 
                     <div class="entry-content">
-                        <p>Lorem Ipsum available, but the majority have suffered alteration in some form, by injected
-                            humour.</p>
+                        <p>Aprenderás la teoria necesaria para poder comenzar a practicar y aplicar tus conocimientos cuanto antes.</p>
                     </div><!-- .entry-content -->
 
-                    <footer class="entry-footer read-more">
+                    <!-- <footer class="entry-footer read-more">
                         <a href="#">read more<i class="fa fa-long-arrow-right"></i></a>
-                    </footer><!-- .entry-footer -->
+                    </footer> --><!-- .entry-footer -->
                 </div><!-- .icon-box -->
 
                 <div class="icon-box">
@@ -77,17 +75,16 @@ include("aa_barra_navegacion.php");
                     </div><!-- .icon -->
 
                     <header class="entry-header">
-                        <h2 class="entry-title">Best Course Online</h2>
+                        <h2 class="entry-title">Aprendizaje paso a paso</h2>
                     </header><!-- .entry-header -->
 
                     <div class="entry-content">
-                        <p>Lorem Ipsum available, but the majority have suffered alteration in some form, by injected
-                            humour.</p>
+                        <p>Cada curso esta cuidadosamente diseñado y divido en módulos y examenes que te llevarán paso a paso a aprender el 100% de los contenidos.</p>
                     </div><!-- .entry-content -->
 
-                    <footer class="entry-footer read-more">
+                    <!-- <footer class="entry-footer read-more">
                         <a href="#">read more<i class="fa fa-long-arrow-right"></i></a>
-                    </footer><!-- .entry-footer -->
+                    </footer> --><!-- .entry-footer -->
                 </div><!-- .icon-box -->
 
                 <div class="icon-box">
@@ -96,17 +93,16 @@ include("aa_barra_navegacion.php");
                     </div><!-- .icon -->
 
                     <header class="entry-header">
-                        <h2 class="entry-title">Best Industry Leaders</h2>
+                        <h2 class="entry-title">Salida laboral inmediata</h2>
                     </header><!-- .entry-header -->
 
                     <div class="entry-content">
-                        <p>Lorem Ipsum available, but the majority have suffered alteration in some form, by injected
-                            humour.</p>
+                        <p>Te ofrecemos cursos que te permitiran salir al ruedo con la formación necesaria requerida por las empresas y/o clientes particulares.</p>
                     </div><!-- .entry-content -->
 
-                    <footer class="entry-footer read-more">
+                    <!-- <footer class="entry-footer read-more">
                         <a href="#">read more<i class="fa fa-long-arrow-right"></i></a>
-                    </footer><!-- .entry-footer -->
+                    </footer> --><!-- .entry-footer -->
                 </div><!-- .icon-box -->
             </div><!-- .row -->
         </div><!-- .container-fluid -->
@@ -117,9 +113,9 @@ include("aa_barra_navegacion.php");
             <div class="row">
                 <div class="col-12">
                     <header class="heading flex justify-content-between align-items-center">
-                        <h2 class="entry-title">Cursos gratuitos</h2>
+                        <h2 class="entry-title">Certificate en cursos que te recomendamos</h2>
 
-                        <a class="btn mt-4 mt-sm-0" href="#">Ver todos</a>
+                        <a class="btn mt-4 mt-sm-0" href="<?php echo base_url(); ?>cursos/listado">Ver todos</a>
                     </header><!-- .heading -->
                 </div><!-- .col -->
 
@@ -156,7 +152,7 @@ include("aa_barra_navegacion.php");
 
                             <footer class="entry-footer flex justify-content-between align-items-center">
                                 <div class="course-cost">
-                                    <span class="free-cost">GRATIS</span>
+                                    <span class="free-cost">Super precio</span>
                                 </div><!-- .course-cost -->
                             </footer><!-- .entry-footer -->
                         </div><!-- .course-content-wrap -->
@@ -226,18 +222,17 @@ include("aa_barra_navegacion.php");
                         <div class="row">
                             <div class="col-12 col-lg-6 order-2 order-lg-1 flex align-items-center mt-5 mt-lg-0">
                                 <figure class="user-avatar">
-                                    <img src="<?php echo base_url(); ?>plantilla/images/user-1.jpg" alt="">
+                                    <img src="<?php echo base_url(); ?>uploads/imagenes/steve.jpg" alt="">
                                 </figure><!-- .user-avatar -->
                             </div><!-- .col -->
 
                             <div class="col-12 col-lg-6 order-1 order-lg-2 content-wrap h-100">
                                 <div class="entry-content">
-                                    <p>Together as teachers, students and universities we can help make this education
-                                        available for everyone.</p>
+                                    <p>La fortuna juega a favor de las mentes preparadas.</p>
                                 </div><!-- .entry-content -->
 
                                 <div class="entry-footer">
-                                    <h3 class="testimonial-user">Russell Stephens - <span>University in UK</span></h3>
+                                    <h3 class="testimonial-user">Luis Pasteur - <span>Cientifico</span></h3>
                                 </div><!-- .entry-footer -->
                             </div><!-- .col -->
                         </div><!-- .row -->
@@ -249,18 +244,17 @@ include("aa_barra_navegacion.php");
                         <div class="row">
                             <div class="col-12 col-lg-6 order-2 order-lg-1 flex align-items-center mt-5 mt-lg-0">
                                 <figure class="user-avatar">
-                                    <img src="<?php echo base_url(); ?>plantilla/images/user-2.jpg" alt="">
+                                    <img src="<?php echo base_url(); ?>uploads/imagenes/laotze.jpg" alt="">
                                 </figure><!-- .user-avatar -->
                             </div><!-- .col -->
 
                             <div class="col-12 col-lg-6 order-1 order-lg-2 content-wrap h-100">
                                 <div class="entry-content">
-                                    <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                                        deserunt mollit anim id est laborum.</p>
+                                    <p>Si tu no trabajas por tus sueños, alguien te contratará para que trabajes por los suyos.</p>
                                 </div><!-- .entry-content -->
 
                                 <div class="entry-footer">
-                                    <h3 class="testimonial-user">Robert Stephens - <span>University in Oxford</span>
+                                    <h3 class="testimonial-user">Steve Jobs - <span>Fundador de Apple</span>
                                     </h3>
                                 </div><!-- .entry-footer -->
                             </div><!-- .col -->
@@ -273,18 +267,17 @@ include("aa_barra_navegacion.php");
                         <div class="row">
                             <div class="col-12 col-lg-6 flex order-2 order-lg-1 align-items-center mt-5 mt-lg-0">
                                 <figure class="user-avatar">
-                                    <img src="<?php echo base_url(); ?>plantilla/images/user-3.jpg" alt="">
+                                    <img src="<?php echo base_url(); ?>uploads/imagenes/pasteur.jpg" alt="">
                                 </figure><!-- .user-avatar -->
                             </div><!-- .col -->
 
                             <div class="col-12 col-lg-6 order-1 order-lg-2 content-wrap h-100">
                                 <div class="entry-content">
-                                    <p>Lorem Ipsum available, but the majority have suffered alteration in some form, by
-                                        injected humour.</p>
+                                    <p>Un viaje de mil millas comienza con el primer paso. Hoy es el momento de darlo.</p>
                                 </div><!-- .entry-content -->
 
                                 <div class="entry-footer">
-                                    <h3 class="testimonial-user">James Stephens - <span>University in Cambridge</span>
+                                    <h3 class="testimonial-user">Lao Tze - <span>Filósofo</span>
                                     </h3>
                                 </div><!-- .entry-footer -->
                             </div><!-- .col -->
@@ -313,7 +306,11 @@ include("aa_barra_navegacion.php");
 
                         <nav class="courses-menu mt-3 mt-lg-0">
                             <ul class="flex flex-wrap justify-content-md-end align-items-center">
-                                <li v-for="categoria in listaFiltro_1"><a href="#">{{categoria.Nombre_categoria}}</a></li>
+                                <li v-for="categoria in listaFiltro_1">
+                                    <a v-bind:href="'<?php echo base_url(); ?>cursos/listado?Categoria=' + categoria.Nombre_categoria + '&Id=' + categoria.Id">
+                                        {{categoria.Nombre_categoria}}
+                                    </a>
+                                </li>
 
                             </ul>
                         </nav><!-- .courses-menu -->
@@ -367,7 +364,7 @@ include("aa_barra_navegacion.php");
 
 
                 <div class="col-12 px-25 flex justify-content-center">
-                    <a class="btn" href="#">ver todos</a>
+                    <a class="btn" href="<?php echo base_url(); ?>/cursos/listado">ver todos</a>
                 </div><!-- .col -->
             </div><!-- .row -->
         </div><!-- .container -->

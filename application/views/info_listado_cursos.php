@@ -19,357 +19,177 @@ include("aa_barra_navegacion.php");
 </div><!-- .page-header -->
 
 <!-- <div class="container-fluid" id="app"> -->
-<div class="container-fluid" id="app_id">
+
+<a name="cursos"></a>
+
+
+<div class="container-fluid" id="app_cursos_publico">
     <div class="row">
-        
+
         <div class="col-12">
             <div class="breadcrumbs">
                 <ul class="flex flex-wrap align-items-center p-0 m-0">
                     <li><a href="<?php echo base_url(); ?>"><i class="fa fa-home"></i> Home</a></li>
-                    <li><a href="<?php echo base_url(); ?>usuarios"><i class="fa fa-users"></i> <?= $TituloPagina; ?></a></li>
-                    <li>{{datosFormularioPrincipal.Nombre}}</li>
+                    <li><a href="<?php echo base_url(); ?>cursos">
+                            <!-- <i class="fa fa-users"></i> --> <?= $TituloPagina; ?></a></li>
                 </ul>
             </div><!-- .breadcrumbs -->
         </div><!-- .col -->
     </div><!-- .row -->
     <div class="row">
-            <div class="col-12 col-lg-8">
-                <div class="featured-courses courses-wrap">
-                    <div class="row mx-m-25">
-                        <div class="col-12 col-md-6 px-25">
-                            <div class="course-content">
-                                <figure class="course-thumbnail">
-                                    <a href="#"><img src="images/1.jpg" alt=""></a>
-                                </figure><!-- .course-thumbnail -->
+        <div class="col-12 col-lg-9">
+            <div class="featured-courses courses-wrap">
+                <div class="row mx-m-25">
 
-                                <div class="course-content-wrap">
-                                    <header class="entry-header">
-                                        <h2 class="entry-title"><a href="#">The Complete Android Developer Course</a></h2>
+                    <div class="col-12 col-md-4 px-25" v-for="curso in buscarCurso">
+                        <div class="course-content">
+                            <figure class="course-thumbnail">
+                                <a v-bind:href="'<?php echo base_url(); ?>cursos/informaciondelcurso/?Id=' + curso.Id">
+                                    <img v-if="curso.Imagen != null" v-bind:src="'<?php echo base_url(); ?>uploads/imagenes/'+curso.Imagen" v-bind:alt="curso.Descripcion_corta">
+                                    <img v-else src="<?php echo base_url(); ?>uploads/addimagen.jpg" v-bind:alt="curso.Descripcion_corta">
+                                </a>
+                            </figure><!-- .course-thumbnail -->
 
-                                        <div class="entry-meta flex flex-wrap align-items-center">
-                                            <div class="course-author"><a href="#">Ms. Lara Croft </a></div>
 
-                                            <div class="course-date">July 21, 2018</div>
-                                        </div><!-- .course-date -->
-                                    </header><!-- .entry-header -->
+                            <div class="course-content-wrap">
+                                <header class="entry-header">
+                                    <h2><a v-bind:href="'<?php echo base_url(); ?>cursos/informaciondelcurso/?Id=' + curso.Id">{{curso.Titulo_curso}}</a></h2>
+                                    <div class="entry-meta flex align-items-center">
+                                        <div class="course-author">{{curso.Nombre_categoria}}</div>
 
-                                    <footer class="entry-footer flex flex-wrap justify-content-between align-items-center">
-                                        <div class="course-cost">
-                                            $45 <span class="price-drop">$68</span>
-                                        </div><!-- .course-cost -->
+                                        <div class="course-date">{{curso.Duracion}} Meses</div>
+                                    </div>
+                                    <!-- .course-date -->
+                                </header><!-- .entry-header -->
 
-                                        <div class="course-ratings flex justify-content-end align-items-center">
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star-o"></span>
+                                <footer class="entry-footer flex justify-content-between align-items-center">
+                                    <div class="course-cost" v-if="curso.Costo_promocional == null || curso.Costo_promocional == 0">
 
-                                            <span class="course-ratings-count">(4 votes)</span>
-                                        </div><!-- .course-ratings -->
-                                    </footer><!-- .entry-footer -->
-                                </div><!-- .course-content-wrap -->
-                            </div><!-- .course-content -->
-                        </div><!-- .col -->
+                                        $ {{curso.Costo_normal | Moneda}} <!-- <span class="price-drop">{{curso.Costo_promocional}}</span> -->
+                                    </div><!-- .course-cost -->
+                                    <div class="course-cost" v-if="curso.Costo_promocional > 0">
+                                        $ {{curso.Costo_promocional | Moneda}} <span class="price-drop">$ {{curso.Costo_normal | Moneda}}</span>
+                                    </div><!-- .course-cost -->
 
-                        <div class="col-12 col-md-6 px-25">
-                            <div class="course-content">
-                                <figure class="course-thumbnail">
-                                    <a href="#"><img src="images/2.jpg" alt=""></a>
-                                </figure><!-- .course-thumbnail -->
+                                    <div class="course-ratings flex justify-content-end align-items-center">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star-o"></span>
 
-                                <div class="course-content-wrap">
-                                    <header class="entry-header">
-                                        <h2 class="entry-title"><a href="#">The Ultimate Drawing Course Beginner to Advanced</a></h2>
+                                        <span class="course-ratings-count">(4 votos)</span>
+                                    </div><!-- .course-ratings -->
+                                </footer><!-- .entry-footer -->
+                            </div><!-- .course-content-wrap -->
+                        </div><!-- .course-content -->
+                    </div><!-- .col -->
 
-                                        <div class="entry-meta flex flex-wrap align-items-center">
-                                            <div class="course-author"><a href="#">Michelle Golden</a></div>
+                </div><!-- .row -->
+            </div><!-- .featured-courses -->
 
-                                            <div class="course-date">Mar 14, 2018</div>
-                                        </div><!-- .course-date -->
-                                    </header><!-- .entry-header -->
+            <!-- <div class="pagination flex flex-wrap justify-content-between align-items-center">
+                <div class="col-12 col-lg-4 order-2 order-lg-1 mt-3 mt-lg-0">
+                    <ul class="flex flex-wrap align-items-center order-2 order-lg-1 p-0 m-0">
+                        <li class="active"><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
+                    </ul>
+                </div>
 
-                                    <footer class="entry-footer flex flex-wrap justify-content-between align-items-center">
-                                        <div class="course-cost">
-                                            <span class="free-cost">Free</span>
-                                        </div><!-- .price-drop -->
+                <div class="col-12 flex justify-content-start justify-content-lg-end col-lg-8 order-1 order-lg-2">
+                    <div class="pagination-results flex flex-wrap align-items-center">
+                        <p class="m-0">Showing 1–3 of 12 results</p>
 
-                                        <div class="course-ratings flex justify-content-end align-items-center">
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star-o"></span>
+                        <form>
+                            <select>
+                                <option>Show: 06</option>
+                                <option>Show: 12</option>
+                                <option>Show: 18</option>
+                                <option>Show: 24</option>
+                            </select>
+                        </form>
+                    </div> .pagination-results -->
+            <!-- </div>
+            </div> -->
+            <!-- .pagination -->
+        </div> <!-- .col -->
 
-                                            <span class="course-ratings-count">(4 votes)</span>
-                                        </div><!-- .course-ratings -->
-                                    </footer><!-- .entry-footer -->
-                                </div><!-- .course-content-wrap -->
-                            </div><!-- .course-content -->
-                        </div><!-- .col -->
+        <div class="col-12 col-lg-3">
+            <div class="sidebar">
+                <div class="search-widget">
+                    <!-- <form class="flex flex-wrap align-items-center"> -->
+                    <input type="search" placeholder="Buscar curso..." v-model="buscar">
+                    <!-- <button type="submit" class="flex justify-content-center align-items-center">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </form> .flex -->
+                </div><!-- .search-widget -->
 
-                        <div class="col-12 col-md-6 px-25">
-                            <div class="course-content">
-                                <figure class="course-thumbnail">
-                                    <a href="#"><img src="images/3.jpg" alt=""></a>
-                                </figure><!-- .course-thumbnail -->
+                <div class="cat-links">
+                    <h2>
+                        <a href="<?php echo base_url(); ?>/cursos/listado#cursos">Categorías</a>
 
-                                <div class="course-content-wrap">
-                                    <header class="entry-header">
-                                        <h2 class="entry-title"><a href="#">The Complete Digital Marketing Course</a></h2>
+                    </h2>
 
-                                        <div class="entry-meta flex flex-wrap align-items-center">
-                                            <div class="course-author"><a href="#">Ms. Lucius</a></div>
+                    <ul class="p-0 m-0">
+                        <li v-for="categoria in listaFiltro_1">
+                            <a v-bind:href="'<?php echo base_url(); ?>/cursos/listado?Categoria=' + categoria.Nombre_categoria + '&Id=' + categoria.Id+ '#cursos'">
+                                {{categoria.Nombre_categoria}}
+                            </a>
+                        </li>
+                    </ul>
+                </div><!-- .cat-links -->
 
-                                            <div class="course-date">Dec 18, 2018</div>
-                                        </div><!-- .course-date -->
-                                    </header><!-- .entry-header -->
+                <div class="latest-courses">
+                    <h2>Últimos cursos</h2>
 
-                                    <footer class="entry-footer flex flex-wrap justify-content-between align-items-center">
-                                        <div class="course-cost">
-                                            $55 <span class="price-drop">$78</span>
-                                        </div><!-- .course-cost -->
+                    <ul class="p-0 m-0">
 
-                                        <div class="course-ratings flex justify-content-end align-items-center">
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star-o"></span>
+                        <li class="flex flex-wrap justify-content-between align-items-center" v-for="ult_curso in listaContenido_2">
 
-                                            <span class="course-ratings-count">(4 votes)</span>
-                                        </div><!-- .course-ratings -->
-                                    </footer><!-- .entry-footer -->
-                                </div><!-- .course-content-wrap -->
-                            </div><!-- .course-content -->
-                        </div><!-- .col -->
+                            <a v-bind:href="'cursos/informaciondelcurso/?Id=' + ult_curso.Id">
+                                <img v-if="ult_curso.Imagen != null" v-bind:src="'<?php echo base_url(); ?>uploads/imagenes/'+ult_curso.Imagen" v-bind:alt="ult_curso.Descripcion_corta">
+                                <img v-else src="<?php echo base_url(); ?>uploads/addimagen.jpg" v-bind:alt="ult_curso.Descripcion_corta">
+                            </a>
 
-                        <div class="col-12 col-md-6 px-25">
-                            <div class="course-content">
-                                <figure class="course-thumbnail">
-                                    <a href="#"><img src="images/4.jpg" alt=""></a>
-                                </figure><!-- .course-thumbnail -->
+                            <div class="content-wrap">
+                                <h3><a v-bind:href="'cursos/informaciondelcurso/?Id=' + ult_curso.Id">{{ult_curso.Titulo_curso}}</a></h3>
 
-                                <div class="course-content-wrap">
-                                    <header class="entry-header">
-                                        <h2 class="entry-title"><a href="#">The Unreal Engine Developer Course</a></h2>
+                                <div class="course-cost" v-if="ult_curso.Costo_promocional == null || ult_curso.Costo_promocional == 0">
 
-                                        <div class="entry-meta flex flex-wrap align-items-center">
-                                            <div class="course-author"><a href="#">Mr. John Wick</a></div>
+                                        $ {{ult_curso.Costo_normal | Moneda}} <!-- <span class="price-drop">{{ult_curso.Costo_promocional}}</span> -->
+                                    </div><!-- .course-cost -->
+                                    <div class="course-cost" v-if="ult_curso.Costo_promocional > 0">
+                                        $ {{ult_curso.Costo_promocional | Moneda}} <span class="price-drop">$ {{ult_curso.Costo_normal | Moneda}}</span>
+                                    </div><!-- .course-cost -->
+                            </div><!-- .content-wrap -->
+                        </li>
 
-                                            <div class="course-date">Otc 17, 2018</div>
-                                        </div><!-- .course-date -->
-                                    </header><!-- .entry-header -->
 
-                                    <footer class="entry-footer flex flex-wrap justify-content-between align-items-center">
-                                        <div class="course-cost">
-                                            <span class="free-cost">Free</span>
-                                        </div><!-- .course-cost -->
+                    </ul>
+                </div><!-- .latest-courses -->
 
-                                        <div class="course-ratings flex justify-content-end align-items-center">
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star-o"></span>
+                <div class="ads">
+                    <img src="images/ads.jpg" alt="">
+                </div><!-- .ads -->
 
-                                            <span class="course-ratings-count">(4 votes)</span>
-                                        </div><!-- .course-ratings -->
-                                    </footer><!-- .entry-footer -->
-                                </div><!-- .course-content-wrap -->
-                            </div><!-- .course-content -->
-                        </div><!-- .col -->
+                <!-- <div class="popular-tags">
+                    <h2>Popular Tags</h2>
 
-                        <div class="col-12 col-md-6 px-25">
-                            <div class="course-content">
-                                <figure class="course-thumbnail">
-                                    <a href="#"><img src="images/5.jpg" alt=""></a>
-                                </figure><!-- .course-thumbnail -->
-
-                                <div class="course-content-wrap">
-                                    <header class="entry-header">
-                                        <h2 class="entry-title"><a href="#">Progressive Web Apps (PWA) - The Complete Guide</a></h2>
-
-                                        <div class="entry-meta flex flex-wrap align-items-center">
-                                            <div class="course-author"><a href="#">Mr. Tom Redder</a></div>
-
-                                            <div class="course-date">Sep 14, 2018</div>
-                                        </div><!-- .course-date -->
-                                    </header><!-- .entry-header -->
-
-                                    <footer class="entry-footer flex flex-wrap justify-content-between align-items-center">
-                                        <div class="course-cost">
-                                            $38 <span class="price-drop">$48</span>
-                                        </div><!-- .course-cost -->
-
-                                        <div class="course-ratings flex justify-content-end align-items-center">
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star-o"></span>
-
-                                            <span class="course-ratings-count">(4 votes)</span>
-                                        </div><!-- .course-ratings -->
-                                    </footer><!-- .entry-footer -->
-                                </div><!-- .course-content-wrap -->
-                            </div><!-- .course-content -->
-                        </div><!-- .col -->
-
-                        <div class="col-12 col-md-6 px-25">
-                            <div class="course-content">
-                                <figure class="course-thumbnail">
-                                    <a href="#"><img src="images/6.jpg" alt=""></a>
-                                </figure><!-- .course-thumbnail -->
-
-                                <div class="course-content-wrap">
-                                    <header class="entry-header">
-                                        <h2 class="entry-title"><a href="#">Cryptocurrency Investment Course 2018</a></h2>
-
-                                        <div class="entry-meta flex flex-wrap align-items-center">
-                                            <div class="course-author"><a href="#">Russell Stephens</a></div>
-
-                                            <div class="course-date">Nov 06, 2018</div>
-                                        </div><!-- .course-date -->
-                                    </header><!-- .entry-header -->
-
-                                    <footer class="entry-footer flex flex-wrap justify-content-between align-items-center">
-                                        <div class="course-cost">
-                                            <span class="free-cost">Free</span>
-                                        </div><!-- .course-cost -->
-
-                                        <div class="course-ratings flex justify-content-end align-items-center">
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star-o"></span>
-
-                                            <span class="course-ratings-count">(4 votes)</span>
-                                        </div><!-- .course-ratings -->
-                                    </footer><!-- .entry-footer -->
-                                </div><!-- .course-content-wrap -->
-                            </div><!-- .course-content -->
-                        </div><!-- .col -->
-                    </div><!-- .row -->
-                </div><!-- .featured-courses -->
-
-                <div class="pagination flex flex-wrap justify-content-between align-items-center">
-                    <div class="col-12 col-lg-4 order-2 order-lg-1 mt-3 mt-lg-0">
-                        <ul class="flex flex-wrap align-items-center order-2 order-lg-1 p-0 m-0">
-                            <li class="active"><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
-                        </ul>
-                    </div>
-
-                    <div class="col-12 flex justify-content-start justify-content-lg-end col-lg-8 order-1 order-lg-2">
-                        <div class="pagination-results flex flex-wrap align-items-center">
-                            <p class="m-0">Showing 1–3 of 12 results</p>
-
-                            <form>
-                                <select>
-                                    <option>Show: 06</option>
-                                    <option>Show: 12</option>
-                                    <option>Show: 18</option>
-                                    <option>Show: 24</option>
-                                </select>
-                            </form>
-                        </div><!-- .pagination-results -->
-                    </div>
-                </div><!-- .pagination -->
-            </div><!-- .col -->
-
-            <div class="col-12 col-lg-4">
-                <div class="sidebar">
-                    <div class="search-widget">
-                        <form class="flex flex-wrap align-items-center">
-                            <input type="search" placeholder="Search...">
-                            <button type="submit" class="flex justify-content-center align-items-center"><i class="fa fa-search"></i></button>
-                        </form><!-- .flex -->
-                    </div><!-- .search-widget -->
-
-                    <div class="cat-links">
-                        <h2>Categories</h2>
-
-                        <ul class="p-0 m-0">
-                            <li><a href="#">Business</a></li>
-                            <li><a href="#">Design</a></li>
-                            <li><a href="#">Marketing</a></li>
-                            <li><a href="#">MBA Courses</a></li>
-                            <li><a href="#">Technology</a></li>
-                            <li><a href="#">Web Development</a></li>
-                        </ul>
-                    </div><!-- .cat-links -->
-
-                    <div class="latest-courses">
-                        <h2>Latest Courses</h2>
-
-                        <ul class="p-0 m-0">
-                            <li class="flex flex-wrap justify-content-between align-items-center">
-                                <img src="images/t-1.jpg" alt="">
-
-                                <div class="content-wrap">
-                                    <h3><a href="#">The Complete Financial Analyst Training</a></h3>
-
-                                    <div class="course-cost free-cost">Free</div>
-                                </div><!-- .content-wrap -->
-                            </li>
-
-                            <li class="flex flex-wrap justify-content-between align-items-center">
-                                <img src="images/t-2.jpg" alt="">
-
-                                <div class="content-wrap">
-                                    <h3><a href="#">Complete Java
-                                        Masterclass</a></h3>
-
-                                    <div class="course-cost free-cost">Free</div>
-                                </div><!-- .content-wrap -->
-                            </li>
-
-                            <li class="flex flex-wrap justify-content-between align-items-center">
-                                <img src="images/t-3.jpg" alt="">
-
-                                <div class="content-wrap">
-                                    <h3><a href="#">The Complete Digital Marketing Course</a></h3>
-
-                                    <div class="course-cost">$24</div>
-                                </div><!-- .content-wrap -->
-                            </li>
-
-                            <li class="flex flex-wrap justify-content-between align-items-center">
-                                <img src="images/t-4.jpg" alt="">
-
-                                <div class="content-wrap">
-                                    <h3><a href="#">Photoshop CC 2018
-                                        MasterClass</a></h3>
-
-                                    <div class="course-cost">$18</div>
-                                </div><!-- .content-wrap -->
-                            </li>
-                        </ul>
-                    </div><!-- .latest-courses -->
-
-                    <div class="ads">
-                        <img src="images/ads.jpg" alt="">
-                    </div><!-- .ads -->
-
-                    <div class="popular-tags">
-                        <h2>Popular Tags</h2>
-
-                        <ul class="flex flex-wrap align-items-center p-0 m-0">
-                            <li><a href="#">Creative</a></li>
-                            <li><a href="#">Unique</a></li>
-                            <li><a href="#">Photography</a></li>
-                            <li><a href="#">ideas</a></li>
-                            <li><a href="#">Wordpress Template</a></li>
-                            <li><a href="#">startup</a></li>
-                        </ul>
-                    </div><!-- .popular-tags -->
-                </div><!-- .sidebar -->
-            </div><!-- .col -->
-        </div><!-- .row -->
+                    <ul class="flex flex-wrap align-items-center p-0 m-0">
+                        <li><a href="#">Creative</a></li>
+                        <li><a href="#">Unique</a></li>
+                        <li><a href="#">Photography</a></li>
+                        <li><a href="#">ideas</a></li>
+                        <li><a href="#">Wordpress Template</a></li>
+                        <li><a href="#">startup</a></li>
+                    </ul>
+                </div> --><!-- .popular-tags -->
+            </div><!-- .sidebar -->
+        </div><!-- .col -->
+    </div><!-- .row -->
 
 </div><!-- .container -->
 <!-- Modal -->

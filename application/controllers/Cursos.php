@@ -229,14 +229,22 @@ class Cursos extends CI_Controller
             $CI = &get_instance();
             $CI->load->database();
 
-            $Id = $_GET["Id"];
+            $Categoria_id = 0;
+            
+            if(isset($_GET["Id"]))
+            {
+                $Categoria_id = $_GET["Id"];
+            }
+
 
             ////BUSCANDO DATOS DEL CURSO
             $this->db->select(' tbl_cursos.*,
             tbl_cursos_categorias.*');
             $this->db->from('tbl_cursos');
             $this->db->join('tbl_cursos_categorias', 'tbl_cursos_categorias.Id = tbl_cursos.Categoria_id', 'left');
-            $this->db->where('tbl_cursos.Id', $Id);
+            
+            if($Categoria_id > 0) { $this->db->where('tbl_cursos.Categoria_id', $Categoria_id); }
+
             $query = $this->db->get();
             $result = $query->result_array();
 
@@ -246,8 +254,8 @@ class Cursos extends CI_Controller
                     "body_class" => ' class="single-courses-page"',
                     "div_inicial_class" => 'class="page-header"',
                     "TituloPagina" => "Formate con nuestros cursos online",
-                    "Listado_cursos" => $result[0],
-                    "Descripcion" => "Aprende a distancia, cursos oficiales ",
+                    "Listado_cursos" => $result,
+                    "Descripcion" => "Aprende a distancia, cursos con certifición nacional. Computación, desarrollo web, diseño gráfico, programación, oficina, y muchos más.",
                     );
 
                 $this->load->view('info_listado_cursos', $data);
@@ -1457,7 +1465,7 @@ class Cursos extends CI_Controller
     }
 
 //// CURSOS RECOMENDADOS 	| OBTENER LISTADO
-    public function obtener_cursos_gratis_index()
+    public function obtener_cursos_gratis_index()  //// POR EL MOMENTO QUE SELECCIONE DOS ALEATOREOS
     {
 
         //Esto siempre va es para instanciar la base de datos
@@ -1476,7 +1484,7 @@ class Cursos extends CI_Controller
 
         $this->db->select('*');
         $this->db->from('tbl_cursos');
-        $this->db->where('Costo_normal', 0);
+        //$this->db->where('Costo_normal', 0); SI SE DAN CURSOS GRATIS VOLVER A HABILITAR ESTA PARTE
         $this->db->limit($limite);  // Produces: LIMIT 10
         $this->db->order_by('rand()');
         
@@ -1533,14 +1541,15 @@ class Cursos extends CI_Controller
         if ($this->datosObtenidos->token != $token) { exit("No coinciden los token"); }
         
         
-        //$estado = $_GET["estado"];
-        $estado = 1;
-
-        $Categoria_id = $this->datosObtenidos->Filtro_1;
-        //$puesto = $_GET["puesto"];
+        $Categoria_id = 0;  
+        
+        if(isset($_GET["Id"]))
+        {
+            $Categoria_id = $_GET["Id"];
+        }
 
         $this->db->select('	tbl_cursos.Id,
-                            tbl_cursos.Titulo_curso as Nombre_principal,
+                            tbl_cursos.Titulo_curso,
                             tbl_cursos.Duracion,
                             tbl_cursos.Costo_normal,
                             tbl_cursos.Imagen,
@@ -1564,5 +1573,41 @@ class Cursos extends CI_Controller
 		echo json_encode($result);
 		
     }
+//// CURSOS	        | OBTENER LISTADO DE ÚLTIMOS CURSOS 
+    public function obtener_ultimos_cursos()
+    {
+            
+        //Esto siempre va es para instanciar la base de datos
+        $CI =& get_instance();
+        $CI->load->database();
+        //Seguridad
+        $token = @$CI->db->token;
+        $this->datosObtenidos = json_decode(file_get_contents('php://input'));
+        if ($this->datosObtenidos->token != $token) { exit("No coinciden los token"); }
+        
+
+        $this->db->select('	tbl_cursos.Id,
+                            tbl_cursos.Titulo_curso,
+                            tbl_cursos.Duracion,
+                            tbl_cursos.Costo_normal,
+                            tbl_cursos.Imagen,
+                            tbl_cursos.Categoria_id,
+                            tbl_cursos.Fecha_ult_actualizacion_curso,
+                            tbl_cursos.Descripcion_corta,
+                            tbl_cursos.Costo_promocional,
+                            tbl_cursos_categorias.Nombre_categoria,');
+        $this->db->from('tbl_cursos');
+        
+        $this->db->join('tbl_cursos_categorias', 'tbl_cursos_categorias.Id = tbl_cursos.Categoria_id','left');        
+
+        $this->db->order_by("tbl_cursos.Fecha_ult_actualizacion_curso", "desc");
+
+        $query = $this->db->get();
+        $result = $query->result_array();
+
+        echo json_encode($result);
+        
+    }
+    
 ///// fin documento
 }

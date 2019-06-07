@@ -2659,4 +2659,330 @@ new Vue({
     }   
 });
 
+//// Elemento para el manejo de CURSOS por Id
+new Vue({
+    el: '#app_cursos_publico',
+
+    created: function () {
+        this.getListadoCursos('/cursos/obtener_listado_principal_publico');
+        this.getFiltro_1('/cursos/obtener_categorias');
+        this.get_contenido_2('/cursos/obtener_ultimos_cursos');
+        //this.get_listado_alumnos();
+        //this.get_contenido_3('/cursos/obtener_personas_curso');
+    },
+
+    data: {
+
+        mostrar: 1,
+        preloader: 0,
+        listadoPrincipal : [],
+        buscar: '',
+
+        datosFoto: { 'Id': '', 'Nombre_principal': '', 'Imagen': '' },
+        Archivo: '',
+
+        listaSuperiores: [],
+
+        listaRoles: [],
+        texto_boton: "Cargar",
+
+        listaContenido_2: [],
+        cont2Data: {},
+
+        listaContenido_3: [],
+        cont3Data: {},
+
+        listaSeguimiento: [],
+        seguimientoData: {
+                            'Id': '',
+                            'Fecha': '',
+                            'Nombre_principal': '', 
+                            'Url_archivo': '',
+                            'Descripcion': ''},
+
+        listaFiltro_1: [],
+
+        filtro_1: 1,
+        
+        /// INSCRIPCIONES
+        listaAlumnos: [],
+        listaProfesores: [],
+    },
+
+    methods:
+    {
+
+        //// OBTENER DATOS PRINCIPALES
+        getListadoCursos: function (url_controller, Categoria_id) {
+            var url = base_url + url_controller +'/?Id=' + Get_Id + '/?Categoria_id=' + Categoria_id;  //// averiguar como tomar el Id que viene por URL aca
+
+            axios.post(url, {
+                token: token
+            }).then(response => {
+                this.listadoPrincipal = response.data
+            }).catch(error => {
+                toastr.error('Error en la recuperación de los datos', 'Sistema')
+                console.log(error.response.data)
+            });
+        },
+        
+        ////  FILTRO_1 | MOSTRAR LISTADO  
+        getFiltro_1: function (url_controller) {
+            var url = base_url + url_controller; // url donde voy a mandar los datos
+
+            axios.post(url, {
+                token: token
+            }).then(response => {
+                this.listaFiltro_1 = response.data
+            }).catch(error => {
+                
+                console.log(error.response.data)
+                toastr.error('Error en la recuperación de los datos', 'Sistema')
+            });
+        },
+
+        //// MOSTRAR LISTADO DE FORMACIONES
+        get_contenido_2: function (url_controller) {
+            var url = base_url + url_controller + '/?Id=' + Get_Id;  //// averiguar como tomar el Id que viene por URL aca
+
+            axios.post(url, {
+                token: token
+            }).then(response => {
+                    
+                this.mostrar = 2
+                this.listaContenido_2 = response.data
+
+            }).catch(error => {
+                toastr.error('Error en la recuperación de los datos', 'Sistema')
+                console.log(error.response.data)
+            });
+        },
+
+        editarForm_cont_2: function (formacion) {
+            this.cont2Data = formacion;
+        },
+
+        //// LIMPIAR FORMULARIO FORMACION
+        limpiarForm_cont_2: function () {
+            this.cont2Data = { 'Id': '', 'Titulo': '', 'Establecimiento': '', 'Anio_inicio': '', 'Anio_finalizado': '', 'Descripcion_titulo': '' }
+        },
+
+        //// CREAR O EDITAR una formación
+        crear_contenido_3: function (url_controller, url_controller_get) {
+            
+            var url = base_url + url_controller + '/?Id=' + Get_Id; // url donde voy a mandar los datos
+            //console.log(url)
+            axios.post(url, {
+                token: token,
+                Datos: this.cont3Data
+            }).then(response => {
+
+                
+
+                if(response.data.Id > 0)
+                {
+                    this.cont3Data.Id = response.data.Id;
+                    this.texto_boton = "Actualizar"
+                    this.get_contenido_3(url_controller_get);
+                    toastr.success('Datos actualizados correctamente', 'Sistema')
+                }
+                else
+                {
+                    toastr.warning('Ya existe una inscripción para esta persona en este curso.', 'Sistema')
+                    console.log('Ya existe una inscripción para esta persona en este curso.')
+                }
+                    
+
+            }).catch(error => {
+                console.log(error.response.data)
+                toastr.error('Error en la recuperación de los datos', 'Sistema')
+            });
+        },
+
+        //// MOSTRAR LISTADO DE FORMACIONES
+        get_contenido_3: function (url_controller) {
+            var url = base_url + url_controller + '/?Id=' + Get_Id;  //// averiguar como tomar el Id que viene por URL aca
+
+            axios.post(url, {
+                token: token,
+                Filtro_1: this.filtro_1
+            }).then(response => {
+                    
+                this.mostrar = 3
+                this.listaContenido_3 = response.data
+
+            }).catch(error => {
+                toastr.error('Error en la recuperación de los datos', 'Sistema')
+                console.log(error.response.data)
+            });
+        },
+
+        editarForm_cont_3: function (formacion) {
+            this.cont3Data = formacion;
+        },
+
+        //// LIMPIAR FORMULARIO FORMACION
+        limpiarForm_cont_3: function () {
+            this.cont3Data = { }
+        },
+
+        //// SUBIR FOTO
+        archivoSeleccionado(event) {
+            this.Archivo = event.target.files[0]
+            //this.texto_boton = "Actualizar"
+        },
+
+        //// SUBIR FOTO
+        upload(Id, tabla) {
+            //this.texto_boton = "Actualizar"
+            var url = base_url + '/elementoscomunes/subirImagen/?Id='+Id+'&tabla='+tabla; // url donde voy a mandar los datos
+            this.preloader = 1;
+            //const formData = event.target.files[0];
+            const formData = new FormData();
+            formData.append("Archivo", this.Archivo);
+
+            formData.append('_method', 'PUT');
+
+            //Enviamos la petición
+            axios.post(url, formData)
+                .then(response => {
+
+                    ////DEBO HACER FUNCIONAR BIEN ESTO PARA QUE SE ACTUALICE LA FOTO QUE CARGO EN EL MOMENTO, SI NO PARECE Q NO SE CARGARA NADA
+                    this.datosFoto.Imagen = response.data.Imagen;
+                    
+                    /// UNICA PARTE DEL CÓDIGO A GENERAR POR CADA LISTA
+                    switch (pathname) {
+                        case '/usuarios':
+                        this.getListadoPrincipal('/usuarios/obtener_Usuarios'); break;
+                    }
+                    
+                    toastr.success('Proceso realizado correctamente', 'Usuarios')
+
+                    this.preloader = 0;
+                }).catch(error => {
+                    toastr.error('Error en la recuperación de los datos', 'Usuarios')
+                    console.log(error.response.data)
+                    this.preloader = 0;
+                });
+        },
+
+        //// SUBIR FOTO
+        editarFormularioFoto(datos) {
+            this.datosFoto = datos;
+            this.texto_boton = "Actualizar";
+        },
+
+        //// SEGUIMIENTO | MOSTRAR LISTADO
+        getListadoSeguimiento: function (url_controller) {
+            var url = base_url + url_controller + '/?Id=' + Get_Id; // url donde voy a mandar los datos
+
+            axios.post(url, {
+                token: token
+            }).then(response => {
+                this.listaSeguimiento = response.data;
+                this.mostrar = '4'
+            });
+        },
+
+        //// SEGUIMIENTO |  CREAR O EDITAR
+        crearSeguimiento: function (url_controller, url_controller_upload, url_controller_get) {
+            var url = base_url + url_controller; // url donde voy a mandar los datos
+
+            axios.post(url, {
+                token: token,
+                Datos: this.seguimientoData, 
+                Id: Get_Id
+            }).then(response => {
+
+                this.seguimientoData.Id = response.data.Id;
+
+                /// si eso se ralizó bien, debe comprobar si hay un archivo a cargar.
+                if (this.Archivo != null) {
+                    var url = base_url + url_controller_upload+'/?Id=' + this.seguimientoData.Id;
+                    this.preloader = 1;
+
+                    //const formData = event.target.files[0];
+                    const formData = new FormData();
+                    formData.append("Archivo", this.Archivo);
+
+                    formData.append('_method', 'PUT');
+
+                    //Enviamos la petición
+                    axios.post(url, formData)
+                        .then(response => {
+
+                            this.seguimientoData.Url_archivo = response.data.Url_archivo;
+
+                            toastr.success('El archivo se cargo correctamente', 'Proveedores')
+                            this.preloader = 0;
+                            this.getListadoSeguimiento(url_controller_get);
+
+                        }).catch(error => {
+                            alert("MAL LA CARGA EN FUNCIÓN DE CARGAR ARCHIVO");
+                            this.preloader = 0;
+                            //this.seguimientoData.Url_archivo = response.data.Url_archivo;
+                        });
+                }
+                // si lo hay lo carga, si no lo hay no hace nada
+
+                this.getListadoSeguimiento(url_controller_get);
+                this.Archivo = null
+                this.texto_boton = "Actualizar"
+                toastr.success('Datos actualizados correctamente', 'Proveedores')
+
+            }).catch(error => {
+                alert("MAL LA CARGA EN FUNCIÓN DE CARGAR DATOS");
+            });
+        },
+
+        /// SEGUIMIENTO | EDITAR UN SEGUIMIENTO
+        editarFormularioSeguimiento: function (dato) {
+            this.seguimientoData = dato;
+        },
+
+        //// SEGUIMIENTO | LIMPIAR FORMULARIO SEGUIMIENTO
+        limpiarFormularioSeguimiento: function () {
+            this.seguimientoData = {}
+        },
+
+        //// ELIMINAR ALGO
+        eliminar: function (Id, tbl) {
+            var url = base_url + '/elementoscomunes/eliminar'; // url donde voy a mandar los datos
+
+            //SOLICITANDO CONFIRMACIÓN PARA ELIMINAR
+            var opcion = confirm("¿Esta seguro de eliminar a este usuario?");
+            if (opcion == true) {
+
+                axios.post(url, {
+                    token: token,
+                    Id: Id, tabla: tbl
+                }).then(_response => {
+
+                    switch (pathname) {
+                        case '/usuarios':
+                        this.getListadoPrincipal('/usuarios/obtener_Usuarios');
+                        break;
+                    }
+                    toastr.success('Eliminado correctamente', '-')
+
+                }).catch(error => {
+                    toastr.error('Error en la recuperación de los datos', 'Usuarios')
+                    console.log(error.response.data)
+                });
+            }
+        },
+
+
+        /////------------ CONTENIDOS ESPECIFICOS DE ESTA SECCIÓN ----
+ 
+    },
+
+    ////// ACCIONES COMPUTADAS     
+    computed:
+    {
+        buscarCurso: function () {
+            return this.listadoPrincipal.filter((item) => item.Titulo_curso.toLowerCase().includes(this.buscar));
+        },
+    }   
+});
 

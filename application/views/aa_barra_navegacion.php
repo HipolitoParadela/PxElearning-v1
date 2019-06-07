@@ -11,10 +11,10 @@
                 <nav class="site-navigation flex justify-content-end align-items-center">
                     <ul class="flex flex-column flex-lg-row justify-content-lg-end align-content-center">
                         <li class="current-menu-item"><a href="<?php echo base_url(); ?>">Home</a></li>
-                        <li><a href="#">Instituto</a></li>
-                        <li><a href="#">Cursos</a></li>
-                        <li><a href="#">Blog</a></li>
-                        <li><a href="#">Contacto</a></li>
+                        <!-- <li><a href="#">Instituto</a></li> -->
+                        <li><a href="<?php echo base_url(); ?>cursos/listado">Cursos</a></li>
+                        <li><a href="<?php echo base_url(); ?>blog">Blog</a></li>
+                        <!-- <li><a href="#">Contacto</a></li> -->
                     </ul>
 
                     <div class="hamburger-menu d-lg-none">

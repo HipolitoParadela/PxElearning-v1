@@ -17,11 +17,73 @@
 
     <script>
         function onSignIn(googleUser) {
+            
             var profile = googleUser.getBasicProfile();
-            console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+            
+            
+            
+            console.log('Google_id: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
             console.log('Name: ' + profile.getName());
             console.log('Image URL: ' + profile.getImageUrl());
             console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+
+            /// deberia llamar con ajax y enviar estos datos 
+                // a una funcion de php parecida a la de login que haga lo mismo
+
+                // verifica si la persona ya tenia creado un perfil, entonces lo manda a su pagina de gestión
+                // si no lo tiene lo manda a una pagina de registro donde termina de crear su propia cuenta
+
+                    // es decir, si tiene cuenta:
+                        // Genera los datos de sessión necesarios
+                        // Lo manda a su dashboard, al q le corresponda coomo profe o alumno
+                    // si no esta registrado
+                        // lo manda a una pagina con formulario, donde llena sus datos y luego de llenado sigue con lo que siga.....
+
+                        
+                        jQuery.ajax({
+                            // la URL para la petición
+                            url : 'http://institutojlc.com/login/iniciar_session_google',
+
+                            // la información a enviar
+                            // (también es posible utilizar una cadena de datos)
+                            data : {
+                                'Google_id' : profile.getId(),     // Do not send to your backend! Use an ID token instead.
+                                'Name' : profile.getName(),
+                                'Image_URL' : profile.getImageUrl(),
+                                'Email' : profile.getEmail(),
+                                
+                            },
+
+                            // especifica si será una petición POST o GET
+                            type : 'GET',
+
+                            // el tipo de información que se espera de respuesta
+                            dataType : 'json',
+
+                            // código a ejecutar si la petición es satisfactoria;
+                            // la respuesta es pasada como argumento a la función
+                            success : function(json) {
+                                //alert('Bien');
+                                console.log(json)
+                                window.location="http://institutojlc.com/dashboard";
+                            },
+
+                            // código a ejecutar si la petición falla;
+                            // son pasados como argumentos a la función
+                            // el objeto de la petición en crudo y código de estatus de la petición
+                            error : function(xhr, status) {
+                                console.log(xhr.responseText)
+                                console.log(status)
+                                alert('Disculpe, existió un problema');
+
+                            },
+
+                            // código a ejecutar sin importar si la petición falló o no
+                            complete : function(xhr, status) {
+
+                                alert('Petición realizada');
+                            }
+                        });
         }
     </script>
 
@@ -35,6 +97,7 @@
             });
         }
     </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </body>
 
 </html>
