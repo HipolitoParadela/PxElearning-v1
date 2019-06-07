@@ -101,7 +101,11 @@ include("aa_barra_navegacion.php");
             <div class="row">
                 <div class="col-12 col-lg-6 align-content-lg-stretch">
                     <header class="heading">
-                        <h2 class="entry-title">Gestionar Cursos</h2>
+                        <h2 class="entry-title">
+                            <a href="<?php echo base_url(); ?>cursos">
+                                Gestionar Cursos
+                            </a>
+                        </h2>
 
                         <p>
                             <b>Objetivo del mes: </b> Lograr los 10 primeros inscriptos en cualquier curso Online.

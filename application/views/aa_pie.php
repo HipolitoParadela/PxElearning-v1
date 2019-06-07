@@ -3,23 +3,15 @@
         <div class="row">
             <div class="col-12 flex flex-wrap justify-content-center justify-content-lg-between align-items-center">
                 <div class="logo-wrap">
-                    <img src="<?php echo base_url(); ?>plantilla/images/logo-1.png" alt="">
+                    <img src="<?php echo base_url(); ?>uploads/CPCIPC-mini.png" alt="">
                 </div><!-- .logo-wrap -->
 
                 <div class="logo-wrap">
-                    <img src="<?php echo base_url(); ?>plantilla/images/logo-2.png" alt="">
+                    <img src="<?php echo base_url(); ?>uploads/jlc-mini.png" alt="">
                 </div><!-- .logo-wrap -->
 
                 <div class="logo-wrap">
-                    <img src="<?php echo base_url(); ?>plantilla/images/logo-3.png" alt="">
-                </div><!-- .logo-wrap -->
-
-                <div class="logo-wrap">
-                    <img src="<?php echo base_url(); ?>plantilla/images/logo-4.png" alt="">
-                </div><!-- .logo-wrap -->
-
-                <div class="logo-wrap">
-                    <img src="<?php echo base_url(); ?>plantilla/images/logo-5.png" alt="">
+                    <img src="<?php echo base_url(); ?>uploads/utn-mini.png" alt="">
                 </div><!-- .logo-wrap -->
             </div><!-- .col -->
         </div><!-- .row -->
@@ -141,7 +133,7 @@
 <!-- APP JS-->
 <script src="<?php echo base_url(); ?>js/app.js"></script>
 <script type='text/javascript' src='<?php echo base_url(); ?>plantilla/js/jquery.js'></script>
-<script src="<?php echo base_url(); ?>js/toastr.js"></script>
+
 <script type='text/javascript' src='<?php echo base_url(); ?>plantilla/js/bootstrap.min.js'></script>
 
 <script type='text/javascript' src='<?php echo base_url(); ?>plantilla/js/swiper.min.js'></script>
@@ -149,7 +141,7 @@
 <script type='text/javascript' src='<?php echo base_url(); ?>plantilla/js/jquery.collapsible.min.js'></script>
 <script type='text/javascript' src='<?php echo base_url(); ?>plantilla/js/custom.js'></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-
+<script src="<?php echo base_url(); ?>js/toastr.js"></script>
 
 </body>
 
