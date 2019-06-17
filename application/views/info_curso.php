@@ -30,8 +30,7 @@ include("aa_barra_navegacion.php");
     <div class="row">
         <div class="col-12 offset-lg-1 col-lg-10">
             <div class="featured-image">
-                <img v-if="datosFormularioPrincipal.Imagen != null" v-bind:src="'<?php echo base_url(); ?>uploads/imagenes/'+datosFormularioPrincipal.Imagen" v-bind:alt="datosFormularioPrincipal.Descripcion_corta">
-                <img v-else src="<?php echo base_url(); ?>uploads/addimagen.jpg" v-bind:alt="datosFormularioPrincipal.Descripcion_corta">
+                <img src="<?php echo base_url(); ?>uploads/imagenes/<?= $Datos_curso["Imagen"]; ?>" alt="<?= $Datos_curso["Descripcion_corta"]; ?>">
 
                 <div class="course-cost">En curso</div>
             </div>
@@ -60,7 +59,7 @@ include("aa_barra_navegacion.php");
 
                     <div class="course-cats mt-3">
                         <label class="m-0">Categoría</label>
-                        <div class="author-name"><a href="#">{{ datosFormularioPrincipal.Nombre_categoria }}</a></div>
+                        <div class="author-name"><a href="#"><?= $Datos_curso["Nombre_categoria"]; ?></a></div>
                     </div><!-- .course-cats -->
 
                     <div class="course-students mt-3">
