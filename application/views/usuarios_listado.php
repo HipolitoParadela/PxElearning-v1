@@ -90,7 +90,7 @@ include("aa_barra_navegacion.php");
                                     </a>
                                 </td>
                                 <td valign="baseline">
-                                    <a v-bind:href="'mailto=' + usuario.Email">
+                                    <a v-bind:href="'mailto:' + usuario.Email">
                                         {{usuario.Email}}
                                     </a>
                                 </td>

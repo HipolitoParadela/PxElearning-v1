@@ -89,7 +89,7 @@
                         Copyright &copy;
                         <script>
                             document.write(new Date().getFullYear());
-                        </script> All rights reserved | Sistema Px eLearning <i class="fa fa-heart-o" aria-hidden="true"></i> desarrollado por <a href="http://pixelestudio.net" target="_blank">Pixel Estudio</a>
+                        </script> All rights reserved | Sistema Px eLearning</i> desarrollado por <a href="http://pixelestudio.net" target="_blank">Pixel Estudio</a>
                         <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                     </p>
                 </div><!-- .col -->

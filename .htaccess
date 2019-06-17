@@ -41,3 +41,7 @@
  
     ErrorDocument 404 /index.php
 </IfModule>
+
+# Quitar el www del nombre de dominio  
+RewriteCond %{HTTP_HOST} ^www\.institutojlc\.com$ [NC]  
+RewriteRule ^(.*)$ http://institutojlc.com/$1 [R=301,QSA,L]
