@@ -35,7 +35,14 @@ include("aa_barra_navegacion.php");
 
             <div class="row justify-content-between">
 
-
+            Mostrar una ficha del alumno más estética y con un modal para editar sus datos.
+            Los datos a pedir son:
+            - Nombre y apellido completos. Para la emisión de diplomas.
+            - DNI 
+            - Domicilio
+            - Localidad, Provincia
+            - Teléfono
+            - 
                 <!-- <div class="col-12">
                     <table class="table table-striped">
                         <thead>
@@ -141,7 +148,7 @@ include("aa_barra_navegacion.php");
                                     <span class="free-cost" v-if="curso.Estado < 3">Curso en progreso</span>
                                     <span class="free-cost" v-if="curso.Estado == 3">Curso finalizado</span>
                                 </div><!-- .course-cost -->
-
+                                Descargar diploma
                                 <!-- <div class="course-ratings flex justify-content-end align-items-center">
                                     <span class="fa fa-star checked"></span>
                                     <span class="fa fa-star checked"></span>
