@@ -65,7 +65,7 @@ include("aa_barra_navegacion.php");
                 <li class="nav-item">
                     <a class="nav-link" v-bind:class="{ active: mostrar == 3 }" href="#" v-on:click.prevent="get_contenido_3('/cursos/obtener_personas_curso')">Gestionar inscripciones</a>
                 </li>
-                
+
             </ul>
 
             <!-- SECCION DATOS EDITABLES DEL USUARIO -->
@@ -95,7 +95,7 @@ include("aa_barra_navegacion.php");
                                             </div>
 
                                             <div class="form-group">
-                                                <label class="control-label">Descripción corta</label>
+                                                <label class="control-label">Descripción sobre ¿Que aprenderá?</label>
                                                 <textarea class="form-control" rows="5" placeholder="" v-model="datosFormularioPrincipal.Descripcion_corta"></textarea>
                                             </div>
                                             <div class="form-group">
@@ -106,10 +106,6 @@ include("aa_barra_navegacion.php");
                                                 <label class="control-label">Objetivos del curso</label>
                                                 <textarea class="form-control" rows="5" placeholder="" v-model="datosFormularioPrincipal.Objetivos_curso"></textarea>
                                             </div>
-
-                                        </div>
-
-                                        <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label class="control-label">Categoria de curso</label>
                                                 <select class="form-control" v-model="datosFormularioPrincipal.Categoria_id">
@@ -117,6 +113,11 @@ include("aa_barra_navegacion.php");
                                                     <option v-for="categoria in listaFiltro_1" v-bind:value="categoria.Id">{{categoria.Nombre_categoria}}</option>
                                                 </select>
                                             </div>
+
+                                        </div>
+
+                                        <div class="col-sm-6">
+
                                             <div class="form-group">
                                                 <label class="control-label">Info privada</label>
                                                 <textarea class="form-control" rows="5" placeholder="" v-model="datosFormularioPrincipal.Info_privada"></textarea>
@@ -126,12 +127,20 @@ include("aa_barra_navegacion.php");
                                                 <input type="number" class="form-control" placeholder="" v-model="datosFormularioPrincipal.Costo_normal">
                                             </div>
                                             <div class="form-group">
+                                                <label class="control-label">Mercado pago costo normal</label>
+                                                <input type="text" class="form-control" placeholder="" v-model="datosFormularioPrincipal.Script_pago_normal">
+                                            </div>
+                                            <div class="form-group">
                                                 <label class="control-label">Costo promocional</label>
                                                 <input type="number" class="form-control" placeholder="" v-model="datosFormularioPrincipal.Costo_promocional">
                                             </div>
                                             <div class="form-group">
                                                 <label class="control-label">Info promocional</label>
-                                                <textarea class="form-control" rows="5" placeholder="" v-model="datosFormularioPrincipal.Info_promocional"></textarea>
+                                                <textarea class="form-control" rows="3" placeholder="" v-model="datosFormularioPrincipal.Info_promocional"></textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label">Mercado pago para pago promocional</label>
+                                                <input type="text" class="form-control" placeholder="" v-model="datosFormularioPrincipal.Script_pago_promocional">
                                             </div>
                                             <div class="form-group">
                                                 <label class="control-label">Video youtube</label>
@@ -271,6 +280,9 @@ include("aa_barra_navegacion.php");
                                                 <td>{{ inscripto.Email }}</td>
                                                 <td>{{ inscripto.Telefono}}</td>
                                                 <td>
+                                                    <button class="item" v-on:click="editarForm_cont_3(inscripto)" data-toggle="modal" data-target="#modalInscriptos" data-placement="top" title="Edición rápida">
+                                                        <i class="fas fa-pen-square"></i>
+                                                    </button>
                                                     <button v-on:click="eliminar(inscripto.Id, 'tbl_cursos_alumnos')" class="item" data-toggle="tooltip" data-placement="top" title="Eliminar">
                                                         <i class="fas fa-eraser"></i>
                                                     </button>
@@ -519,7 +531,7 @@ include("aa_barra_navegacion.php");
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalItemsCartaTitle">{{texto_boton}} módulo</h5>
+                    <h5 class="modal-title" id="modalItemsCartaTitle">{{texto_boton}}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -529,15 +541,18 @@ include("aa_barra_navegacion.php");
                         <div class="horizontal-form">
                             <label class="control-label">Alumno</label>
                             <input list="alumnos" class="form-control" v-model="cont3Data.Alumno_id" required>
-                                <datalist id="alumnos">
-                                    <option v-for="alumno in listaAlumnos" v-bind:value="alumno.Id">{{alumno.Nombre_principal}} </option>
-                                </datalist>
-
+                            <datalist id="alumnos">
+                                <option v-for="alumno in listaAlumnos" v-bind:value="alumno.Id">{{alumno.Nombre_principal}} </option>
+                            </datalist>
+                            <!-- <pre>{{listaAlumnos}}</pre> -->
                             <label class="control-label">Profesor a cargo</label>
                             <input list="profesores" class="form-control" v-model="cont3Data.Profesor_id" required>
-                                <datalist id="profesores">
-                                    <option v-for="profesor in listaProfesores" v-bind:value="profesor.Id">{{profesor.Nombre_principal}} </option>
-                                </datalist>
+                            <datalist id="profesores">
+                                <option v-for="profesor in listaProfesores" v-bind:value="profesor.Id">{{profesor.Nombre_principal}} </option>
+                            </datalist>
+                            <!-- <pre>{{listaProfesores}}</pre> -->
+                            <label class="control-label">Medio de pago - Más otra info</label>
+                            <textarea class="form-control" placeholder="" v-model="cont3Data.Medio_pago" cols="30" rows="2"></textarea>
 
                             <label class="control-label">Observaciones</label>
                             <textarea class="form-control" placeholder="" v-model="cont3Data.Observaciones" cols="30" rows="6"></textarea>

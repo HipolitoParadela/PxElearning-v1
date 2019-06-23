@@ -4,21 +4,12 @@ eLearning
 __________________________________________
 
 
-PAGINA DE UN CURSO, PARA PREINSCRIBIRSE O PARA INSCRIBIRSE PAGANDO DIRECTAMENTE. analizar esta cuestión
+Y ver listado de cursos comprados pero sin confirmar pago, y listado de interesados, todos con Estado 0. 
+Deberían mostrarse en otra lista, con información para contactar a la persona a fin de cerrar el pago.
 
-ARMAR FORMULARIO DE Registro, CON CUENTA DE GOOGLE SI SE PUEDE Y CAPTCHA 
+Probar el cierre de sesión que funcione
 
-PRE INSCRIPCION A CURSOS PAGOS, E INSCRIPCIÓN A CURSOS GRATUITOS
-
-BLOG, RAPIDITO Y FUNCIONAL, CON COMENTARIOS DE FACEBOOK Y VINCULADO A UNA CUENTA developers
-
-
-
-CAMPO PARA AÑADIR BOTON DE PAGO DE MERCADO PAGO, Y PAGINA DE RECEPCIÓN PARA PAGOS REALIZADOS. 
-
-
-
-
+https://www.desarrollolibre.net/blog/codeigniter/envio-de-correos-con-codeigniter-guia-rapida#.XQ5ysehKiUk
 __________________________________________
 
 Registro de dominio .edu.ar 
@@ -26,7 +17,6 @@ https://www.riu.edu.ar/fd.html
 
 __________________________________________
 
-index, listado de cursos...
 
 mensajeria interna, podria trabajarlo con facebook 
 
@@ -38,12 +28,6 @@ mensajeria interna, podria trabajarlo con facebook
 
 	Client Secret
 	eGv8Oo5QsFlE6yXzsdOIVufV
-
-Dashboard para usuarios
-
-Index
-
-GOOGLE CAPTCHA TAMBIÉN
 
 __________________________________________
 

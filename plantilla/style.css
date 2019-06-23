@@ -2532,6 +2532,7 @@ ul.author-social-profile li:hover .fa {
 .contact-form input[type="email"],
 .contact-form input[type="number"],
 .contact-form input[type="password"],
+.contact-form input[type="date"],
 .contact-form select,
 .contact-form textarea {
     width: 100%;
@@ -2545,6 +2546,7 @@ ul.author-social-profile li:hover .fa {
 .contact-form input[type="text"]:focus,
 .contact-form input[type="email"]:focus,
 .contact-form input[type="number"]:focus,
+.contact-form input[type="date"]:focus,
 .contact-form input[type="password"]:focus,
 .contact-form select:focus,
 .contact-form textarea:focus {
@@ -2554,6 +2556,7 @@ ul.author-social-profile li:hover .fa {
 .contact-form input[type="text"]::placeholder,
 .contact-form input[type="email"]::placeholder,
 .contact-form input[type="number"]::placeholder,
+.contact-form input[type="date"]::placeholder,
 .contact-form input[type="password"]::placeholder,
 .contact-form textarea::placeholder,
 .contact-form select::placeholder {
@@ -2715,13 +2718,4 @@ p.footer-copyright {
         margin-left: 15px;
         margin-right: 15px;
     }
-}
-
-.footer-bar-nav ul li a {
-    color: #757686;
-    text-decoration: none;
-}
-
-.footer-bar-nav ul li a:hover {
-    color: #34d986;
 }

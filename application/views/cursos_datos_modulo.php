@@ -88,7 +88,7 @@ include("aa_barra_navegacion.php");
                                                 <label class="control-label">Descripción del módulo</label>
                                                 <textarea class="form-control" rows="5" placeholder="" v-model="datosFormularioPrincipal.Descripcion_modulo"></textarea>
                                             </div>
-                                            
+
                                             <div class="form-group">
                                                 <label class="control-label">Contenido del curso en formato HTML</label>
                                                 <textarea class="form-control" rows="30" placeholder="" v-model="datosFormularioPrincipal.Contenido_html"></textarea>
@@ -124,7 +124,7 @@ include("aa_barra_navegacion.php");
                                                 <hr>
                                             </div>
                                         </div>
-                                        
+
 
                                     </div>
                                     <div class="row">
@@ -146,7 +146,7 @@ include("aa_barra_navegacion.php");
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header">
-                            <strong>Módulos de este curso</strong>
+                            <strong>Examenes de este módulo</strong>
                         </div>
                         <div class="card-body">
                             <div class="bootstrap-data-table-panel col-lg-12">
@@ -154,7 +154,7 @@ include("aa_barra_navegacion.php");
                                     <table id="table2excel" class="table table-striped">
                                         <thead>
                                             <tr>
-                                                
+
                                                 <th>Título</th>
                                                 <th>Descripción</th>
                                                 <th>Ult. Actualización</th>
@@ -167,11 +167,11 @@ include("aa_barra_navegacion.php");
                                         </thead>
                                         <tbody>
                                             <tr v-for="modulo in listaContenido_2">
-                                                
+
                                                 <td>
                                                     <button class="btn" v-on:click="editarForm_cont_2(modulo)" data-toggle="modal" data-target="#modalModulos" data-placement="top" title="Edición rápida">
                                                         {{ modulo.Titulo_examen }}
-                                                        </button>
+                                                    </button>
                                                 </td>
                                                 <td>{{ modulo.Descripcion_examen }}</td>
                                                 <td>{{ modulo.Fecha_ult_actualizacion | FechaB_datos }}</td>

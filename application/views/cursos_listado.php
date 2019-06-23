@@ -101,7 +101,7 @@ include("aa_barra_navegacion.php");
                                         <button class="item" v-on:click="editarFormulario(curso)" data-toggle="modal" data-target="#principalModal" data-placement="top" title="Edición rápida">
                                             <i class="fas fa-pen-square"></i>
                                         </button>
-                                        <button v-on:click="eliminar(curso.Id, 'tbl_Cursos')" class="item" data-toggle="tooltip" data-placement="top" title="Eliminar">
+                                        <button v-on:click="eliminar(curso.Id, 'tbl_cursos')" class="item" data-toggle="tooltip" data-placement="top" title="Eliminar">
                                             <i class="fas fa-eraser"></i>
                                         </button>
                                     </div>
@@ -137,9 +137,11 @@ include("aa_barra_navegacion.php");
                             <input type="text" placeholder="Título del curso" v-model="datosFormularioPrincipal.Nombre_principal" required>
                             <input type="number" placeholder="Duración estimada en meses" v-model="datosFormularioPrincipal.Duracion" required>
                             <input type="number" placeholder="Costo Normal" v-model="datosFormularioPrincipal.Costo_normal" required>
+                            <input type="text" placeholder="Mercado pago, script pago normal" v-model="datosFormularioPrincipal.Script_pago_normal" required>
                             <textarea rows="2" placeholder="Descripcion corta del curso" v-model="datosFormularioPrincipal.Descripcion_corta" required></textarea>
-                            <textarea rows="2" placeholder="Describir promocion " v-model="datosFormularioPrincipal.Info_promocional"></textarea>
-                            <input type="number" placeholder="Costo Promocional" v-model="datosFormularioPrincipal.Costo_promocional">
+                            <textarea rows="2" placeholder="Descripción de la promoción, si la hay " v-model="datosFormularioPrincipal.Info_promocional"></textarea>
+                            <input type="number" placeholder="Costo Promocional, si la hay" v-model="datosFormularioPrincipal.Costo_promocional">
+                            <input type="text" placeholder="Mercado pago, script pago promocional" v-model="datosFormularioPrincipal.Script_pago_promocional">
                         </div><!-- .contact-form -->
                     </div>
                     <div class="modal-footer">
@@ -168,7 +170,7 @@ include("aa_barra_navegacion.php");
                     <hr>
                     <div class="horizontal-form">
                         <!-- <form class="form-horizontal" action="post" enctype="multipart/form-data" v-on:submit.prevent="crearCursos()">  -->
-                        <form class="form-horizontal" action="post" enctype="multipart/form-data" v-on:submit.prevent="upload( datosFoto.Id, 'tbl_Cursos' )">
+                        <form class="form-horizontal" action="post" enctype="multipart/form-data" v-on:submit.prevent="upload( datosFoto.Id, 'tbl_cursos' )">
                             <div class="form-group">
 
                                 <div class="col-sm-12">

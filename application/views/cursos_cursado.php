@@ -33,7 +33,7 @@ include("aa_barra_navegacion.php");
                 <img v-if="datosFormularioPrincipal.Imagen != null" v-bind:src="'<?php echo base_url(); ?>uploads/imagenes/'+datosFormularioPrincipal.Imagen" alt="">
                 <img v-else src="<?php echo base_url(); ?>uploads/addimagen.jpg" alt="">
 
-                <div class="course-cost">En curso</div>
+                <!-- <div class="course-cost">En curso</div> -->
             </div>
         </div><!-- .col -->
     </div><!-- .row -->
@@ -41,7 +41,7 @@ include("aa_barra_navegacion.php");
     <div class="row">
         <div class="col-12 offset-lg-1 col-lg-1">
             <div class="post-share">
-                <h3>share</h3>
+                <!-- <h3>Compartir</h3>
 
                 <ul class="flex flex-wrap align-items-center p-0 m-0">
                     <li><a href="#"><i class="fa fa-facebook"></i></a></li>
@@ -49,7 +49,7 @@ include("aa_barra_navegacion.php");
                     <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
                     <li><a href="#"><i class="fa fa-instagram"></i></a></li>
                     <li><a href="#"><i class="fa fa-thumb-tack"></i></a></li>
-                </ul>
+                </ul> -->
             </div><!-- .post-share -->
         </div><!-- .col -->
 
@@ -236,13 +236,15 @@ include("aa_barra_navegacion.php");
                         <div class="col-12 col-lg-6 px-25" v-for="curso in listaContenido_2">
                             <div class="course-content">
                                 <figure class="course-thumbnail">
-                                    <a href="#"><img v-if="curso.Imagen != null" v-bind:src="'<?php echo base_url(); ?>uploads/imagenes/'+curso.Imagen" alt=""></a>
+                                    <a v-bind:href="'<?php echo base_url(); ?>cursos/informaciondelcurso/?Id=' + curso.Id">
+                                        <img v-if="curso.Imagen != null" v-bind:src="'<?php echo base_url(); ?>uploads/imagenes/'+curso.Imagen" alt="">
+                                    </a>
                                     <img v-else src="<?php echo base_url(); ?>uploads/addimagen.jpg" alt="">
                                 </figure><!-- .course-thumbnail -->
 
                                 <div class="course-content-wrap">
                                     <header class="entry-header">
-                                        <h2 class="entry-title"><a href="#">{{curso.Titulo_curso}}</a></h2>
+                                        <h2 class="entry-title"><a v-bind:href="'<?php echo base_url(); ?>cursos/informaciondelcurso/?Id=' + curso.Id">{{curso.Titulo_curso}}</a></h2>
 
                                         <!-- <div class="entry-meta flex flex-wrap align-items-center">
                                             <div class="course-author"><a href="#">Ms. Lucius</a></div>

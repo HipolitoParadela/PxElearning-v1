@@ -1,18 +1,25 @@
+<!-- <a class="fixed-bottom" href='<?php echo base_url(); ?>/dashboard' >
+<p></p>    
+<img src='<?php echo base_url(); ?>uploads/panel-control.png' border="0"/>
+   
+</a> -->
+
+
 <div class="clients-logo">
     <div class="container">
         <div class="row">
             <div class="col-12 flex flex-wrap justify-content-center justify-content-lg-between align-items-center">
-                <div class="logo-wrap">
+                <!-- <div class="logo-wrap">
                     <img src="<?php echo base_url(); ?>uploads/CPCIPC-mini.png" alt="">
-                </div><!-- .logo-wrap -->
+                </div> --><!-- .logo-wrap -->
 
                 <div class="logo-wrap">
                     <img src="<?php echo base_url(); ?>uploads/jlc-mini.png" alt="">
                 </div><!-- .logo-wrap -->
 
-                <div class="logo-wrap">
+                <!-- <div class="logo-wrap">
                     <img src="<?php echo base_url(); ?>uploads/utn-mini.png" alt="">
-                </div><!-- .logo-wrap -->
+                </div> --><!-- .logo-wrap -->
             </div><!-- .col -->
         </div><!-- .row -->
     </div><!-- .container -->
@@ -22,7 +29,7 @@
     <div class="footer-widgets">
         <div class="container">
             <div class="row">
-                <div class="col-12 col-md-6 col-lg-3 mt-5 mt-lg-0">
+                <div class="col-12 col-md-6 col-lg-4 mt-5 mt-lg-0">
                     <div id="fb-root"></div>
                     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v3.3&appId=1902946569932282&autoLogAppEvents=1"></script>
                     <div class="fb-page" data-href="https://www.facebook.com/institutojlc/" data-tabs="timeline" data-height="350" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
@@ -72,7 +79,7 @@
 
 
 
-                <div class="col-12 col-md-6 col-lg-3 mt-5 mt-lg-0">
+                <div class="col-12 col-md-6 col-lg-2 mt-5 mt-lg-0">
                     <div class="follow-us">
                         <h2>Siguenos</h2>
 

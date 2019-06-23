@@ -116,6 +116,57 @@ Vue.filter('Recortar', function(texto){
     }
 })
 
+/// FECHA AUTOMATICA BASE DATOS
+Vue.filter('Dia', function (fecha) 
+{
+    if(fecha)
+    { 
+        fecha = fecha.split(' ');
+
+        //var fecha_dia = fecha[0].replace(/^(\d{4})-(\d{2})-(\d{2})$/g, '$3/$2/$1');
+        var fecha_dia = fecha[0].replace(/^(\d{4})-(\d{2})-(\d{2})$/g, '$3');
+
+        return fecha_dia
+     }
+    else{
+        return "No definida"
+    } 
+    
+})
+
+/// FECHA AUTOMATICA BASE DATOS
+Vue.filter('Mes', function (fecha) 
+{
+    if(fecha)
+    { 
+        fecha = fecha.split(' ');
+
+        //var fecha_dia = fecha[0].replace(/^(\d{4})-(\d{2})-(\d{2})$/g, '$3/$2/$1');
+        var Mes = fecha[0].replace(/^(\d{4})-(\d{2})-(\d{2})$/g, '$2');
+        var mesTexto;
+        switch (Mes) 
+        {
+            case '01': mesTexto = 'ENE';    break;
+            case '02': mesTexto = 'FEB';    break; 
+            case '03': mesTexto = 'MAR';    break; 
+            case '04': mesTexto = 'ABR';    break;
+            case '05': mesTexto = 'MAY';    break;
+            case '06': mesTexto = 'JUN';    break; 
+            case '07': mesTexto = 'JUL';    break; 
+            case '08': mesTexto = 'AGO';    break; 
+            case '09': mesTexto = 'SEP';    break;
+            case '10': mesTexto = 'OCT';    break; 
+            case '11': mesTexto = 'NOV';    break; 
+            case '12': mesTexto = 'DIC';    break;  
+        }
+        
+        return mesTexto;
+     }
+    else{
+        return "No definida"
+    } 
+    
+})
 
 /// ELEMENTOS COMUNES PARA LA WEB
 new Vue({
@@ -135,6 +186,10 @@ new Vue({
                 this.getFiltro_1('/cursos/obtener_categorias');
                     break;
 
+            case '/blog':
+                this.getListadoPrincipal('/blog/obtener_listado_principal');
+                this.getFiltro_2('/cursos/obtener_ultimos_cursos');
+                    break;
            
         }
     },
@@ -217,6 +272,33 @@ new Vue({
                 this.datosFormularioPrincipal.Id = response.data.Id;
                 this.texto_boton = "Actualizar"
 
+                
+                // si eso se ralizó bien, debe comprobar si hay un archivo a cargar.
+                if (this.Archivo != null) {
+                    var url = base_url + '/blog/subir_archivo/?Id=' + this.datosFormularioPrincipal.Id;
+                    this.preloader = 1;
+
+                    //const formData = event.target.files[0];
+                    const formData = new FormData();
+                    formData.append("Archivo", this.Archivo);
+
+                    formData.append('_method', 'PUT');
+
+                    //Enviamos la petición
+                    axios.post(url, formData)
+                        .then(response => {
+
+                            this.datosFormularioPrincipal.Imagen = response.data.Imagen;
+
+                            toastr.success('El archivo se cargo correctamente', 'Proveedores')
+                            this.preloader = 0;
+
+                        }).catch(error => {
+                            alert("MAL LA CARGA EN FUNCIÓN DE CARGAR ARCHIVO");
+                            this.preloader = 0;
+                        });
+                }
+                
                 /// UNICA PARTE DEL CÓDIGO A GENERAR POR CADA LISTA
                 switch (pathname) {
                     case '/usuarios':
@@ -225,8 +307,12 @@ new Vue({
 
                     case '/cursos':
                         this.getListadoPrincipal('/cursos/obtener_listado_principal');  
+                        break;
+
+                    case '/blog':
+                        this.getListadoPrincipal('/blog/obtener_listado_principal');  
                         break; 
-                }
+                } 
                 
 
             }).catch(error => {
@@ -266,13 +352,17 @@ new Vue({
                         case '/usuarios':
                         this.getListadoPrincipal('/usuarios/obtener_listado_principal');
                         break;
-                    }
-                    switch (pathname) {
+                        
                         case '/cursos':
                             this.getListadoPrincipal('/cursos/obtener_listado_principal');
                             this.getFiltro_1('/cursos/obtener_categorias');
                         break;
+
+                        case '/blog':
+                            this.getListadoPrincipal('/blog/obtener_listado_principal');
+                        break;
                     }
+
                     toastr.success('Eliminado correctamente', '-')
 
                 }).catch(error => {
@@ -475,6 +565,7 @@ new Vue({
         this.getCantidad_cursos_activos();
 
         this.getCursos();
+        this.getBlog();
 
         //this.getListadoPrincipal('/cursos/obtener_listado_principal');
         this.getCursosGratis();
@@ -490,6 +581,8 @@ new Vue({
         Rol_acceso: '',
       
         lista_alumnos_cursando: [],
+
+        lista_blog: [],
             
         lista_movimientos_examen: [],
 
@@ -526,6 +619,22 @@ new Vue({
                 
             }).then(response => {
                 this.listaCursosGratis = response.data
+            }).catch(error => {
+                toastr.error('Error en la recuperación de los datos', 'Sistema')
+                console.log(error.response.data)
+            });
+        },
+
+        //// PRINCIPAL COMUN | LISTADO DE BLOG
+        getBlog: function () {
+
+            var url = base_url + '/blog/obtener_listado_noticias_index'; // url donde voy a mandar los datos
+
+            axios.post(url, {
+                token: token,
+                
+            }).then(response => {
+                this.lista_blog = response.data
             }).catch(error => {
                 toastr.error('Error en la recuperación de los datos', 'Sistema')
                 console.log(error.response.data)
@@ -700,6 +809,8 @@ new Vue({
 
         this.getCursosAlumno();
 
+        this.getDatosUsuario();
+
         this.setVariablesUsuario(Usuario_id, Rol_acceso);
     },
 
@@ -707,8 +818,9 @@ new Vue({
     {
         Usuario_id: '',
         Rol_acceso: '',
+        texto_boton: 'Actualizar',
       
-        lista_alumnos_cursando: [],
+        lista_alumnos_cursando: [], 
             
         lista_movimientos_examen: [],
 
@@ -718,11 +830,40 @@ new Vue({
         cantidad_cursos_activos: '',
         
         lista_cursos_alumno: [],
+        datosUsuario: {},
+        listaContenido_2: [],
+        datosFoto: { 'Id': '', 'Nombre_principal': '', 'Imagen': '' },
+            Archivo: '',
+            preloader: '0',
+        listaFiltro_1: []
     },
 
     methods:
     {
         
+        ////  PRINCIPAL COMUN |  CREAR O EDITAR ITEM
+        crearItemPrincipal: function (url_controller) {
+            //var url = base_url + '/usuarios/cargar_Usuarios'; // url donde voy a mandar los datos
+            var url = base_url + url_controller; // url donde voy a mandar los datos
+            
+            axios.post(url, {
+                token: token,
+                Datos: this.datosUsuario
+            }).then(response => {
+
+                toastr.success('Proceso realizado correctamente', 'Usuarios')
+
+                this.datosUsuario.Id = response.data.Id;
+                this.texto_boton = "Actualizar"
+                
+
+            }).catch(error => {
+                
+                //console.log(error.response.data)
+                toastr.error('Error en la recuperación de los datos', 'Usuarios')
+            });
+        },
+
         //// OBTENER DATOS PRINCIPALES
         setVariablesUsuario: function (Usuario_id, Rol_acceso) {
             this.Usuario_id = Usuario_id;
@@ -839,6 +980,66 @@ new Vue({
                 toastr.error('Error en la recuperación de los datos', 'Sistema')
                 console.log(error.response.data)
             });
+        },
+
+        //// OBTENER DATOS PRINCIPALES
+        getDatosUsuario: function () {
+            var url = base_url + '/dashboard/obtener_datos_usuario';  //// averiguar como tomar el Id que viene por URL aca
+
+            axios.post(url, {
+                token: token
+            }).then(response => {
+                this.datosUsuario = response.data[0]
+            }).catch(error => {
+                toastr.error('Error en la recuperación de los datos', 'Sistema')
+                console.log(error.response.data)
+            });
+        },
+
+        //// SUBIR FOTO
+        archivoSeleccionado(event) {
+            this.Archivo = event.target.files[0]
+            //this.texto_boton = "Actualizar"
+        },
+
+        //// SUBIR FOTO
+        upload(Id, tabla) {
+            //this.texto_boton = "Actualizar"
+            var url = base_url + '/elementoscomunes/subirImagen/?Id='+Id+'&tabla='+tabla; // url donde voy a mandar los datos
+            this.preloader = 1;
+            //const formData = event.target.files[0];
+            const formData = new FormData();
+            formData.append("Archivo", this.Archivo);
+
+            formData.append('_method', 'PUT');
+
+            //Enviamos la petición
+            axios.post(url, formData)
+                .then(response => {
+
+                    ////DEBO HACER FUNCIONAR BIEN ESTO PARA QUE SE ACTUALICE LA FOTO QUE CARGO EN EL MOMENTO, SI NO PARECE Q NO SE CARGARA NADA
+                    this.datosFoto.Imagen = response.data.Imagen;
+                    
+                    /// UNICA PARTE DEL CÓDIGO A GENERAR POR CADA LISTA
+                    switch (pathname) {
+                        case '/usuarios':
+                        this.getListadoPrincipal('/usuarios/obtener_Usuarios'); break;
+                    }
+                    
+                    toastr.success('Proceso realizado correctamente', 'Usuarios')
+
+                    this.preloader = 0;
+                }).catch(error => {
+                    toastr.error('Error en la recuperación de los datos', 'Usuarios')
+                    console.log(error.response.data)
+                    this.preloader = 0;
+                });
+        },
+
+        //// SUBIR FOTO
+        editarFormularioFoto(datos) {
+            this.datosFoto = datos;
+            this.texto_boton = "Actualizar";
         },
         
         
@@ -972,7 +1173,7 @@ new Vue({
             });
         },
 
-        //// MOSTRAR LISTADO DE FORMACIONES
+        //// MOSTRAR LISTADO 
         get_contenido_2: function (url_controller) {
             var url = base_url + url_controller + '/?Id=' + Get_Id;  //// averiguar como tomar el Id que viene por URL aca
 
@@ -1164,6 +1365,7 @@ new Vue({
         this.get_listado_profesores();
         this.get_listado_alumnos();
         this.get_contenido_3('/cursos/obtener_personas_curso');
+        this.get_contenido_2('/cursos/obtener_modulos');
     },
 
     data: {
@@ -1362,8 +1564,8 @@ new Vue({
             });
         },
 
-        editarForm_cont_3: function (formacion) {
-            this.cont3Data = formacion;
+        editarForm_cont_3: function (info) {
+            this.cont3Data = info;
         },
 
         //// LIMPIAR FORMULARIO FORMACION
@@ -1529,7 +1731,7 @@ new Vue({
                 Filtro_1: 2
             }).then(response => {
                     
-                this.mostrar = 3
+                //this.mostrar = 3
                 this.listaAlumnos = response.data
 
             }).catch(error => {
@@ -1546,7 +1748,7 @@ new Vue({
                 Filtro_1: 3
             }).then(response => {
                     
-                this.mostrar = 3
+                //this.mostrar = 3
                 this.listaProfesores = response.data
 
             }).catch(error => {

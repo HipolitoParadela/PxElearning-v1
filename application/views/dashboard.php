@@ -161,15 +161,16 @@ include("aa_barra_navegacion.php");
     <section class="latest-news-events">
         <div class="container-fluid">
             <div class="row">
-            <div class="col-xl-1"></div>
+                <div class="col-xl-1"></div>
                 <div class="col-xl-5">
-                    <h3>Alumnos curzando</h3>
+                    <h3>Alumnos curzando actualmente</h3>
                     <table class="table">
                         <thead>
                             <tr>
                                 <th scope="col"></th>
                                 <th scope="col">Nombre</th>
                                 <th scope="col">Curso/Profesor</th>
+                                <th scope="col">Fecha Inicio</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -193,18 +194,27 @@ include("aa_barra_navegacion.php");
 
                                 </td>
                                 <td valign="baseline">
-                                    <a v-bind:href="'<?php echo base_url(); ?>cursos/cursado/?Id=' + usuario.Id">
-                                        {{usuario.Titulo_curso}}
-                                    </a>
+                                    <b><a v-bind:href="'<?php echo base_url(); ?>cursos/cursado/?Id=' + usuario.Id">
+                                            {{usuario.Titulo_curso}}
+                                        </a></b>
                                     <br>
-                                    {{usuario.Nombre_profesor}}
+                                    <span v-if="usuario.Nombre_profesor != null">
+                                        {{usuario.Nombre_profesor}}
+                                    </span>
+                                    <span v-else>
+                                        <a v-bind:href="'<?php echo base_url(); ?>cursos/datos/?Id=' + usuario.Curso_id">Asignar profesor</a>
+                                    </span>
+                                    
+                                </td>
+                                <td>
+                                    {{usuario.Fecha_inicio | Fecha }}
                                 </td>
                             </tr>
                         </tbody>
                     </table>
                     <hr>
                     <p v-if="Rol_acceso > 3">
-                        <a class="btn" href="<?php echo base_url(); ?>usuarios">Ver todos</a>
+                        <a class="btn" href="<?php echo base_url(); ?>usuarios">Gestionar usuarios inscriptos</a>
                     </p>
 
 
@@ -226,7 +236,7 @@ include("aa_barra_navegacion.php");
                                     <a v-bind:href="'<?php echo base_url(); ?>cursos/cursado_modulo/?Id=' + movimiento.Id">
                                         <b>{{movimiento.Titulo_curso}}</b>
                                         <br>
-                                        <span v-if="movimiento.Estado==1"> <em>  Modulo Habilitado</em></span>
+                                        <span v-if="movimiento.Estado==1"> <em> Modulo Habilitado</em></span>
                                         <span v-if="movimiento.Estado==2"><em>Examen realizado</em></span>
                                         <span v-if="movimiento.Estado==3"><em>Examen Corregido</em></span>
 
@@ -246,7 +256,7 @@ include("aa_barra_navegacion.php");
 
                 </div>
                 <div class="col-xl-1"></div>
-                
+
             </div>
         </div>
     </section>
@@ -256,11 +266,11 @@ include("aa_barra_navegacion.php");
                 <div class="col-xl-1"></div>
                 <div class="col-sm-4">
                     <h2>Facebook</h2>
-                        <div id="fb-root"></div>
-                        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v3.3&appId=1902946569932282&autoLogAppEvents=1"></script>
-                        <div class="fb-page" data-href="https://www.facebook.com/institutojlc/" data-tabs="timeline" data-width="500" data-height="600" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
-                            <blockquote cite="https://www.facebook.com/institutojlc/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/institutojlc/">Instituto Jerónimo Luis de Cabrera</a></blockquote>
-                        </div>
+                    <div id="fb-root"></div>
+                    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v3.3&appId=1902946569932282&autoLogAppEvents=1"></script>
+                    <div class="fb-page" data-href="https://www.facebook.com/institutojlc/" data-tabs="timeline" data-height="600" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
+                        <blockquote cite="https://www.facebook.com/institutojlc/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/institutojlc/">Instituto Jerónimo Luis de Cabrera</a></blockquote>
+                    </div>
                 </div>
                 <div class="col-sm-7">
                     <h2>Noticias del rubro</h2>

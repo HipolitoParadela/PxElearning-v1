@@ -93,7 +93,7 @@ class Usuarios extends CI_Controller
 
         $this->db->where('tbl_usuarios.Visible',$estado);
 
-        if($Rol_acceso > 0) { $this->db->where('tbl_usuarios.Rol_acceso', $Rol_acceso); }
+        if($Rol_acceso > 0) { $this->db->where('tbl_usuarios.Rol_acceso <=', $Rol_acceso); }
        // if ($puesto > 0) { $this->db->where('tbl_usuarios.Puesto_Id', $puesto); } 
 
 		$this->db->order_by("Nombre", "asc");

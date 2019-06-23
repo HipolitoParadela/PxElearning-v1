@@ -47,6 +47,9 @@ class Migration_modulo_cursos extends CI_Migration
                 'type' => 'INT',
                 'constraint' => 5,
             ),
+            'Script_pago_normal' => array(
+                'type' => 'text',
+            ),
             'Costo_promocional' => array(
                 'type' => 'INT',
                 'constraint' => 5,
@@ -54,6 +57,10 @@ class Migration_modulo_cursos extends CI_Migration
             ),
             'Info_promocional' => array(
                 'type' => 'TEXT',
+                'null' => TRUE,
+            ),
+            'Script_pago_promocional' => array(
+                'type' => 'text',
                 'null' => TRUE,
             ),
             'Imagen' => array(

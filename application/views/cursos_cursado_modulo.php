@@ -94,23 +94,17 @@ include("aa_barra_navegacion.php");
 
                 <div class="single-course-cont-section">
                     <?php
-                    if($Datos["Url_archivo_modulo"] == null) 
+                    if($Datos["Url_archivo_modulo"] != null) 
                     {
-                        echo '<!--';
-                    }
-                    ?>
-                    <div class="float-right" v-if="datosExamen_curso.Url_archivo != null">
+                        echo '
+                    <div class="float-right">
                         <p align="center">
-                            <a target="_blank" href="<?php echo base_url(); ?>uploads/imagenes/<?= $Datos["Url_archivo_modulo"]; ?> ">
-                                <img width="150" src="<?php echo base_url(); ?>uploads/descargar.png" alt="">
-                                <br>Adjunto Módulo
+                            <a target="_blank" href="'. base_url().'uploads/imagenes/'. $Datos["Url_archivo_modulo"] .'">
+                                <img width="150" src="'.  base_url().'uploads/descargar.png" alt="">
+                                <br>Descargar
                             </a>
                         </p>
-                    </div>
-                    <?php
-                    if($Datos["Url_archivo_modulo"] == null) 
-                    {
-                        echo ' -->';
+                    </div>';
                     }
                     ?>
                     <h3>

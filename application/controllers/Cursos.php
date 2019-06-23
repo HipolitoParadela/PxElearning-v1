@@ -55,6 +55,57 @@ class Cursos extends CI_Controller
         }
     }
 
+//// CURSOS PAGO   | VISTA | PAGO EXITOSO
+    public function recibopagoexitoso()
+    {
+        if ($this->session->userdata('Login') != true) 
+        {
+            header("Location: " . base_url() . "login"); /// enviar a pagina de error
+        } 
+        else 
+        {
+            if ($this->session->userdata('Rol_acceso') > 2) 
+            {
+                $data = array(
+                    "body_class" => 'class="courses-page"',
+                    "div_inicial_class" => 'class="page-header"',
+                    "TituloPagina" => "Pago exitoso",
+                    "Descripcion" => "Cursos de formación Online del Instituto Jerónimo Luis de Caberar Río Segundo, certificados por el Concejo Provincial de Informática de Córdoba y por la UTN Córdoba",
+                );
+                $this->load->view('cursos_pagos_exitoso', $data);
+                
+            } else {
+                header("Location: " . base_url() . "login"); /// enviar a pagina de error
+            }
+        }
+    }
+
+//// CURSOS PAGO   | VISTA | PAGO EN PROCESO
+    public function recibopagoproceso()
+    {
+        if ($this->session->userdata('Login') != true) 
+        {
+            header("Location: " . base_url() . "login"); /// enviar a pagina de error
+        } 
+        else 
+        {
+            if ($this->session->userdata('Rol_acceso') > 2) 
+            {
+                $data = array(
+                    "body_class" => 'class="courses-page"',
+                    "div_inicial_class" => 'class="page-header"',
+                    "TituloPagina" => "Pago en proceso",
+                    "Descripcion" => "Cursos de formación Online del Instituto Jerónimo Luis de Caberar Río Segundo, certificados por el Concejo Provincial de Informática de Córdoba y por la UTN Córdoba",
+                );
+                $this->load->view('cursos_pagos_proceso', $data);
+                
+            } else {
+                header("Location: " . base_url() . "login"); /// enviar a pagina de error
+            }
+        }
+    }
+
+
 //// CURSOS MÓDULO  | VISTA | DATOS
     public function modulo()
     {
@@ -99,6 +150,7 @@ class Cursos extends CI_Controller
 
             ////BUSCANDO DATOS DEL CURSO
                 $this->db->select(' tbl_cursos.*,
+                                    tbl_cursos.Id as Curso_id,
                                     tbl_cursos_alumnos.*');
                 $this->db->from('tbl_cursos_alumnos');
                 $this->db->join('tbl_cursos', 'tbl_cursos.Id = tbl_cursos_alumnos.Curso_id', 'left');
@@ -109,7 +161,7 @@ class Cursos extends CI_Controller
             /// BUSCANDO DATOS DE LOS MODULOS DE ESTE CURSO
                 $this->db->select('*');
                 $this->db->from('tbl_cursos_modulos');
-                $this->db->where('Curso_id', $result[0]["Id"]);
+                $this->db->where('Curso_id', $result[0]["Curso_id"]);
                 
                 $query = $this->db->get();
                 $array_modulos = $query->result_array();
@@ -178,7 +230,7 @@ class Cursos extends CI_Controller
     }
 
 
-//// CURSOS INDO | VISTA | DATOS
+//// CURSOS INFO | VISTA | DATOS
     public function informaciondelcurso()
     {   
         
@@ -192,7 +244,8 @@ class Cursos extends CI_Controller
 
             ////BUSCANDO DATOS DEL CURSO
             $this->db->select(' tbl_cursos.*,
-            tbl_cursos_categorias.*');
+                                tbl_cursos.Id as Curso_id,
+                                tbl_cursos_categorias.*');
             $this->db->from('tbl_cursos');
             $this->db->join('tbl_cursos_categorias', 'tbl_cursos_categorias.Id = tbl_cursos.Categoria_id', 'left');
             $this->db->where('tbl_cursos.Id', $Id);
@@ -202,7 +255,7 @@ class Cursos extends CI_Controller
             /// BUSCANDO DATOS DE LOS MODULOS DE ESTE CURSO
                 $this->db->select('*');
                 $this->db->from('tbl_cursos_modulos');
-                $this->db->where('Curso_id', $result[0]["Id"]);
+                $this->db->where('Curso_id', $result[0]["Curso_id"]);
                 
                 $query = $this->db->get();
                 $array_modulos = $query->result_array();
@@ -211,6 +264,7 @@ class Cursos extends CI_Controller
                     "body_class" => ' class="single-courses-page"',
                     "div_inicial_class" => 'class="page-header"',
                     "TituloPagina" => $result[0]["Titulo_curso"],
+                    "Imagen" => $result[0]["Imagen"],
                     "Datos_curso" => $result[0],
                     "Descripcion" => "Aprende a distancia ".$result[0]["Titulo_curso"].". " . $result[0]["Descripcion_corta"],
                     "Modulos" => $array_modulos,
@@ -396,6 +450,8 @@ class Cursos extends CI_Controller
         $Descripcion_larga =    (isset($this->datosObtenidos->Datos->Descripcion_larga)) ? $this->datosObtenidos->Datos->Descripcion_larga : null;
         $Info_privada =         (isset($this->datosObtenidos->Datos->Info_privada)) ? $this->datosObtenidos->Datos->Info_privada : null;
         $Costo_normal =         (isset($this->datosObtenidos->Datos->Costo_normal)) ? $this->datosObtenidos->Datos->Costo_normal : null;
+        $Script_pago_normal =         (isset($this->datosObtenidos->Datos->Script_pago_normal)) ? $this->datosObtenidos->Datos->Script_pago_normal : null;
+        $Script_pago_promocional =         (isset($this->datosObtenidos->Datos->Script_pago_promocional)) ? $this->datosObtenidos->Datos->Script_pago_promocional : null;
         $Costo_promocional =    (isset($this->datosObtenidos->Datos->Costo_promocional)) ? $this->datosObtenidos->Datos->Costo_promocional : null;
         $Info_promocional =     (isset($this->datosObtenidos->Datos->Info_promocional)) ? $this->datosObtenidos->Datos->Info_promocional : null;
         $Video_youtube =        (isset($this->datosObtenidos->Datos->Video_youtube)) ? $this->datosObtenidos->Datos->Video_youtube : null;
@@ -413,6 +469,8 @@ class Cursos extends CI_Controller
                     'Descripcion_larga' => 		    $Descripcion_larga,
                     'Info_privada' =>               $Info_privada,
                     'Costo_normal' => 				$Costo_normal,
+                    'Script_pago_normal' => 				$Script_pago_normal,
+                    'Script_pago_promocional' => 				$Script_pago_promocional,
                     'Costo_promocional' => 		    $Costo_promocional,
                     'Info_promocional' => 	        $Info_promocional,
                     'Video_youtube' => 			    $Video_youtube,
@@ -671,6 +729,7 @@ class Cursos extends CI_Controller
         $this->db->select(' tbl_cursos_modulos.*,
                             tbl_cursos_modulos.Titulo_modulo as Nombre_principal,
                             tbl_cursos.Titulo_curso,
+                            tbl_cursos_modulos.Url_archivo as Url_archivo_modulo,
                             tbl_cursos.Id as Curso_id,
                             tbl_creador.Nombre as Nombre_creador,
                             tbl_actualizador.Nombre as Nombre_actualizador');
@@ -702,9 +761,9 @@ class Cursos extends CI_Controller
             exit("No coinciden los token");
         }
 
-        $Id = null; if (isset($this->datosObtenidos->Datos->Id)) { $Id = $this->datosObtenidos->Datos->Id; }
+        $Id = $_GET["Id"];          if (isset($this->datosObtenidos->Datos->Id))         { $Id = $this->datosObtenidos->Datos->Id; }
         
-        $Curso_id = $_GET["Id"];
+        $Curso_id  = $_GET["Id"];          if (isset($this->datosObtenidos->Datos->Curso_id))         { $Curso_id = $this->datosObtenidos->Datos->Curso_id; }
         
         $Titulo_modulo = null;          if (isset($this->datosObtenidos->Datos->Titulo_modulo))         { $Titulo_modulo = $this->datosObtenidos->Datos->Titulo_modulo; }
         $Descripcion_modulo = null;     if (isset($this->datosObtenidos->Datos->Descripcion_modulo))    { $Descripcion_modulo = $this->datosObtenidos->Datos->Descripcion_modulo; }
@@ -1105,7 +1164,12 @@ class Cursos extends CI_Controller
         $Estado = $this->datosObtenidos->Filtro_1;
 
         $this->db->select(' tbl_cursos_alumnos.Id,
+                            tbl_cursos_alumnos.Alumno_id,
+                            tbl_cursos_alumnos.Profesor_id,
+                            tbl_cursos_alumnos.Observaciones,
                             tbl_cursos_alumnos.Fecha_inicio,
+                            tbl_cursos_alumnos.Fecha_finalizacion,
+                            tbl_cursos_alumnos.Medio_pago,
                             tbl_alumno.Nombre as Nombre_alumno,
                             tbl_alumno.Email,
                             tbl_alumno.Imagen,
@@ -1150,7 +1214,7 @@ class Cursos extends CI_Controller
         $Fecha_finalizacion = null;     if (isset($this->datosObtenidos->Datos->Fecha_finalizacion)){ $Fecha_finalizacion = $this->datosObtenidos->Datos->Fecha_finalizacion; }
         $Estado = 1;                    if (isset($this->datosObtenidos->Datos->Estado))            { $Estado = $this->datosObtenidos->Datos->Estado; }
         $Nota_final = null;             if (isset($this->datosObtenidos->Datos->Nota_final))        { $Nota_final = $this->datosObtenidos->Datos->Nota_final; }
-        $Monto_abonado = null;          if (isset($this->datosObtenidos->Datos->Monto_abonado))     { $Monto_abonado = $this->datosObtenidos->Datos->Monto_abonado; }
+        $Medio_pago = null;          if (isset($this->datosObtenidos->Datos->Medio_pago))     { $Medio_pago = $this->datosObtenidos->Datos->Medio_pago; }
         $Url_archivo = null;            if (isset($this->datosObtenidos->Datos->Url_archivo))       { $Url_archivo = $this->datosObtenidos->Datos->Url_archivo; }
         $Observaciones = null;          if (isset($this->datosObtenidos->Datos->Observaciones))     { $Observaciones = $this->datosObtenidos->Datos->Observaciones; }
         $Usuario_creador_id = $this->session->userdata('Id');     if (isset($this->datosObtenidos->Datos->Usuario_creador_id))    { $Usuario_creador_id = $this->datosObtenidos->Datos->Usuario_creador_id; }
@@ -1162,10 +1226,13 @@ class Cursos extends CI_Controller
         $this->db->where('Alumno_id', $Alumno_id);
 
         $query = $this->db->get();
+        $result = $query->result_array();
         $cant=$query->num_rows();
 
         if($cant == 0)
-        {
+        { 
+            $Id = $result[0]["Id"];
+        }
             $data = array(
 
                 'Curso_id' =>           $Curso_id,
@@ -1175,7 +1242,7 @@ class Cursos extends CI_Controller
                 'Fecha_finalizacion' => $Fecha_finalizacion,
                 'Estado' =>             $Estado,
                 'Nota_final' =>         $Nota_final,
-                'Monto_abonado' =>      $Monto_abonado,
+                'Medio_pago' =>      $Medio_pago,
                 'Url_archivo' =>        $Url_archivo,
                 'Observaciones' =>      $Observaciones,
                 'Usuario_creador_id' => $Usuario_creador_id,
@@ -1190,12 +1257,9 @@ class Cursos extends CI_Controller
             } else {
                 echo json_encode(array("Id" => 0));
             }
-        }
+        
 
-        else
-        {
-            echo json_encode(array("Id" => 0));
-        }
+    
     }
 
 //// INSCRIPTOS 	| OBTENER 
@@ -1584,7 +1648,7 @@ class Cursos extends CI_Controller
         $token = @$CI->db->token;
         $this->datosObtenidos = json_decode(file_get_contents('php://input'));
         if ($this->datosObtenidos->token != $token) { exit("No coinciden los token"); }
-        
+        $limite = 5;
 
         $this->db->select('	tbl_cursos.Id,
                             tbl_cursos.Titulo_curso,
@@ -1599,7 +1663,7 @@ class Cursos extends CI_Controller
         $this->db->from('tbl_cursos');
         
         $this->db->join('tbl_cursos_categorias', 'tbl_cursos_categorias.Id = tbl_cursos.Categoria_id','left');        
-
+        $this->db->limit($limite);  // Produces: LIMIT 10
         $this->db->order_by("tbl_cursos.Fecha_ult_actualizacion_curso", "desc");
 
         $query = $this->db->get();

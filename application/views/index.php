@@ -48,7 +48,8 @@ include("aa_barra_navegacion.php");
 
                     <!-- <footer class="entry-footer read-more">
                         <a href="#">read more<i class="fa fa-long-arrow-right"></i></a>
-                    </footer> --><!-- .entry-footer -->
+                    </footer> -->
+                    <!-- .entry-footer -->
                 </div><!-- .icon-box -->
 
                 <div class="icon-box">
@@ -66,7 +67,8 @@ include("aa_barra_navegacion.php");
 
                     <!-- <footer class="entry-footer read-more">
                         <a href="#">read more<i class="fa fa-long-arrow-right"></i></a>
-                    </footer> --><!-- .entry-footer -->
+                    </footer> -->
+                    <!-- .entry-footer -->
                 </div><!-- .icon-box -->
 
                 <div class="icon-box">
@@ -84,7 +86,8 @@ include("aa_barra_navegacion.php");
 
                     <!-- <footer class="entry-footer read-more">
                         <a href="#">read more<i class="fa fa-long-arrow-right"></i></a>
-                    </footer> --><!-- .entry-footer -->
+                    </footer> -->
+                    <!-- .entry-footer -->
                 </div><!-- .icon-box -->
 
                 <div class="icon-box">
@@ -102,7 +105,8 @@ include("aa_barra_navegacion.php");
 
                     <!-- <footer class="entry-footer read-more">
                         <a href="#">read more<i class="fa fa-long-arrow-right"></i></a>
-                    </footer> --><!-- .entry-footer -->
+                    </footer> -->
+                    <!-- .entry-footer -->
                 </div><!-- .icon-box -->
             </div><!-- .row -->
         </div><!-- .container-fluid -->
@@ -325,12 +329,12 @@ include("aa_barra_navegacion.php");
                                 <img v-else src="<?php echo base_url(); ?>uploads/addimagen.jpg" alt="">
                             </a>
                         </figure><!-- .course-thumbnail -->
-                        
+
 
                         <div class="course-content-wrap">
                             <header class="entry-header">
-                                <h2 class="entry-title"><a v-bind:href="'cursos/informaciondelcurso/?Id=' + curso.Id">{{curso.Nombre_principal}}</a></h2> 
-                                 <div class="entry-meta flex align-items-center">
+                                <h2 class="entry-title"><a v-bind:href="'cursos/informaciondelcurso/?Id=' + curso.Id">{{curso.Titulo_curso}}</a></h2>
+                                <div class="entry-meta flex align-items-center">
                                     <div class="course-author">{{curso.Nombre_categoria}}</div>
 
                                     <div class="course-date">{{curso.Duracion}} Meses</div>
@@ -340,10 +344,10 @@ include("aa_barra_navegacion.php");
 
                             <footer class="entry-footer flex justify-content-between align-items-center">
                                 <div class="course-cost" v-if="curso.Costo_promocional == null || curso.Costo_promocional == 0">
-                                   
-                                   $ {{curso.Costo_normal | Moneda}} <!-- <span class="price-drop">{{curso.Costo_promocional}}</span> -->
+
+                                    $ {{curso.Costo_normal | Moneda}} <!-- <span class="price-drop">{{curso.Costo_promocional}}</span> -->
                                 </div><!-- .course-cost -->
-                                <div class="course-cost"  v-if="curso.Costo_promocional > 0" >
+                                <div class="course-cost" v-if="curso.Costo_promocional > 0">
                                     $ {{curso.Costo_promocional | Moneda}} <span class="price-drop">$ {{curso.Costo_normal | Moneda}}</span>
                                 </div><!-- .course-cost -->
 
@@ -375,152 +379,42 @@ include("aa_barra_navegacion.php");
             <div class="row">
                 <div class="col-12">
                     <header class="heading flex justify-content-between align-items-center">
-                        <h2 class="entry-title">Últimas novedades y eventos</h2>
+                        <h2 class="entry-title">Blog</h2>
                     </header><!-- .heading -->
                 </div><!-- .col -->
 
-                <div class="col-12 col-lg-6">
+                <div class="col-12 col-lg-4" v-for="blog in lista_blog">
                     <div class="featured-event-content">
                         <figure class="event-thumbnail position-relative m-0">
-                            <a href="#"><img src="<?php echo base_url(); ?>plantilla/images/event-1.jpg" alt=""></a>
+                            <a v-bind:href="'<?php echo base_url(); ?>blog/entrada/?Id=' + blog.Id">
+                                <img v-if="blog.Imagen != null" v-bind:src="'<?php echo base_url(); ?>uploads/imagenes/'+blog.Imagen" v-bind:alt="blog.Copete">
+                                <img v-else src="<?php echo base_url(); ?>uploads/addimagen.jpg" v-bind:alt="blog.Copete">
+                            </a>
 
                             <div class="posted-date position-absolute">
-                                <div class="day">23</div>
-                                <div class="month">mar</div>
+                                <div class="day">{{blog.Fecha_ult_actualizacion | Dia}}</div>
+                                <div class="month">{{blog.Fecha_ult_actualizacion | Mes}}</div>
                             </div><!-- .posted-date -->
                         </figure><!-- .event-thumbnail -->
 
                         <header class="entry-header flex flex-wrap align-items-center">
-                            <h2 class="entry-title"><a href="#">The Complete Financial Analyst Training & Investing
-                                    Course</a></h2>
+                            <h2 class="entry-title">
+                                <a v-bind:href="'<?php echo base_url(); ?>blog/entrada/?Id=' + blog.Id">{{blog.Titulo_curso}}</a>
+                            </h2>
 
-                            <div class="event-location"><i class="fa fa-map-marker"></i>40 Baria Sreet 133/2 NewYork
-                                City, US</div>
-
-                            <div class="event-duration"><i class="fa fa-calendar"></i>10 Dec - 12 dec</div>
+                            <div class="entry-content">
+                                    <p>{{blog.Copete}}</p>
+                                </div><!-- .entry-content -->
                         </header><!-- .entry-header -->
                     </div><!-- .featured-event-content -->
                 </div><!-- .col -->
 
-                <div class="col-12 col-lg-6 mt-5 mt-lg-0">
-                    <div class="event-content flex flex-wrap justify-content-between align-content-stretch">
-                        <figure class="event-thumbnail">
-                            <a href="#"><img src="<?php echo base_url(); ?>plantilla/images/event-2.jpg" alt=""></a>
-                        </figure><!-- .course-thumbnail -->
 
-                        <div class="event-content-wrap">
-                            <header class="entry-header">
-                                <div class="posted-date">
-                                    <i class="fa fa-calendar"></i> 22 Mar 2018
-                                </div><!-- .posted-date -->
-
-                                <h2 class="entry-title"><a href="#">Personalized online learning experience</a></h2>
-
-                                <div class="entry-meta flex flex-wrap align-items-center">
-                                    <div class="post-author"><a href="#">Ms. Lara Croft </a></div>
-
-                                    <div class="post-comments">02 Comments </div>
-                                </div><!-- .entry-meta -->
-                            </header><!-- .entry-header -->
-
-                            <div class="entry-content">
-                                <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.
-                                </p>
-                            </div><!-- .entry-content -->
-                        </div><!-- .event-content-wrap -->
-                    </div><!-- .event-content -->
-
-                    <div class="event-content flex flex-wrap justify-content-between align-content-lg-stretch">
-                        <figure class="event-thumbnail">
-                            <a href="#"><img src="<?php echo base_url(); ?>plantilla/images/event-3.jpg" alt=""></a>
-                        </figure><!-- .course-thumbnail -->
-
-                        <div class="event-content-wrap">
-                            <header class="entry-header">
-                                <div class="posted-date">
-                                    <i class="fa fa-calendar"></i> 22 Mar 2018
-                                </div><!-- .posted-date -->
-
-                                <h2 class="entry-title"><a href="#">Which investment project should my company
-                                        choose?</a></h2>
-
-                                <div class="entry-meta flex flex-wrap align-items-center">
-                                    <div class="post-author"><a href="#">Ms. Lara Croft </a></div>
-
-                                    <div class="post-comments">02 Comments </div>
-                                </div><!-- .entry-meta -->
-                            </header><!-- .entry-header -->
-
-                            <div class="entry-content">
-                                <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.
-                                </p>
-                            </div><!-- .entry-content -->
-                        </div><!-- .event-content-wrap -->
-                    </div><!-- .event-content -->
-                </div><!-- .col -->
             </div><!-- .row -->
         </div><!-- .container -->
     </section><!-- .latest-news-events -->
 
-    <section class="home-gallery">
-        <div class="gallery-wrap flex flex-wrap">
-            <div class="gallery-grid gallery-grid1x1">
-                <a href="#"><img src="<?php echo base_url(); ?>plantilla/images/a.jpg" alt=""></a>
-            </div><!-- .gallery-grid -->
 
-            <div class="gallery-grid gallery-grid1x1">
-                <a href="#"><img src="<?php echo base_url(); ?>plantilla/images/b.jpg" alt=""></a>
-            </div><!-- .gallery-grid -->
-
-            <div class="gallery-grid gallery-grid2x2">
-                <a href="#"><img src="<?php echo base_url(); ?>plantilla/images/c.jpg" alt=""></a>
-            </div><!-- .gallery-grid -->
-
-            <div class="gallery-grid gallery-grid1x1">
-                <a href="#"><img src="<?php echo base_url(); ?>plantilla/images/d.jpg" alt=""></a>
-            </div><!-- .gallery-grid -->
-
-            <div class="gallery-grid gallery-grid1x1">
-                <a href="#"><img src="<?php echo base_url(); ?>plantilla/images/e.jpg" alt=""></a>
-            </div><!-- .gallery-grid -->
-
-            <div class="gallery-grid gallery-grid2x1">
-                <a href="#"><img src="<?php echo base_url(); ?>plantilla/images/g.jpg" alt=""></a>
-            </div><!-- .gallery-grid -->
-
-            <div class="gallery-grid gallery-grid2x1">
-                <a href="#"><img src="<?php echo base_url(); ?>plantilla/images/h.jpg" alt=""></a>
-            </div><!-- .gallery-grid -->
-
-            <div class="gallery-grid gallery-grid1x1">
-                <a href="#"><img src="<?php echo base_url(); ?>plantilla/images/i.jpg" alt=""></a>
-            </div><!-- .gallery-grid -->
-
-            <div class="gallery-grid gallery-grid2x2 ">
-                <a href="#"><img src="<?php echo base_url(); ?>plantilla/images/j.jpg" alt=""></a>
-            </div><!-- .gallery-grid -->
-
-            <div class="gallery-grid gallery-grid1x1">
-                <a href="#"><img src="<?php echo base_url(); ?>plantilla/images/k.jpg" alt=""></a>
-            </div><!-- .gallery-grid -->
-
-            <div class="gallery-grid gallery-grid1x1">
-                <a href="#"><img src="<?php echo base_url(); ?>plantilla/images/l.jpg" alt=""></a>
-            </div><!-- .gallery-grid -->
-
-            <div class="gallery-grid gallery-grid2x1">
-                <a href="#"><img src="<?php echo base_url(); ?>plantilla/images/m.jpg" alt=""></a>
-            </div><!-- .gallery-grid -->
-
-            <div class="gallery-grid gallery-grid3x1">
-                <a href="#"><img src="<?php echo base_url(); ?>plantilla/images/n.jpg" alt=""></a>
-            </div><!-- .gallery-grid -->
-
-            <div class="gallery-grid gallery-grid1x1">
-                <a href="#"><img src="<?php echo base_url(); ?>plantilla/images/o.jpg" alt=""></a>
-            </div><!-- .gallery-grid -->
-        </div><!-- .gallery-wrap -->
-    </section><!-- .home-gallery -->
 </div>
 <?php
 include("aa_pie.php");

@@ -117,7 +117,7 @@ class Login extends CI_Controller
                         'Rol_acceso'    => $result[0]["Rol_acceso"],
                         'Imagen'        => $result[0]["Imagen"],
                     );
-
+                    
                     $this->session->set_userdata($data);
 
                     //header("Location: " . base_url() . "dashboard");
@@ -134,7 +134,7 @@ class Login extends CI_Controller
                                     
                                 'Nombre' => 			        $this->input->get('Name'),
                                 'Google_id' => 			        $this->input->get('Google_id'),
-                                'Imagen' => 			        $this->input->get('Image_URL'),
+                                
                                 'Rol_acceso' => 		        1,
                                 'Email' => 				        $this->input->get('Email'),
                                 'Fecha_alta' => 		        $fecha,
@@ -142,6 +142,7 @@ class Login extends CI_Controller
                                 'Visible' => 			        1,
                                 
                             );
+                            /* 'Imagen' => 			        $this->input->get('Image_URL'), */
             
                     $this->load->model('App_model');
                     $insert_id = $this->App_model->insertar($data, null, 'tbl_usuarios');
