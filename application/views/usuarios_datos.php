@@ -73,7 +73,7 @@ include("aa_barra_navegacion.php");
                     <a class="nav-link" v-bind:class="{ active: mostrar == 2 }" href="#" v-on:click.prevent="get_contenido_2('/usuarios/obtener_formaciones')">Formaciones</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" v-bind:class="{ active: mostrar == 3 }" href="#" v-on:click.prevent="mostrar = 3">Cursos</a>
+                    <a class="nav-link" v-bind:class="{ active: mostrar == 3 }" href="#" v-on:click.prevent="get_contenido_3('/usuarios/obtener_cursos')">Cursos</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" v-bind:class="{ active: mostrar == 4 }" href="#" v-on:click.prevent="getListadoSeguimiento('/usuarios/obtener_seguimientos')">Seguimiento</a>
@@ -300,6 +300,44 @@ include("aa_barra_navegacion.php");
                                                         <i class="fas fa-eraser"></i>
                                                     </button>
                                                 </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </DIV>
+                </DIV>
+            </div>
+
+            <!-- SECCION DATOS DE FORMACIÓN -->
+            <div class="row" v-show="mostrar == '3'">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <strong>Cursos</strong>
+                        </div>
+                        <div class="card-body">
+                            <div class="bootstrap-data-table-panel col-lg-12">
+                                <div class="table-responsive">
+                                    <table id="table2excel" class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <!-- <th></th> -->
+                                                <th>Nombre</th>
+                                                <th>Profesor</th>
+                                                <th>Fecha inicio</th>
+                                                <th>Fecha finalizado</th>
+                                                <th>Estado</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr v-for="curso in listaContenido_3">
+                                                <td>{{curso.Titulo_curso}}</td>
+                                                <td>{{curso.Nombre_profesor}}</td>
+                                                <td>{{curso.Fecha_inicio | Fecha}}</td>
+                                                <td>{{curso.Fecha_finalizacion | Fecha}}</td>
+                                                <td>{{curso.Estado}}</td>
                                             </tr>
                                         </tbody>
                                     </table>

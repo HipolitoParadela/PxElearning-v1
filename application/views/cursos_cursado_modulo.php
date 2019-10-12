@@ -76,32 +76,37 @@ include("aa_barra_navegacion.php");
 
                     <div class="course-students mt-3">
                         <label class="m-0">Curso</label>
-                        <div class="author-name"><a v-bind:href="'cursado/?Id='+datosFormularioPrincipal.Curso_id">{{ datosFormularioPrincipal.Titulo_curso }}</a></div>
+                        <div class="author-name">
+                            <a v-bind:href="'<?php echo base_url(); ?>/cursos/cursado/?Id='+datosExamen_curso.Curso_alumno_id">
+                                {{ datosFormularioPrincipal.Titulo_curso }}
+                            </a>
+                        </div>
                     </div><!-- .course-students -->
-
-                    <div class="course-cats mt-3">
-                        <label class="m-0">Categoría</label>
-                        <div class="author-name"><a href="#">{{ datosFormularioPrincipal.Nombre_categoria }}</a></div>
-                    </div><!-- .course-cats -->
-
-
 
                     <div class="course-students mt-3">
                         <label class="m-0">Profesor</label>
-                        <div class="author-name"><a href="#profesor">{{ datosFormularioPrincipal.Nombre_profesor }}</a></div>
+                        <div class="author-name">
+                            <a href="#profesor">{{ datosFormularioPrincipal.Nombre_profesor }}</a>
+                        </div>
                     </div><!-- .course-students -->
+                    <div class="course-cats mt-3">
+                        <label class="m-0">Estado actual</label>
+                        <div class="author-name" v-if="datosFormularioPrincipal.Estado==1"> <em> Modulo Habilitado</em></div>
+                        <div class="author-name" v-if="datosFormularioPrincipal.Estado==2"><em>Examen realizado</em></div>
+                        <div class="author-name" v-if="datosFormularioPrincipal.Estado==3"><em>Examen Corregido</em></div>
+                    </div><!-- .course-cats -->
                 </div><!-- .course-info -->
 
                 <div class="single-course-cont-section">
                     <?php
-                    if($Datos["Url_archivo_modulo"] != null) 
-                    {
+                    if ($Datos["Url_archivo_modulo"] != null) {
                         echo '
                     <div class="float-right">
                         <p align="center">
-                            <a target="_blank" href="'. base_url().'uploads/imagenes/'. $Datos["Url_archivo_modulo"] .'">
-                                <img width="150" src="'.  base_url().'uploads/descargar.png" alt="">
-                                <br>Descargar
+                            <a target="_blank" href="' . base_url() . 'uploads/imagenes/' . $Datos["Url_archivo_modulo"] . '">
+                                <img width="150" src="' .  base_url() . 'uploads/descargar.png" alt="">
+                                <br>
+                                Descargar
                             </a>
                         </p>
                     </div>';
@@ -134,8 +139,7 @@ include("aa_barra_navegacion.php");
 
                     <h4><?= $Datos["Titulo_examen"]; ?></h4>
                     <?php
-                    if($Datos["Url_archivo_examen"] == null) 
-                    {
+                    if ($Datos["Url_archivo_examen"] == null) {
                         echo '<!--';
                     }
                     ?>
@@ -148,8 +152,7 @@ include("aa_barra_navegacion.php");
                         </p>
                     </div>
                     <?php
-                    if($Datos["Url_archivo_examen"] == null) 
-                    {
+                    if ($Datos["Url_archivo_examen"] == null) {
                         echo ' -->';
                     }
                     ?>
@@ -177,7 +180,7 @@ include("aa_barra_navegacion.php");
                                 <div class="col-sm-12" v-if="datosExamen_curso.Url_archivo != null">
 
                                     <p align="center">
-                                        <a target="_blank" v-bind:href="'<?php echo base_url(); ?>uploads/imagenes/'+datosExamen_curso.Url_archivo">
+                                        <a target="_blank" v-bind:href="'<?php echo base_url(); ?>uploads/archivos/'+datosExamen_curso.Url_archivo">
                                             <img width="150" src="<?php echo base_url(); ?>uploads/descargar.png" alt="">
                                             <br>Adjunto respuesta
                                         </a>

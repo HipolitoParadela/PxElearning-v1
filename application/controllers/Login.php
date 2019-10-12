@@ -74,8 +74,8 @@ class Login extends CI_Controller
     public function logout()
     {
         $this->session->sess_destroy();
-        header("Location: " . base_url() . ""); /// enviar a pagina de error
-
+        //header("Location: " . base_url() . ""); /// enviar a pagina de error
+        echo json_encode(array("Estado" => TRUE));
     }
 
 //// INICIAR SESIÓN DESDE GOOGLE
@@ -118,7 +118,7 @@ class Login extends CI_Controller
                         'Imagen'        => $result[0]["Imagen"],
                     );
                     
-                    $this->session->set_userdata($data);
+                    $this->session->set_userdata($data);    /// CREA LAS VARIABLES DE SESIÓN
 
                     //header("Location: " . base_url() . "dashboard");
                     echo json_encode(array("Estado" => TRUE));
@@ -135,7 +135,7 @@ class Login extends CI_Controller
                                 'Nombre' => 			        $this->input->get('Name'),
                                 'Google_id' => 			        $this->input->get('Google_id'),
                                 
-                                'Rol_acceso' => 		        1,
+                                'Rol_acceso' => 		        2,
                                 'Email' => 				        $this->input->get('Email'),
                                 'Fecha_alta' => 		        $fecha,
                                 'Presencia' =>                  1,
@@ -230,4 +230,8 @@ class Login extends CI_Controller
             header("Location: " . base_url() . "login?Error=2");
         } */
     }
+
+
+
+/////////////////////
 }

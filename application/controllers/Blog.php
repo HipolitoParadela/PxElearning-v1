@@ -72,6 +72,7 @@ class Blog extends CI_Controller
         
         $this->db->select(' *');
         $this->db->from('tbl_blog');
+        $this->db->where('Visible', 1);
         $this->db->order_by('Fecha_ult_actualizacion', 'desc');
 
         $query = $this->db->get();
@@ -96,6 +97,7 @@ class Blog extends CI_Controller
         
         $this->db->select(' *');
         $this->db->from('tbl_blog');
+        $this->db->where('Visible', 1);
         $this->db->limit(3);  // Produces: LIMIT 10
         $this->db->order_by('Fecha_ult_actualizacion', 'desc');
 

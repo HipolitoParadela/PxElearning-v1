@@ -149,13 +149,13 @@ include("aa_barra_navegacion.php");
 
                         <li class="flex flex-wrap justify-content-between align-items-center" v-for="ult_curso in listaContenido_2">
 
-                            <a v-bind:href="'cursos/informaciondelcurso/?Id=' + ult_curso.Id">
+                            <a v-bind:href="'<?php echo base_url(); ?>cursos/informaciondelcurso/?Id=' + ult_curso.Id">
                                 <img v-if="ult_curso.Imagen != null" v-bind:src="'<?php echo base_url(); ?>uploads/imagenes/'+ult_curso.Imagen" v-bind:alt="ult_curso.Descripcion_corta">
                                 <img v-else src="<?php echo base_url(); ?>uploads/addimagen.jpg" v-bind:alt="ult_curso.Descripcion_corta">
                             </a>
 
                             <div class="content-wrap">
-                                <h3><a v-bind:href="'cursos/informaciondelcurso/?Id=' + ult_curso.Id">{{ult_curso.Titulo_curso}}</a></h3>
+                                <h3><a v-bind:href="'<?php echo base_url(); ?>cursos/informaciondelcurso/?Id=' + ult_curso.Id">{{ult_curso.Titulo_curso}}</a></h3>
 
                                 <div class="course-cost" v-if="ult_curso.Costo_promocional == null || ult_curso.Costo_promocional == 0">
 

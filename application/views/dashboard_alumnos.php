@@ -126,7 +126,7 @@ include("aa_barra_navegacion.php");
                                         <a v-if="curso.Estado == 3" v-bind:href="'<?php echo base_url(); ?>uploads/imagenes/' + curso.Url_archivo">Descargar diploma</a>
                                         <a v-if="curso.Estado == 0" v-bind:href="'<?php echo base_url(); ?>cursos/informaciondelcurso/?Id=' + curso.Id +'#comprar'">Comprar curso</a>
 
-                                        
+
                                         <!-- <div class="course-ratings flex justify-content-end align-items-center">
                                     <span class="fa fa-star checked"></span>
                                     <span class="fa fa-star checked"></span>
@@ -145,15 +145,14 @@ include("aa_barra_navegacion.php");
 
 
                 </div>
-                <div class="row">
 
-
-                    <div class="col-12 px-25 flex justify-content-center">
-                        <a class="btn" href="<?php echo base_url(); ?>cursos/listado">Conoce todos los cursos que tenemos para ofrecerte</a>
-                    </div><!-- .col -->
-
-                </div><!-- .row -->
             </div><!-- .container -->
+            <hr>
+            <div class="row">
+                <div class="col-12 px-25 flex justify-content-center">
+                    <a class="btn" href="<?php echo base_url(); ?>cursos/listado">Conoce todos los cursos que tenemos para ofrecerte</a>
+                </div><!-- .col -->
+            </div><!-- .row -->
         </div>
     </div>
 

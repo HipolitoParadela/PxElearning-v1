@@ -657,5 +657,44 @@ class Usuarios extends CI_Controller
         echo json_encode(array('status' => $status, 'Url_archivo' => $nombre_archivo));
     }
 
+//// CURSOS	        | OBTENER LISTADO PRINCIPAL
+	public function obtener_cursos()
+    {
+			
+        //Esto siempre va es para instanciar la base de datos
+        $CI =& get_instance();
+        $CI->load->database();
+		//Seguridad
+        $token = @$CI->db->token;
+        $this->datosObtenidos = json_decode(file_get_contents('php://input'));
+        if ($this->datosObtenidos->token != $token) { exit("No coinciden los token"); }
+        
+
+        $Alumno_id = $_GET["Id"];
+        //$puesto = $_GET["puesto"];
+
+        $this->db->select('	tbl_cursos.Id,
+                            tbl_cursos.Titulo_curso,
+                            tbl_cursos.Duracion,
+                            tbl_cursos.Imagen,
+                            tbl_cursos_alumnos.Fecha_inicio,
+                            tbl_cursos_alumnos.Fecha_finalizacion,
+                            tbl_cursos_alumnos.Estado,
+                            tbl_cursos.Fecha_ult_actualizacion_curso,
+                            tbl_usuarios.Nombre as Nombre_profesor');
+		$this->db->from('tbl_cursos_alumnos');
+        
+        $this->db->join('tbl_cursos', 'tbl_cursos.Id = tbl_cursos_alumnos.Curso_id','left');
+        $this->db->join('tbl_usuarios', 'tbl_usuarios.Id = tbl_cursos_alumnos.Profesor_id','left');
+
+        $this->db->where('tbl_cursos_alumnos.Alumno_id', $Alumno_id);
+
+		$this->db->order_by("tbl_cursos_alumnos.Fecha_inicio", "desc");
+        $query = $this->db->get();
+		$result = $query->result_array();
+
+		echo json_encode($result);
+		
+    }
 ///// fin documento
 }

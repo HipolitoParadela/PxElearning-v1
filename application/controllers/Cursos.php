@@ -324,7 +324,7 @@ class Cursos extends CI_Controller
         } 
         else 
         {
-            if ($this->session->userdata('Rol_acceso') > 2) 
+            if ($this->session->userdata('Rol_acceso') > 1) 
             {
                 
                 //Esto siempre va es para instanciar la base de datos
@@ -359,8 +359,8 @@ class Cursos extends CI_Controller
                     
                 
                 $data = array(
-                    "body_class" => ' class="single-courses-page"',
-                    "div_inicial_class" => 'class="page-header"',
+                    "body_class" => 'class="single-courses-page"',
+                    "div_inicial_class" => '',
                     "TituloPagina" => $result[0]["Titulo_modulo"],
                     "Descripcion" => $result[0]["Descripcion_modulo"],
                     "Datos" => $result[0],
@@ -1292,7 +1292,6 @@ class Cursos extends CI_Controller
         }
 
         $this->db->select(' tbl_cursos_alumnos.*,
-
                             tbl_cursos.*,
                             tbl_cursos.Imagen as Imagen_curso,
 
@@ -1438,7 +1437,7 @@ class Cursos extends CI_Controller
         $insert_id = $this->App_model->insertar($data, $Id, 'tbl_cursos_examen_alumno');
 
         if ($insert_id >= 0) {
-            echo json_encode(array("Id" => $insert_id));
+            echo json_encode(array("Id" => $insert_id, "Estado" => $Estado));
         } else {
             echo json_encode(array("Id" => 0));
         }
@@ -1454,7 +1453,7 @@ class Cursos extends CI_Controller
         if ($status != "error")
         {
             $config['upload_path'] = './uploads/archivos';
-            $config['allowed_types'] = 'jpg|jpeg|doc|docx|xlsx|pdf';
+            $config['allowed_types'] = 'jpg|jpeg|doc|docx|xlsx|pdf|png|rar';
             $config['max_size'] = 0;
             $config['encrypt_name'] = TRUE;
 

@@ -215,7 +215,7 @@ class Dashboard extends CI_Controller
         {
             $this->db->where('tbl_cursos_alumnos.Profesor_id', $this->session->userdata('Id'));
         }
-        $this->db->order_by("tbl_cursos_alumnos.Fecha_ult_actualizacion", "desc");
+        $this->db->order_by("tbl_cursos_examen_alumno.Fecha_ult_actualizacion", "desc");
 
         $query = $this->db->get();
         $result = $query->result_array();

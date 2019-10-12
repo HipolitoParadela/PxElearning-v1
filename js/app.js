@@ -1060,7 +1060,7 @@ new Vue({
     created: function () {
         this.getDatosPrincipal('/usuarios/obtener_Usuario');
         this.getListadoRoles();
-        //this.getSuperiores();
+        //this.get_contenido_3();
         //this.getListadoEmpresas();
         //this.getListadoPuesto();
     },
@@ -1081,6 +1081,8 @@ new Vue({
 
         listaContenido_2: [],
         cont2Data: {},
+
+        listaContenido_3: [],
 
         listaSeguimiento: [],
         seguimientoData: {
@@ -1343,6 +1345,23 @@ new Vue({
                     console.log(error.response.data)
                 });
             }
+        },
+
+        //// MOSTRAR LISTADO 
+        get_contenido_3: function (url_controller) {
+            var url = base_url + url_controller + '/?Id=' + Get_Id;  //// averiguar como tomar el Id que viene por URL aca
+
+            axios.post(url, {
+                token: token,
+            }).then(response => {
+                    
+                this.mostrar = 3
+                this.listaContenido_3 = response.data
+
+            }).catch(error => {
+                toastr.error('Error en la recuperación de los datos', 'Sistema')
+                console.log(error.response.data)
+            });
         },
 
     },
@@ -2551,7 +2570,8 @@ new Vue({
             }).then(response => {
 
                 toastr.success('Proceso realizado correctamente', 'SISTEMA')
-
+                this.datosExamen_curso.Estado = response.data.Estado;
+                
                 /// si eso se ralizó bien, debe comprobar si hay un archivo a cargar.
                 if (this.Archivo != null) {
                     var url = base_url + url_controller_upload+'/?Id=' + this.datosExamen_curso.Id;
@@ -2580,7 +2600,9 @@ new Vue({
                 }
                 // si lo hay lo carga, si no lo hay no hace nada
 
-                this.datosFormularioPrincipal.Id = response.data.Id;
+                this.datosExamen_curso.Id = response.data.Id;
+                
+                
                 this.texto_boton = "Actualizar"
 
                 /// UNICA PARTE DEL CÓDIGO A GENERAR POR CADA LISTA

@@ -11,12 +11,12 @@ include("aa_barra_navegacion.php");
             <div class="col-12">
                 <div class="hero-content-wrap flex flex-column justify-content-center align-items-start">
                     <header class="entry-header">
-                        <h4>Cursos de formación en linea con certificado Nacional</h4>
+                        <h4>Cursos de formación en linea con certifición</h4>
                         <h1>Desde tu casa<br />En tus tiempos</h1>
                     </header><!-- .entry-header -->
 
                     <div class="entry-content">
-                        <p>Brindamos el mejor servicio de capacitación informática personalizada, para que todos puedan formarte con un nivel de aprendizaje superior.</p>
+                        <p>Brindamos el mejor servicio de capacitación informática personalizada, para que todos puedan formarse con un nivel de aprendizaje superior.</p>
                         <h4>Más de 25 años de trayectoria avalan nuestra experiencia</h4>
                     </div><!-- .entry-content -->
 

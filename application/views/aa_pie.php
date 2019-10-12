@@ -9,17 +9,17 @@
     <div class="container">
         <div class="row">
             <div class="col-12 flex flex-wrap justify-content-center justify-content-lg-between align-items-center">
-                <!-- <div class="logo-wrap">
+                <div class="logo-wrap">
                     <img src="<?php echo base_url(); ?>uploads/CPCIPC-mini.png" alt="">
-                </div> --><!-- .logo-wrap -->
+                </div><!-- .logo-wrap -->
 
                 <div class="logo-wrap">
                     <img src="<?php echo base_url(); ?>uploads/jlc-mini.png" alt="">
                 </div><!-- .logo-wrap -->
 
-                <!-- <div class="logo-wrap">
+                <div class="logo-wrap">
                     <img src="<?php echo base_url(); ?>uploads/utn-mini.png" alt="">
-                </div> --><!-- .logo-wrap -->
+                </div><!-- .logo-wrap -->
             </div><!-- .col -->
         </div><!-- .row -->
     </div><!-- .container -->
@@ -57,9 +57,9 @@
                 </div><!-- .col -->
                 <div class="col-12 col-md-6 col-lg-3">
                     <div class="foot-about">
-                        <a class="foot-logo" href="#"><img src="<?php echo base_url(); ?>plantilla/images/foot-logo.png" alt=""></a>
+                        <a class="foot-logo" href="#"><img class="img-fluid" src="<?php echo base_url(); ?>img/logoinstituto.png" alt=""></a>
 
-                        <p>Instituto Jerónimo Luis de Cabrera con Más de 25 años de trayectoria avalan nuestra experiencia y seriedad en el dictado de cursos para jóvenes y adultos. <BR><b>Si estás pensando en formarte, tenés que pensar en nosotros. </b></p>
+                        Instituto Jerónimo Luis de Cabrera con Más de 25 años de trayectoria avalan nuestra experiencia y seriedad en el dictado de cursos para jóvenes y adultos. <BR><b>Si estás pensando en formarte, tenés que pensar en nosotros. </b>
 
 
                     </div><!-- .foot-about -->
