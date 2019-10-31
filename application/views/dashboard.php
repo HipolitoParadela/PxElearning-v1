@@ -164,8 +164,8 @@ include("aa_barra_navegacion.php");
                 <div class="col-xl-1"></div>
                 <div class="col-xl-5">
                     <h3>Alumnos curzando actualmente</h3>
-                    <table class="table">
-                        <thead>
+                    <table class="table table-striped">
+                        <thead class="thead-dark">
                             <tr>
                                 <th scope="col"></th>
                                 <th scope="col">Nombre</th>
@@ -198,10 +198,10 @@ include("aa_barra_navegacion.php");
                                             {{usuario.Titulo_curso}}
                                         </a></b>
                                     <br>
-                                    <span v-if="usuario.Nombre_profesor != null">
+                                    <span class="text-info" v-if="usuario.Nombre_profesor != null">
                                         {{usuario.Nombre_profesor}}
                                     </span>
-                                    <span v-else>
+                                    <span class="text-info" v-else>
                                         <a v-bind:href="'<?php echo base_url(); ?>cursos/datos/?Id=' + usuario.Curso_id">Asignar profesor</a>
                                     </span>
                                     
@@ -222,11 +222,11 @@ include("aa_barra_navegacion.php");
                 <div class="col-xl-5">
 
                     <h3>Últimos movimientos en examenes</h3>
-                    <table class="table">
-                        <thead>
+                    <table class="table table-striped">
+                        <thead class="thead-dark">
                             <tr>
-                                <th scope="col">Curso / Movimiento</th>
-                                <th scope="col">Alumno / Profesor</th>
+                                <th scope="col">Curso<br>Movimiento</th>
+                                <th scope="col">Alumno<br> Profesor</th>
                                 <th>Fecha</th>
                             </tr>
                         </thead>
@@ -234,18 +234,20 @@ include("aa_barra_navegacion.php");
                             <tr v-for="movimiento in lista_movimientos_examen">
                                 <td>
                                     <a v-bind:href="'<?php echo base_url(); ?>cursos/cursado_modulo/?Id=' + movimiento.Id">
-                                        <b>{{movimiento.Titulo_curso}}</b>
+                                        {{movimiento.Titulo_curso}}
                                         <br>
-                                        <span v-if="movimiento.Estado==1"> <em> Modulo Habilitado</em></span>
-                                        <span v-if="movimiento.Estado==2"><em>Examen realizado</em></span>
-                                        <span v-if="movimiento.Estado==3"><em>Examen Corregido</em></span>
+                                         
+                                        <span v-if="movimiento.Estado==1"> <b> Habilitado</b></span>
+                                        <span v-if="movimiento.Estado==2"><b>Examen realizado</b></span>
+                                        <span v-if="movimiento.Estado==3"><b>Examen Corregido</b></span>
+                                        <span class="text-info">{{movimiento.Titulo_modulo}}</span> 
 
                                     </a>
                                 </td>
                                 <td valign="baseline">
                                     {{movimiento.Nombre_alumno}}
                                     <br>
-                                    {{movimiento.Nombre_profesor}}
+                                    <span class="text-info">{{movimiento.Nombre_profesor}}</span>
                                 </td>
                                 <td>
                                     {{ movimiento.Fecha_ult_actualizacion | FechaB_datos }}

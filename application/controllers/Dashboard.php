@@ -170,6 +170,8 @@ class Dashboard extends CI_Controller
             $this->db->where('tbl_cursos_alumnos.Profesor_id', $this->session->userdata('Id'));
         }
         
+        $this->db->order_by('tbl_cursos_alumnos.Id', 'desc');
+        
         $query = $this->db->get();
         $result = $query->result_array();
 
@@ -200,7 +202,8 @@ class Dashboard extends CI_Controller
                             tbl_cursos_examen_alumno.Id,
                             tbl_cursos_examen_alumno.Estado,
                             tbl_alumno.Nombre as Nombre_alumno,
-                            tbl_profesor.Nombre as Nombre_profesor'); // BUSCAR SOLO DATOS NECESARIOS
+                            tbl_profesor.Nombre as Nombre_profesor,
+                            tbl_cursos_modulos.Titulo_modulo'); // BUSCAR SOLO DATOS NECESARIOS
         
         $this->db->from('tbl_cursos_examen_alumno');
         
@@ -210,6 +213,7 @@ class Dashboard extends CI_Controller
         $this->db->join('tbl_cursos', 'tbl_cursos.Id = tbl_cursos_alumnos.Curso_id', 'left');
         $this->db->join('tbl_usuarios as tbl_profesor', 'tbl_profesor.Id = tbl_cursos_alumnos.Profesor_id', 'left');
         $this->db->join('tbl_usuarios as tbl_alumno', 'tbl_alumno.Id = tbl_cursos_alumnos.Alumno_id', 'left');
+        $this->db->join('tbl_cursos_modulos', 'tbl_cursos_modulos.Id = tbl_cursos_examen_alumno.Modulo_id', 'left');
         
         if($this->session->userdata('Rol_acceso') == 3 )
         {

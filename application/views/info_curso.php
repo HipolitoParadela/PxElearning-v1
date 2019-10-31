@@ -151,30 +151,42 @@ include("aa_barra_navegacion.php");
                     <div class="row">
 
                         <h3>Comprar ahora curso de <?= $TituloPagina; ?> </h3>
+                        <p>Podes elegir abonar con todos los medios de pago y con la seguridad que te brinda el sistema de Mercado Pago</p>
                         <div class="row">
                             <div class="col-xl-7">
-                                <p>Podes elegir abonar con todos los medios de pago y con la seguridad que te brinda el sistema de Mercado Pago</p>
+
                                 <p>
-                                    <img width="100%" class="rounded" src="https://tiendadavs.com.ar/wp-content/uploads/2018/07/mercadopago.png">
+                                    <img width="100%" class="rounded" src="http://institutojlc.com/img/mercadopago.jpg">
                                 </p>
                             </div>
                             <div class="col-xl-5">
-                                <div style="margin-top:50px; border: 4px solid orange; padding: 10px; margin-left: 5px; background-color:white; border-radius: 0px 20px 0px 20px;">
+                                <div class="course-cost" style="margin-top:50px; border: 4px solid orange; padding: 10px; margin-left: 5px; background-color:white; border-radius: 0px 20px 0px 20px;">
                                     <h1 align="center">
-                                        <span style="font-size:20px">$</span> <?= $Datos_curso["Costo_normal"]; ?>
+                                        <span style="font-size:20px">$</span>
+                                        <?
+                                        if ($Datos_curso["Costo_promocional"] == 0 || $Datos_curso["Costo_promocional"] == null) {
+                                            echo $Datos_curso["Costo_normal"];
+                                        } else {
+                                            echo $Datos_curso["Costo_promocional"];
+                                            echo '<br> <span class="price-drop">$' . $Datos_curso["Costo_normal"] . '</span>';
+                                        }
+                                        ?>
+
+
                                     </h1>
                                     <p align="center">
-                                        <?php 
-                                            if($this->session->userdata('Login') == true)
-                                            {
+                                        <?php
+                                        if ($this->session->userdata('Login') == true) {
+                                            if ($Datos_curso["Costo_promocional"] == 0 || $Datos_curso["Costo_promocional"] == null) {
                                                 echo $Datos_curso["Script_pago_normal"];
+                                            } else {
+                                                echo $Datos_curso["Script_pago_promocional"];
                                             }
-                                            else
-                                            {
-                                                echo '<em>Debes <a href="#inicio">iniciar sesión</a> con tu cuenta de google para poder comprar este curso </em> <br><a class="btn" href="#inicio">Iniciar</a>';
-                                            }
-                                             
-                                        
+                                        } else {
+                                            echo '<em>Debes <a href="#inicio">iniciar sesión</a> con tu cuenta de google para poder comprar este curso </em> <br><a class="btn" href="#inicio">Iniciar</a>';
+                                        }
+
+
                                         ?>
                                     </p>
                                 </div>
@@ -182,16 +194,16 @@ include("aa_barra_navegacion.php");
                             </div>
                         </div>
                     </div>
-                    
+
                     <hr>
 
                     <div class="row">
-                        
+
                         <h4>¿Tienes dudas?</h4>
 
                         <p>Escribenos un mensaje para que un representante de ventas pueda asesorarte y acordar un método de pago adecuado a tus necesidades.</p>
 
-                        <a class="btn" href="https://api.whatsapp.com/send?phone=5493572408000&text=Estoy%20interesado%20en%20comprar%20un%20curso%20">Enviar whatsapp</a>
+                        <a class="btn" href="https://api.whatsapp.com/send?phone=5493513615144&text=Estoy%20interesado%20en%20comprar%20un%20curso%20">Enviar whatsapp</a>
                         <a class="btn" href="mailto:info@institutojlc.com">Enviar email a info@institutojlc.com</a>
 
                     </div>
@@ -226,12 +238,16 @@ include("aa_barra_navegacion.php");
                                     </header><!-- .entry-header -->
 
                                     <footer class="entry-footer flex flex-wrap justify-content-between align-items-center">
-                                        <div class="course-cost" v-if="curso.Costo_promocional != null">
-                                            {{curso.Costo_promocional}} <span class="price-drop">{{curso.Costo_normal}}</span>
+
+
+                                        <div class="course-cost" v-if="curso.Costo_promocional == null || curso.Costo_promocional == 0">
+                                            $ {{curso.Costo_normal | Moneda}} <!-- <span class="price-drop">{{curso.Costo_promocional}}</span> -->
                                         </div><!-- .course-cost -->
-                                        <div v-else class="course-cost">
-                                            {{curso.Costo_normal}} <span class="price-drop">{{curso.Costo_promocional}}</span>
+                                        <div class="course-cost" v-if="curso.Costo_promocional > 0">
+                                            $ {{curso.Costo_promocional | Moneda}} <span class="price-drop">$ {{curso.Costo_normal | Moneda}}</span>
                                         </div><!-- .course-cost -->
+
+                                        
 
                                         <div class="course-ratings flex justify-content-end align-items-center">
                                             <span class="fa fa-star checked"></span>
@@ -240,27 +256,15 @@ include("aa_barra_navegacion.php");
                                             <span class="fa fa-star checked"></span>
                                             <span class="fa fa-star-o"></span>
 
-                                            <span class="course-ratings-count">(4 votes)</span>
+                                            <!-- <span class="course-ratings-count">(4 votos)</span> -->
                                         </div><!-- .course-ratings -->
                                     </footer><!-- .entry-footer -->
                                 </div><!-- .course-content-wrap -->
                             </div><!-- .course-content -->
                         </div><!-- .col -->
-
-
-
-
-
-
-
-
                     </div><!-- .row -->
                 </div><!-- .related-course -->
             </div><!-- .single-course-wrap -->
-
-
-
-
         </div>
     </div>
 </div>

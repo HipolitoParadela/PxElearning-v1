@@ -123,15 +123,15 @@ include("aa_barra_navegacion.php");
                                                 <textarea class="form-control" rows="5" placeholder="" v-model="datosFormularioPrincipal.Info_privada"></textarea>
                                             </div>
                                             <div class="form-group">
-                                                <label class="control-label">Costo normal</label>
+                                                <label class="control-label">Monto costo normal</label>
                                                 <input type="number" class="form-control" placeholder="" v-model="datosFormularioPrincipal.Costo_normal">
                                             </div>
                                             <div class="form-group">
-                                                <label class="control-label">Mercado pago costo normal</label>
+                                                <label class="control-label">Código Mercado para costo normal</label>
                                                 <input type="text" class="form-control" placeholder="" v-model="datosFormularioPrincipal.Script_pago_normal">
                                             </div>
                                             <div class="form-group">
-                                                <label class="control-label">Costo promocional</label>
+                                                <label class="control-label">Monto costo promocional</label>
                                                 <input type="number" class="form-control" placeholder="" v-model="datosFormularioPrincipal.Costo_promocional">
                                             </div>
                                             <div class="form-group">
@@ -139,7 +139,7 @@ include("aa_barra_navegacion.php");
                                                 <textarea class="form-control" rows="3" placeholder="" v-model="datosFormularioPrincipal.Info_promocional"></textarea>
                                             </div>
                                             <div class="form-group">
-                                                <label class="control-label">Mercado pago para pago promocional</label>
+                                                <label class="control-label">Código mercado pago para costo promocional</label>
                                                 <input type="text" class="form-control" placeholder="" v-model="datosFormularioPrincipal.Script_pago_promocional">
                                             </div>
                                             <div class="form-group">

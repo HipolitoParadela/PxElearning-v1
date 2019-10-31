@@ -1227,9 +1227,9 @@ class Cursos extends CI_Controller
 
         $query = $this->db->get();
         $result = $query->result_array();
-        $cant=$query->num_rows();
+        $cant = $query->num_rows();
 
-        if($cant == 0)
+        if($cant > 0)
         { 
             $Id = $result[0]["Id"];
         }

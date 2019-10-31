@@ -21,7 +21,7 @@ include("aa_barra_navegacion.php");
 <!-- <div class="container-fluid" id="app"> -->
 <div class="container-fluid" id="app_id">
     <div class="row">
-        
+
         <div class="col-12">
             <div class="breadcrumbs">
                 <ul class="flex flex-wrap align-items-center p-0 m-0">
@@ -33,8 +33,8 @@ include("aa_barra_navegacion.php");
         </div><!-- .col -->
     </div><!-- .row -->
     <div class="row">
-        
-        
+
+
 
         <div class="col-lg-2">
             <div class="card">

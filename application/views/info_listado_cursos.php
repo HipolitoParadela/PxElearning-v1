@@ -158,12 +158,11 @@ include("aa_barra_navegacion.php");
                                 <h3><a v-bind:href="'<?php echo base_url(); ?>cursos/informaciondelcurso/?Id=' + ult_curso.Id">{{ult_curso.Titulo_curso}}</a></h3>
 
                                 <div class="course-cost" v-if="ult_curso.Costo_promocional == null || ult_curso.Costo_promocional == 0">
-
-                                        $ {{ult_curso.Costo_normal | Moneda}} <!-- <span class="price-drop">{{ult_curso.Costo_promocional}}</span> -->
-                                    </div><!-- .course-cost -->
-                                    <div class="course-cost" v-if="ult_curso.Costo_promocional > 0">
-                                        $ {{ult_curso.Costo_promocional | Moneda}} <span class="price-drop">$ {{ult_curso.Costo_normal | Moneda}}</span>
-                                    </div><!-- .course-cost -->
+                                    $ {{ult_curso.Costo_normal | Moneda}} <!-- <span class="price-drop">{{ult_curso.Costo_promocional}}</span> -->
+                                </div><!-- .course-cost -->
+                                <div class="course-cost" v-if="ult_curso.Costo_promocional > 0">
+                                    $ {{ult_curso.Costo_promocional | Moneda}} <span class="price-drop">$ {{ult_curso.Costo_normal | Moneda}}</span>
+                                </div><!-- .course-cost -->
                             </div><!-- .content-wrap -->
                         </li>
 
@@ -186,7 +185,8 @@ include("aa_barra_navegacion.php");
                         <li><a href="#">Wordpress Template</a></li>
                         <li><a href="#">startup</a></li>
                     </ul>
-                </div> --><!-- .popular-tags -->
+                </div> -->
+                <!-- .popular-tags -->
             </div><!-- .sidebar -->
         </div><!-- .col -->
     </div><!-- .row -->
