@@ -262,6 +262,17 @@
 
     </script>
     <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-12197526-9"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-12197526-9');
+</script>
+
 </head>
 
 <body <?= $body_class; ?>>
