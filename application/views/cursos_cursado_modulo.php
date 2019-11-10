@@ -122,9 +122,9 @@ include("aa_barra_navegacion.php");
 
 
 
-                    <ul class="p-0 m-0 green-ticked">
+                    <!-- <ul class="p-0 m-0 green-ticked">
                         <p>{{datosFormularioPrincipal.Descripcion_corta}}</p>
-                    </ul>
+                    </ul> -->
 
 
 
