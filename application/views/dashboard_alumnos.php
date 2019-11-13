@@ -63,11 +63,6 @@ include("aa_barra_navegacion.php");
         </div>
 
         <!-- SECCION CURSOS DEL ALUMNO-->
-
-
-
-
-
         <div class="col-lg-10">
 
             <?php
@@ -87,16 +82,12 @@ include("aa_barra_navegacion.php");
             ?>
 
 
-
             <div class="card">
                 <div class="card-header">
                     <h4>Tus cursos</h4>
                 </div>
                 <div class="card-body">
-
                     <div class="row">
-
-
                         <div class="col-12 col-md-6 col-lg-3 px-25" v-for="curso in lista_cursos_alumno">
                             <div class="course-content">
                                 <figure class="course-thumbnail">

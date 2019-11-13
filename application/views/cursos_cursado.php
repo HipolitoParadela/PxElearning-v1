@@ -159,13 +159,13 @@ include("aa_barra_navegacion.php");
                                     
                                     <p> ' . $modulo["Datos_modulo"]["Descripcion_modulo"] . ' </p>';
 
-                                    if ($modulo["Estado"] == 0) // Si es profe de este curso
-                                    {
-                                        echo '<a v-show=" Rol_acceso > 2" href="#" data-toggle="modal" data-target="#modalInscriptos" v-on:click="modal_generar_examen(' . $modulo["Datos_modulo"]["Id"] . ')"> >> Habilitar módulo</a>';
-                                    } else if ($modulo["Estado"] == 2) {
-                                        echo '<a v-show=" Rol_acceso > 2" href="/cursos/cursado_modulo?Id=' . $modulo["Info_examen"]["Id"] . '#examen"> >> Corregir examen</a>';
-                                    }
-                                    echo '
+                                if ($modulo["Estado"] == 0) // Si es profe de este curso
+                                {
+                                    echo '<a v-show=" Rol_acceso > 2" href="#" data-toggle="modal" data-target="#modalInscriptos" v-on:click="modal_generar_examen(' . $modulo["Datos_modulo"]["Id"] . ')"> >> Habilitar módulo</a>';
+                                } else if ($modulo["Estado"] == 2) {
+                                    echo '<a v-show=" Rol_acceso > 2" href="/cursos/cursado_modulo?Id=' . $modulo["Info_examen"]["Id"] . '#examen"> >> Corregir examen</a>';
+                                }
+                                echo '
                                         
                                 </div>';
                             }
@@ -207,10 +207,10 @@ include("aa_barra_navegacion.php");
                             </div> -->
                             <!-- .ratings -->
 
-                            <h2 class="entry-title mt-3">{{ datosFormularioPrincipal.Titulo_curso }}</h2>
+                            <h2 class="entry-title mt-3">{{ datosFormularioPrincipal.Nombre_profesor }}</h2>
 
                             <div class="course-teacher mt-3">
-                                Profesor/a: <a href="#">{{ datosFormularioPrincipal.Nombre_profesor }}</a>
+                                Contacto: <a href="#">{{ datosFormularioPrincipal.Email_profesor }}</a>
                             </div><!-- .course-teacher -->
 
                             <div class="entry-content mt-3">

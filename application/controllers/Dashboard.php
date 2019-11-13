@@ -44,7 +44,7 @@ class Dashboard extends CI_Controller
                 $compra = false;
                 $datos_curso = null;
 
-                /// SI DETECTA UNA VARIABLE GET, GENERA 
+                /// CODIGO PARA GENERAR UNA COMPRA AUTOMÁTICA MEDIANTE MERCADO PAGO ---------------
                 if(isset($_GET["collection_id"]))
                 {
                     $compra = true;
@@ -64,7 +64,7 @@ class Dashboard extends CI_Controller
                     }                   
                     
                     $Nota_final = null;             
-                    $Medio_pago = 'Mercado Pago - '.$_GET["payment_type"];          
+                    $Medio_pago = 'Compra ONLINE - Mercado Pago - '.$_GET["payment_type"];          
                     $Url_archivo = null;          
                     $Observaciones = null;          
                     $Usuario_creador_id = $this->session->userdata('Id');     
@@ -91,7 +91,36 @@ class Dashboard extends CI_Controller
                 
                         if ($insert_id >= 0) 
                         {
-                            
+                            //// SI LA CARGA SE REALIZÓ BIEN ENVÍO UN MAIL A INFO
+                                //Load email library
+                                $this->load->library('email');
+
+                                //SMTP & mail configuration
+                                $config = array(
+                                    'protocol'  => 'smtp',
+                                    'smtp_host' => 'ssl://c1570036.ferozo.com',
+                                    'smtp_port' => 465,
+                                    'smtp_user' => 'info@institutojlc.com',
+                                    'smtp_pass' => 'intJLC2019',
+                                    'mailtype'  => 'html',
+                                    'charset'   => 'utf-8'
+                                );
+                                $this->email->initialize($config);
+                                $this->email->set_mailtype("html");
+                                $this->email->set_newline("\r\n");
+
+                                //Email content
+                                $htmlContent = '<h1>Instituto JLC</h1>';
+                                $htmlContent .= '<p>Se realizó la venta online de un nuevo curso. Ingresar lo antes posible para gestionar el contanto con el alumno.</p>';
+                                $htmlContent .= '<h6>Mensaje autómatico enviado desde la plataforma www.institutojlc.com</h6>';
+
+                                $this->email->to('info@institutojlc.com');
+                                $this->email->from('info@institutojlc.com','Instituto JLC');
+                                $this->email->subject('Nueva inscripción Online');
+                                $this->email->message($htmlContent);
+
+                                //Send email
+                                $this->email->send();
                         } 
                         else 
                         {
@@ -114,7 +143,7 @@ class Dashboard extends CI_Controller
                         echo $_GET["preference_id"]; 
                         echo $_GET["payment_type"];
                         echo $_GET["merchant_order_id"]; */
-                    }
+                }
 
                 $data = array(
                     "body_class" => 'class="courses-page"',

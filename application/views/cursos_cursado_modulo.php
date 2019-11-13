@@ -244,10 +244,10 @@ include("aa_barra_navegacion.php");
                             </div> -->
                             <!-- .ratings -->
 
-                            <h2 class="entry-title mt-3">{{ datosFormularioPrincipal.Titulo_curso }}</h2>
+                            <h2 class="entry-title mt-3">{{ datosFormularioPrincipal.Nombre_profesor }}</h2>
 
                             <div class="course-teacher mt-3">
-                                Profesor/a: <a href="#">{{ datosFormularioPrincipal.Nombre_profesor }}</a>
+                                Contacto: <a href="#">{{ datosFormularioPrincipal.Email_profesor }}</a>
                             </div><!-- .course-teacher -->
 
                             <div class="entry-content mt-3">

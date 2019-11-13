@@ -210,14 +210,12 @@
         }
 
         //// CERRAR SESIÓN
-        function signOut() 
-        {
+        function signOut() {
             console.log("Solicitud de cerrar sesión recibida 2")
 
             var auth2 = gapi.auth2.getAuthInstance();
 
-            auth2.signOut().then(function() 
-            {
+            auth2.signOut().then(function() {
                 console.log('Usuario deslogueado.');
                 jQuery.ajax({
                     // la URL para la petición
@@ -256,22 +254,23 @@
                     }
 
                 });
-            }); 
+            });
         }
-
-
     </script>
     <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
 
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-12197526-9"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-12197526-9"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
 
-  gtag('config', 'UA-12197526-9');
-</script>
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-12197526-9');
+    </script>
 
 </head>
 

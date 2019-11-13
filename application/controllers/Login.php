@@ -81,8 +81,6 @@ class Login extends CI_Controller
 //// INICIAR SESIÓN DESDE GOOGLE
     public function iniciar_session_google()
     {
-        
-
         /// TOMANDO DATOS ENVIADOS POR AJAX
             $datos_ajax = array(
                 'Nombre'       => $this->input->get('Name'),
@@ -112,7 +110,7 @@ class Login extends CI_Controller
                     $data = array(
                         'Nombre'        => $result[0]["Nombre"],
                         'Id'            => $result[0]["Id"],
-                        
+                        'Email'         => $result[0]["Email"],
                         'Login'         => true,
                         'Rol_acceso'    => $result[0]["Rol_acceso"],
                         'Imagen'        => $result[0]["Imagen"],
@@ -122,7 +120,6 @@ class Login extends CI_Controller
 
                     //header("Location: " . base_url() . "dashboard");
                     echo json_encode(array("Estado" => TRUE));
-                    
                 }
 
                 else
@@ -154,7 +151,7 @@ class Login extends CI_Controller
                         $data = array(
                             'Nombre'        => $this->input->get('Name'),
                             'Id'            => $insert_id,
-                            
+                            'Email'         => $this->input->get('Email'),
                             'Login'         => true,
                             'Rol_acceso'    => 1,
                             'Imagen'        => $this->input->get('Image_URL'),
@@ -165,6 +162,37 @@ class Login extends CI_Controller
         
                         ///header("Location: " . base_url() . "dashboard");
                         echo json_encode(array("Estado" => TRUE));
+
+                        /// Y ENVIA UN EMAIL PARA AVISAR QUE HAY UN NUEVO ALUMNO REGISTRADO
+                            //Load email library
+                            $this->load->library('email');
+
+                            //SMTP & mail configuration
+                            $config = array(
+                                'protocol'  => 'smtp',
+                                'smtp_host' => 'ssl://c1570036.ferozo.com',
+                                'smtp_port' => 465,
+                                'smtp_user' => 'info@institutojlc.com',
+                                'smtp_pass' => 'intJLC2019',
+                                'mailtype'  => 'html',
+                                'charset'   => 'utf-8'
+                            );
+                            $this->email->initialize($config);
+                            $this->email->set_mailtype("html");
+                            $this->email->set_newline("\r\n");
+
+                            //Email content
+                            $htmlContent = '<h1>Instituto JLC</h1>';
+                            $htmlContent .= '<p>Nombre: ' . $this->input->get('Name').'<br>Email: ' . $this->input->get('Email').'<br></p>';
+                            $htmlContent .= '<h6>Mensaje autómatico enviado desde la plataforma www.institutojlc.com</h6>';
+
+                            $this->email->to('info@institutojlc.com');
+                            $this->email->from('info@institutojlc.com','Instituto JLC');
+                            $this->email->subject('Nuevo alumno registrado: ' . $this->input->get('Name'));
+                            $this->email->message($htmlContent);
+
+                            //Send email
+                            $this->email->send();
 
                     } 
                     else 

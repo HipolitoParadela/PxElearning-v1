@@ -30,7 +30,7 @@ class Elementoscomunes extends CI_Controller
 		$this->load->view('index', $data);
 	}
 
-//// DATOS USUARIO JS | VISTA | PRODUCCION
+/// DATOS USUARIO JS | VISTA | PRODUCCION
 public function config()
 {
 	if ($this->session->userdata('Login') != true) 
@@ -46,16 +46,15 @@ public function config()
 	else 
 	{
 		$Datos = array( 'Rol_acceso' => $this->session->userdata('Rol_acceso'),
-						'Usuario_id' => $this->session->userdata('Id'));
+						'Usuario_id' => $this->session->userdata('Id'),
+						'Email' => 		$this->session->userdata('Email')
+					);
 
 		$this->load->view('config', $Datos);
 	}
 }
 
-
-
-
-//// 			| ELIMINAR ALGO
+/// 			| ELIMINAR ALGO
 	public function eliminar()
 	{
 		$CI = &get_instance();
@@ -82,7 +81,7 @@ public function config()
 		$insert_id = $this->App_model->eliminar($Id, $tabla);
 	}
 
-//// IMAGENES
+/// IMAGENES
 	public function subirImagen()
 	{
 		$status = "";
@@ -132,4 +131,57 @@ public function config()
 		}
 		echo json_encode(array('status' => $status, 'Imagen' => $nombre_imagen));
 	}
+
+/// ENVIO DE EMAIL
+	public function envio_mails()
+	{
+	
+		//Seguridad
+		$CI =& get_instance();
+        $CI->load->database();
+		//Seguridad
+        $token = @$CI->db->token;
+        $token = @$CI->db->token;
+        $this->datosObtenidos = json_decode(file_get_contents('php://input'));
+        if ($this->datosObtenidos->token != $token) {
+            exit("No coinciden los token");
+        }
+        
+		$Asunto = $this->datosObtenidos->Asunto;
+		$Destinatario = $this->datosObtenidos->Destinatario . ', info@institutojlc.com';
+		$Mensaje = $this->datosObtenidos->Mensaje;
+		
+		//Load email library
+		$this->load->library('email');
+
+		//SMTP & mail configuration
+		$config = array(
+			'protocol'  => 'smtp',
+			'smtp_host' => 'ssl://c1570036.ferozo.com',
+			'smtp_port' => 465,
+			'smtp_user' => 'info@institutojlc.com',
+			'smtp_pass' => 'intJLC2019',
+			'mailtype'  => 'html',
+			'charset'   => 'utf-8'
+		);
+		$this->email->initialize($config);
+		$this->email->set_mailtype("html");
+		$this->email->set_newline("\r\n");
+
+		//Email content
+		$htmlContent = '<h1>Instituto JLC</h1>';
+		$htmlContent .= '<p>'.$Mensaje.'</p>';
+		$htmlContent .= '<h6>Mensaje autómatico enviado desde la plataforma www.institutojlc.com</h6>';
+
+		$this->email->to($Destinatario);
+		$this->email->from('info@institutojlc.com','Instituto JLC');
+		$this->email->subject($Asunto);
+		$this->email->message($htmlContent);
+
+		//Send email
+		$this->email->send();
+
+	}
+
+/// 
 }

@@ -1297,10 +1297,12 @@ class Cursos extends CI_Controller
 
                             tbl_alumno.Nombre as Nombre_alumno,
                             tbl_alumno.Imagen as Imagen_alumno,
+                            tbl_alumno.Email as Email_alumno,
 
                             tbl_profesor.Nombre as Nombre_profesor,
                             tbl_profesor.Observaciones as Observaciones_profesor,
                             tbl_profesor.Imagen as Imagen_profesor,
+                            tbl_profesor.Email as Email_profesor,
 
                             tbl_cursos_categorias.Nombre_categoria,
 
