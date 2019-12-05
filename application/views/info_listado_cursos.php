@@ -11,6 +11,7 @@ include("aa_barra_navegacion.php");
             <div class="col-12">
                 <header class="entry-header">
                     <h1><?= $TituloPagina; ?></h1>
+                    <h4 align="center" class="text-warning">Modalidad 100% a distancia con certificación.</h4>
                 </header><!-- .entry-header -->
             </div><!-- .col -->
         </div><!-- .row -->
@@ -32,6 +33,7 @@ include("aa_barra_navegacion.php");
                     <li><a href="<?php echo base_url(); ?>"><i class="fa fa-home"></i> Home</a></li>
                     <li><a href="<?php echo base_url(); ?>cursos">
                             <!-- <i class="fa fa-users"></i> --> <?= $TituloPagina; ?></a></li>
+                            
                 </ul>
             </div><!-- .breadcrumbs -->
         </div><!-- .col -->
@@ -65,13 +67,13 @@ include("aa_barra_navegacion.php");
                                 <footer class="entry-footer flex justify-content-between align-items-center">
                                     <div class="course-cost" v-if="curso.Costo_promocional == null || curso.Costo_promocional == 0">
 
-                                        $ {{curso.Costo_normal | Moneda}} <!-- <span class="price-drop">{{curso.Costo_promocional}}</span> -->
+                                        ${{curso.Costo_normal | Moneda}} <!-- <span class="price-drop">{{curso.Costo_promocional}}</span> -->
                                     </div><!-- .course-cost -->
                                     <div class="course-cost" v-if="curso.Costo_promocional > 0">
-                                        $ {{curso.Costo_promocional | Moneda}} <span class="price-drop">$ {{curso.Costo_normal | Moneda}}</span>
+                                        ${{curso.Costo_promocional | Moneda}} <span class="price-drop">${{curso.Costo_normal | Moneda}}</span>
                                     </div><!-- .course-cost -->
 
-                                    <div class="course-ratings flex justify-content-end align-items-center">
+                                    <!-- <div class="course-ratings flex justify-content-end align-items-center">
                                         <span class="fa fa-star checked"></span>
                                         <span class="fa fa-star checked"></span>
                                         <span class="fa fa-star checked"></span>
@@ -79,7 +81,7 @@ include("aa_barra_navegacion.php");
                                         <span class="fa fa-star-o"></span>
 
                                         <span class="course-ratings-count">(4 votos)</span>
-                                    </div><!-- .course-ratings -->
+                                    </div> --><!-- .course-ratings -->
                                 </footer><!-- .entry-footer -->
                             </div><!-- .course-content-wrap -->
                         </div><!-- .course-content -->
@@ -158,10 +160,10 @@ include("aa_barra_navegacion.php");
                                 <h3><a v-bind:href="'<?php echo base_url(); ?>cursos/informaciondelcurso/?Id=' + ult_curso.Id">{{ult_curso.Titulo_curso}}</a></h3>
 
                                 <div class="course-cost" v-if="ult_curso.Costo_promocional == null || ult_curso.Costo_promocional == 0">
-                                    $ {{ult_curso.Costo_normal | Moneda}} <!-- <span class="price-drop">{{ult_curso.Costo_promocional}}</span> -->
+                                    ${{ult_curso.Costo_normal | Moneda}} <!-- <span class="price-drop">{{ult_curso.Costo_promocional}}</span> -->
                                 </div><!-- .course-cost -->
                                 <div class="course-cost" v-if="ult_curso.Costo_promocional > 0">
-                                    $ {{ult_curso.Costo_promocional | Moneda}} <span class="price-drop">$ {{ult_curso.Costo_normal | Moneda}}</span>
+                                    ${{ult_curso.Costo_promocional | Moneda}} <span class="price-drop">${{ult_curso.Costo_normal | Moneda}}</span>
                                 </div><!-- .course-cost -->
                             </div><!-- .content-wrap -->
                         </li>

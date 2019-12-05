@@ -11,7 +11,7 @@ include("aa_barra_navegacion.php");
             <div class="col-12">
                 <div class="hero-content-wrap flex flex-column justify-content-center align-items-start">
                     <header class="entry-header">
-                        <h4>Cursos de formación en linea con certifición</h4>
+                        <h4>Cursos de formación en linea con certificación</h4>
                         <h1>Desde tu casa<br />En tus tiempos</h1>
                     </header><!-- .entry-header -->
 
