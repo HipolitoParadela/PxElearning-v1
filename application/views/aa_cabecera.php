@@ -272,6 +272,13 @@
         gtag('config', 'UA-12197526-9');
     </script>
 
+
+    <!-- CKEDITOR -->
+
+     <!-- <script src="https://cdn.ckeditor.com/ckeditor5/16.0.0/classic/ckeditor.js"></script> -->
+
+
+
 </head>
 
 <body <?= $body_class; ?>>

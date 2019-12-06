@@ -71,12 +71,11 @@ include("aa_barra_navegacion.php");
                                     <p>{{blog.Copete}}</p>
                                 </div><!-- .entry-content -->
                                 <?php
-                                    if ($this->session->userdata('Rol_acceso') > 2) 
-                                    {
-                                        echo '<button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#exampleModalLong" v-on:click="editarFormulario(blog)">
+                                if ($this->session->userdata('Rol_acceso') > 2) {
+                                    echo '<button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#exampleModalLong" v-on:click="editarFormulario(blog)">
                                                 <i class="fas fa-plus"></i> Editar entrada
                                             </button><hr>';
-                                    }
+                                }
 
                                 ?>
                             </div><!-- .blog-post-content-wrap -->
@@ -180,7 +179,7 @@ include("aa_barra_navegacion.php");
                         <div class="contact-form">
                             <input type="text" placeholder="Titulo de la entrada" v-model="datosFormularioPrincipal.Titulo_curso" required>
                             <textarea placeholder="Copete" v-model="datosFormularioPrincipal.Copete" rows="3" required></textarea>
-                            <textarea placeholder="Contenido de la noticia" v-model="datosFormularioPrincipal.Contenido" rows="7" required></textarea>
+                            <textarea id="ckeditor" placeholder="Contenido de la noticia" v-model="datosFormularioPrincipal.Contenido" rows="7" required></textarea>
                             <!--  -->
                             <div class="form-group">
                                 <div class="col-sm-12">
@@ -211,7 +210,21 @@ include("aa_barra_navegacion.php");
         </div>
     </div>
 </div><!-- .container -->
+<script src="<?php echo base_url(); ?>ckeditor5-build-classic/ckeditor.js"></script>
+<script>
 
+
+    /* ClassicEditor
+        .create(document.querySelector('#ckeditor'), {
+            toolbar: [ 'heading', '|', 'bold', 'italic', 'link' ]
+        })
+        .then(editor => {
+            window.editor = editor;
+        })
+        .catch(err => {
+            console.error(err.stack);
+        }); */
+</script>
 <?php
 include("aa_pie.php");
 ?>

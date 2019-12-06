@@ -131,6 +131,8 @@
         </div><!-- .container -->
     </div><!-- .footer-bar -->
 </footer><!-- .site-footer -->
+
+
 <!--config -->
 <script src="<?php echo base_url(); ?>elementoscomunes/config"></script>
 <!-- VUE JS-->
@@ -140,7 +142,7 @@
 <!-- APP JS-->
 <script src="<?php echo base_url(); ?>js/app.js"></script>
 <script type='text/javascript' src='<?php echo base_url(); ?>plantilla/js/jquery.js'></script>
-
+<script src="<?php echo base_url(); ?>js/toastr.js"></script>
 <script type='text/javascript' src='<?php echo base_url(); ?>plantilla/js/bootstrap.min.js'></script>
 
 <script type='text/javascript' src='<?php echo base_url(); ?>plantilla/js/swiper.min.js'></script>
@@ -148,7 +150,8 @@
 <script type='text/javascript' src='<?php echo base_url(); ?>plantilla/js/jquery.collapsible.min.js'></script>
 <script type='text/javascript' src='<?php echo base_url(); ?>plantilla/js/custom.js'></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="<?php echo base_url(); ?>js/toastr.js"></script>
+
+
 
 </body>
 
