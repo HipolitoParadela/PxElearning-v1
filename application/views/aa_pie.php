@@ -139,6 +139,9 @@
 <script src="<?php echo base_url(); ?>js/vue.min.js"></script>
 <script src="<?php echo base_url(); ?>js/axios.js"></script>
 <!-- <script src="<?php echo base_url(); ?>js/JsonExcel.vue"></script> -->
+<!-- CKEDITOR -->
+<!-- <script src="<?php echo base_url(); ?>node_modules/@ckeditor/ckeditor5-build-classic/build/ckeditor.js"></script>
+<script src="<?php echo base_url(); ?>node_modules/@ckeditor/ckeditor5-vue/dist/ckeditor.js"></script> -->
 <!-- APP JS-->
 <script src="<?php echo base_url(); ?>js/app.js"></script>
 <script type='text/javascript' src='<?php echo base_url(); ?>plantilla/js/jquery.js'></script>

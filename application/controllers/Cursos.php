@@ -42,7 +42,7 @@ class Cursos extends CI_Controller
             if ($this->session->userdata('Rol_acceso') > 2) 
             {
                 $data = array(
-                    "body_class" => 'class="courses-page"',
+                    "body_class" => 'class="single-courses-page"',
                     "div_inicial_class" => 'class="page-header"',
 					"TituloPagina" => "Control de cursos",
 					"Descripcion" => "Cursos de formación Online del Instituto Jerónimo Luis de Caberar Río Segundo, certificados por el Concejo Provincial de Informática de Córdoba y por la UTN Córdoba",
@@ -118,7 +118,7 @@ class Cursos extends CI_Controller
             if ($this->session->userdata('Rol_acceso') > 2) 
             {
                 $data = array(
-                    "body_class" => 'class="single-courses-page"',
+                    "body_class" => 'class="courses-page"',
                     "div_inicial_class" => 'class="page-header"',
                     "TituloPagina" => "Control de modulo de un curso",
                     "Descripcion" => "Cursos de formación Online del Instituto Jerónimo Luis de Caberar Río Segundo, certificados por el Concejo Provincial de Informática de Córdoba y por la UTN Córdoba",
@@ -201,8 +201,8 @@ class Cursos extends CI_Controller
                 }
             
             $data = array(
-                "body_class" => ' class="single-courses-page"',
-                "div_inicial_class" => 'class="page-header"',
+                "body_class" => 'class="courses-page"',
+                    "div_inicial_class" => 'class="page-header"',
                 "TituloPagina" => $result[0]["Titulo_curso"],
                 "Curso" => $result[0],
                 "Descripcion" => "Cursos de formación Online del Instituto Jerónimo Luis de Caberar Río Segundo, certificados por el Concejo Provincial de Informática de Córdoba y por la UTN Córdoba",
@@ -360,7 +360,7 @@ class Cursos extends CI_Controller
                 
                 $data = array(
                     "body_class" => 'class="single-courses-page"',
-                    "div_inicial_class" => '',
+                    "div_inicial_class" => 'class="page-header"',
                     "TituloPagina" => $result[0]["Titulo_modulo"],
                     "Descripcion" => $result[0]["Descripcion_modulo"],
                     "Datos" => $result[0],

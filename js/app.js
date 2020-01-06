@@ -1,161 +1,11 @@
-/// *********************************************************************************************/////
-//// FILTROS
-/// *******************************************
-
-/// FECHA TIME STAMP
-Vue.filter('FechaTimestamp', function (fecha) {
-    if (fecha) {
-        fecha = fecha.split('T');
-
-        //var fecha_dia = fecha[0].replace(/^(\d{4})-(\d{2})-(\d{2})$/g, '$3/$2/$1');
-        var fecha_dia = fecha[0].replace(/^(\d{4})-(\d{2})-(\d{2})$/g, '$3/$2/$1');
-
-        var fecha_hora = fecha[1].split(':');
-        fecha_hora = fecha_hora[0] + ':' + fecha_hora[1];
-
-        //return fecha_dia + ' ' + fecha_hora + 'hs '
-        return fecha_dia
-    }
-    else {
-        return "No definida"
-    }
-})
-
-/// FECHA AUTOMATICA BASE DATOS
-Vue.filter('FechaB_datos', function (fecha) {
-    if (fecha) {
-        fecha = fecha.split(' ');
-
-        //var fecha_dia = fecha[0].replace(/^(\d{4})-(\d{2})-(\d{2})$/g, '$3/$2/$1');
-        var fecha_dia = fecha[0].replace(/^(\d{4})-(\d{2})-(\d{2})$/g, '$3/$2/$1');
-
-        var fecha_hora = fecha[1].split(':');
-        fecha_hora = fecha_hora[0] + ':' + fecha_hora[1];
-
-        return fecha_dia + ' ' + fecha_hora + 'hs '
-    }
-    else {
-        return "No definida"
-    }
-
-})
-
-/// FECHA TIME STAMP
-Vue.filter('Fecha', function (fecha) {
-    if (fecha) {
-        return fecha.replace(/^(\d{4})-(\d{2})-(\d{2})$/g, '$3/$2/$1');
-    }
-    else {
-        return 'No definido'
-    }
-
-})
-
-/// FORMATO DINERO
-Vue.filter('Moneda', function (numero) {
-    /// PARA QUE FUNCIONE DEBE TOMAR EL NUMERO COMO UN STRING
-    //si no lo es, lo convierte
-
-    if (numero > 0 || numero != null) {
-        //if (numero % 1 == 0) {
-        numero = numero.toString();
-        //}
-
-        // Variable que contendra el resultado final
-        var resultado = "";
-        var nuevoNumero;
-
-        // Si el numero empieza por el valor "-" (numero negativo)
-        if (numero[0] == "-") {
-            // Cogemos el numero eliminando los posibles puntos que tenga, y sin
-            // el signo negativo
-            nuevoNumero = numero.replace(/\./g, '').substring(1);
-        } else {
-            // Cogemos el numero eliminando los posibles puntos que tenga
-            nuevoNumero = numero.replace(/\./g, '');
-        }
-
-        // Si tiene decimales, se los quitamos al numero
-        if (numero.indexOf(",") >= 0)
-            nuevoNumero = nuevoNumero.substring(0, nuevoNumero.indexOf(","));
-
-        // Ponemos un punto cada 3 caracteres
-        for (var j, i = nuevoNumero.length - 1, j = 0; i >= 0; i-- , j++)
-            resultado = nuevoNumero.charAt(i) + ((j > 0) && (j % 3 == 0) ? "." : "") + resultado;
-
-        // Si tiene decimales, se lo añadimos al numero una vez forateado con 
-        // los separadores de miles
-        if (numero.indexOf(",") >= 0)
-            resultado += numero.substring(numero.indexOf(","));
-
-        if (numero[0] == "-") {
-            // Devolvemos el valor añadiendo al inicio el signo negativo
-            return "-" + resultado;
-        } else {
-            return resultado;
-        }
-    }
-    else {
-        return 0
-    }
-})
-
-/// OBSERVACIONES RECORTAR LARGO
-Vue.filter('Recortar', function (texto) {
-    if (texto != null) {
-        return texto.substr(0, 30) + '...';
-    }
-    else {
-        return 'Sin observaciones'
-    }
-})
-
-/// FECHA AUTOMATICA BASE DATOS
-Vue.filter('Dia', function (fecha) {
-    if (fecha) {
-        fecha = fecha.split(' ');
-
-        //var fecha_dia = fecha[0].replace(/^(\d{4})-(\d{2})-(\d{2})$/g, '$3/$2/$1');
-        var fecha_dia = fecha[0].replace(/^(\d{4})-(\d{2})-(\d{2})$/g, '$3');
-
-        return fecha_dia
-    }
-    else {
-        return "No definida"
-    }
-
-})
-
-/// FECHA AUTOMATICA BASE DATOS
-Vue.filter('Mes', function (fecha) {
-    if (fecha) {
-        fecha = fecha.split(' ');
-
-        //var fecha_dia = fecha[0].replace(/^(\d{4})-(\d{2})-(\d{2})$/g, '$3/$2/$1');
-        var Mes = fecha[0].replace(/^(\d{4})-(\d{2})-(\d{2})$/g, '$2');
-        var mesTexto;
-        switch (Mes) {
-            case '01': mesTexto = 'ENE'; break;
-            case '02': mesTexto = 'FEB'; break;
-            case '03': mesTexto = 'MAR'; break;
-            case '04': mesTexto = 'ABR'; break;
-            case '05': mesTexto = 'MAY'; break;
-            case '06': mesTexto = 'JUN'; break;
-            case '07': mesTexto = 'JUL'; break;
-            case '08': mesTexto = 'AGO'; break;
-            case '09': mesTexto = 'SEP'; break;
-            case '10': mesTexto = 'OCT'; break;
-            case '11': mesTexto = 'NOV'; break;
-            case '12': mesTexto = 'DIC'; break;
-        }
-
-        return mesTexto;
-    }
-    else {
-        return "No definida"
-    }
-
-})
+ /// *********************************************************************************************/////
+//// PLUGGINGS
+/// ******************************************* 
+    // CKEDITOR
+    
+    
+    //import ClassicEditor from '../node_modules/@ckeditor/ckeditor5-build-classic';
+    //Vue.use( CKEditor ),
 
 /// ELEMENTOS COMUNES PARA LA WEB
 new Vue({
@@ -181,6 +31,8 @@ new Vue({
 
         }
     },
+
+    
 
     data:
     {
@@ -219,7 +71,18 @@ new Vue({
         mostrar: '1',
         texto_boton: "Cargar",
         Rol_usuario: '',
+        
     },
+
+    /* data() {
+        return {
+            editor: ClassicEditor,
+            editorData: '<p>Content of the editor.</p>',
+            editorConfig: {
+                // The configuration of the editor.
+            }
+        };
+    }, */
 
     methods:
     {
@@ -3281,3 +3144,170 @@ new Vue({
     }
 });
 
+/// *********************************************************************************************/////
+//// FILTROS
+/// *******************************************
+
+    /// FECHA TIME STAMP
+    Vue.filter('FechaTimestamp', function (fecha) {
+        if (fecha) {
+            fecha = fecha.split('T');
+
+            //var fecha_dia = fecha[0].replace(/^(\d{4})-(\d{2})-(\d{2})$/g, '$3/$2/$1');
+            var fecha_dia = fecha[0].replace(/^(\d{4})-(\d{2})-(\d{2})$/g, '$3/$2/$1');
+
+            var fecha_hora = fecha[1].split(':');
+            fecha_hora = fecha_hora[0] + ':' + fecha_hora[1];
+
+            //return fecha_dia + ' ' + fecha_hora + 'hs '
+            return fecha_dia
+        }
+        else {
+            return "No definida"
+        }
+    })
+
+    /// FECHA AUTOMATICA BASE DATOS
+    Vue.filter('FechaB_datos', function (fecha) {
+        if (fecha) {
+            fecha = fecha.split(' ');
+
+            //var fecha_dia = fecha[0].replace(/^(\d{4})-(\d{2})-(\d{2})$/g, '$3/$2/$1');
+            var fecha_dia = fecha[0].replace(/^(\d{4})-(\d{2})-(\d{2})$/g, '$3/$2/$1');
+
+            var fecha_hora = fecha[1].split(':');
+            fecha_hora = fecha_hora[0] + ':' + fecha_hora[1];
+
+            return fecha_dia + ' ' + fecha_hora + 'hs '
+        }
+        else {
+            return "No definida"
+        }
+
+    })
+
+    /// FECHA TIME STAMP
+    Vue.filter('Fecha', function (fecha) {
+        if (fecha) {
+            return fecha.replace(/^(\d{4})-(\d{2})-(\d{2})$/g, '$3/$2/$1');
+        }
+        else {
+            return 'No definido'
+        }
+
+    })
+
+    /// FORMATO DINERO
+    Vue.filter('Moneda', function (numero) {
+        /// PARA QUE FUNCIONE DEBE TOMAR EL NUMERO COMO UN STRING
+        //si no lo es, lo convierte
+
+        if (numero > 0 || numero != null) {
+            //if (numero % 1 == 0) {
+            numero = numero.toString();
+            //}
+
+            // Variable que contendra el resultado final
+            var resultado = "";
+            var nuevoNumero;
+
+            // Si el numero empieza por el valor "-" (numero negativo)
+            if (numero[0] == "-") {
+                // Cogemos el numero eliminando los posibles puntos que tenga, y sin
+                // el signo negativo
+                nuevoNumero = numero.replace(/\./g, '').substring(1);
+            } else {
+                // Cogemos el numero eliminando los posibles puntos que tenga
+                nuevoNumero = numero.replace(/\./g, '');
+            }
+
+            // Si tiene decimales, se los quitamos al numero
+            if (numero.indexOf(",") >= 0)
+                nuevoNumero = nuevoNumero.substring(0, nuevoNumero.indexOf(","));
+
+            // Ponemos un punto cada 3 caracteres
+            for (var j, i = nuevoNumero.length - 1, j = 0; i >= 0; i-- , j++)
+                resultado = nuevoNumero.charAt(i) + ((j > 0) && (j % 3 == 0) ? "." : "") + resultado;
+
+            // Si tiene decimales, se lo añadimos al numero una vez forateado con 
+            // los separadores de miles
+            if (numero.indexOf(",") >= 0)
+                resultado += numero.substring(numero.indexOf(","));
+
+            if (numero[0] == "-") {
+                // Devolvemos el valor añadiendo al inicio el signo negativo
+                return "-" + resultado;
+            } else {
+                return resultado;
+            }
+        }
+        else {
+            return 0
+        }
+    })
+
+    /// OBSERVACIONES RECORTAR LARGO
+    Vue.filter('Recortar', function (texto) {
+        if (texto != null) {
+            return texto.substr(0, 30) + '...';
+        }
+        else {
+            return 'Sin observaciones'
+        }
+    })
+
+    /// FECHA AUTOMATICA BASE DATOS
+    Vue.filter('Dia', function (fecha) {
+        if (fecha) {
+            fecha = fecha.split(' ');
+
+            //var fecha_dia = fecha[0].replace(/^(\d{4})-(\d{2})-(\d{2})$/g, '$3/$2/$1');
+            var fecha_dia = fecha[0].replace(/^(\d{4})-(\d{2})-(\d{2})$/g, '$3');
+
+            return fecha_dia
+        }
+        else {
+            return "No definida"
+        }
+
+    })
+
+    /// FECHA AUTOMATICA BASE DATOS
+    Vue.filter('Mes', function (fecha) {
+        if (fecha) {
+            fecha = fecha.split(' ');
+
+            //var fecha_dia = fecha[0].replace(/^(\d{4})-(\d{2})-(\d{2})$/g, '$3/$2/$1');
+            var Mes = fecha[0].replace(/^(\d{4})-(\d{2})-(\d{2})$/g, '$2');
+            var mesTexto;
+            switch (Mes) {
+                case '01': mesTexto = 'ENE'; break;
+                case '02': mesTexto = 'FEB'; break;
+                case '03': mesTexto = 'MAR'; break;
+                case '04': mesTexto = 'ABR'; break;
+                case '05': mesTexto = 'MAY'; break;
+                case '06': mesTexto = 'JUN'; break;
+                case '07': mesTexto = 'JUL'; break;
+                case '08': mesTexto = 'AGO'; break;
+                case '09': mesTexto = 'SEP'; break;
+                case '10': mesTexto = 'OCT'; break;
+                case '11': mesTexto = 'NOV'; break;
+                case '12': mesTexto = 'DIC'; break;
+            }
+
+            return mesTexto;
+        }
+        else {
+            return "No definida"
+        }
+
+    })
+
+   
+ /// *********************************************************************************************/////
+//// PLUGGINGS
+/// ******************************************* 
+    
+    // CKEDITOR
+    /* import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+    Vue.use( CKEditor ); */
