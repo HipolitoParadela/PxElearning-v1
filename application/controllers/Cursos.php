@@ -201,7 +201,7 @@ class Cursos extends CI_Controller
                 }
             
             $data = array(
-                "body_class" => 'class="courses-page"',
+                "body_class" => 'class="single-courses-page"',
                     "div_inicial_class" => 'class="page-header"',
                 "TituloPagina" => $result[0]["Titulo_curso"],
                 "Curso" => $result[0],
@@ -253,10 +253,10 @@ class Cursos extends CI_Controller
             $result = $query->result_array();
 
             /// BUSCANDO DATOS DE LOS MODULOS DE ESTE CURSO
-                $this->db->select('*');
+                $this->db->select(' Titulo_modulo,
+                                    Descripcion_modulo');
                 $this->db->from('tbl_cursos_modulos');
                 $this->db->where('Curso_id', $result[0]["Curso_id"]);
-                
                 $query = $this->db->get();
                 $array_modulos = $query->result_array();
             
