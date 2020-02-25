@@ -160,7 +160,7 @@ public function config()
 			'smtp_host' => 'ssl://c1570036.ferozo.com',
 			'smtp_port' => 465,
 			'smtp_user' => 'info@institutojlc.com',
-			'smtp_pass' => 'intJLC2019',
+			'smtp_pass' => 'ey@giyfjej6Vijg',
 			'mailtype'  => 'html',
 			'charset'   => 'utf-8'
 		);

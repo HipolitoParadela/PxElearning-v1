@@ -181,20 +181,20 @@ include("aa_barra_navegacion.php");
 
                     <div class="entry-content ezuca-stats">
                         <div class="stats-wrap flex flex-wrap justify-content-lg-between">
-                            <div class="stats-count">
-                                {{cantidad_inscriptos}}<!-- <span>M+</span> -->
-                                <p>INSCRIPTOS</p>
-                            </div><!-- .stats-count -->
+                            <!-- <div class="stats-count">
+                                {{cantidad_inscriptos}} --><!-- <span>M+</span> -->
+                                <!-- <p>INSCRIPTOS</p>
+                            </div> --><!-- .stats-count -->
 
-                            <div class="stats-count">
-                                {{cantidad_cursos_gratuitos}}<!-- <span>K+</span> -->
-                                <p>CURSOS GRATUITOS</p>
-                            </div><!-- .stats-count -->
+                            <!-- <div class="stats-count">
+                                {{cantidad_cursos_gratuitos}} --><!-- <span>K+</span> -->
+                                <!-- <p>CURSOS GRATUITOS</p>
+                            </div> --><!-- .stats-count -->
 
-                            <div class="stats-count">
-                                {{cantidad_profesores}}<!-- <span>M+</span> -->
-                                <p>INSTRUCTORES</p>
-                            </div><!-- .stats-count -->
+                            <!-- <div class="stats-count">
+                                {{cantidad_profesores}} --><!-- <span>M+</span> -->
+                                <!-- <p>INSTRUCTORES</p>
+                            </div> --><!-- .stats-count -->
 
                             <div class="stats-count">
                                 {{cantidad_cursos}}<!-- <span>+</span> -->
