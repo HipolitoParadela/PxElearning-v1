@@ -179,7 +179,7 @@ include("aa_barra_navegacion.php");
                                                     <button class="item" v-on:click="editarForm_cont_2(modulo)" data-toggle="modal" data-target="#modalModulos" data-placement="top" title="Edición rápida">
                                                         <i class="fas fa-pen-square"></i>
                                                     </button>
-                                                    <button v-on:click="desactivarUsuario(modulo.Id)" class="item" data-toggle="tooltip" data-placement="top" title="Eliminar">
+                                                    <button v-on:click="eliminar(modulo.Id, 'tbl_cursos_modulos')" class="item" data-toggle="tooltip" data-placement="top" title="Eliminar">
                                                         <i class="fas fa-eraser"></i>
                                                     </button>
                                                 </td>

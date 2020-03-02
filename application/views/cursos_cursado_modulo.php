@@ -261,25 +261,22 @@ include("aa_barra_navegacion.php");
                     <header class="entry-heading flex flex-wrap justify-content-between align-items-center">
                         <h2 class="entry-title">Cursos que podrian interesarte</h2>
 
-                        <a href="#">Ver todos</a>
+                        <a href="<?php echo base_url(); ?>cursos/listado">Ver todos</a>
                     </header><!-- .entry-heading -->
 
                     <div class="row mx-m-25">
-
-
-
-
-
                         <div class="col-12 col-lg-6 px-25" v-for="curso in listaContenido_2">
                             <div class="course-content">
                                 <figure class="course-thumbnail">
-                                    <a href="#"><img v-if="curso.Imagen != null" v-bind:src="'<?php echo base_url(); ?>uploads/imagenes/'+curso.Imagen" alt=""></a>
+                                    <a v-bind:href="'<?php echo base_url(); ?>cursos/informaciondelcurso/?Id=' + curso.Id">
+                                        <img v-if="curso.Imagen != null" v-bind:src="'<?php echo base_url(); ?>uploads/imagenes/'+curso.Imagen" alt="">
+                                    </a>
                                     <img v-else src="<?php echo base_url(); ?>uploads/addimagen.jpg" alt="">
                                 </figure><!-- .course-thumbnail -->
 
                                 <div class="course-content-wrap">
                                     <header class="entry-header">
-                                        <h2 class="entry-title"><a href="#">{{curso.Titulo_curso}}</a></h2>
+                                        <h2 class="entry-title"><a v-bind:href="'<?php echo base_url(); ?>cursos/informaciondelcurso/?Id=' + curso.Id">{{curso.Titulo_curso}}</a></h2>
 
                                         <!-- <div class="entry-meta flex flex-wrap align-items-center">
                                             <div class="course-author"><a href="#">Ms. Lucius</a></div>
@@ -289,36 +286,33 @@ include("aa_barra_navegacion.php");
                                     </header><!-- .entry-header -->
 
                                     <footer class="entry-footer flex flex-wrap justify-content-between align-items-center">
-                                        <div class="course-cost" v-if="curso.Costo_promocional != null">
-                                            {{curso.Costo_promocional}} <span class="price-drop">{{curso.Costo_normal}}</span>
+
+
+                                        <div class="course-cost" v-if="curso.Costo_promocional == null || curso.Costo_promocional == 0">
+                                            $ {{curso.Costo_normal | Moneda}} <!-- <span class="price-drop">{{curso.Costo_promocional}}</span> -->
                                         </div><!-- .course-cost -->
-                                        <div v-else class="course-cost">
-                                            {{curso.Costo_normal}} <span class="price-drop">{{curso.Costo_promocional}}</span>
+                                        <div class="course-cost" v-if="curso.Costo_promocional > 0">
+                                            $ {{curso.Costo_promocional | Moneda}} <span class="price-drop">$ {{curso.Costo_normal | Moneda}}</span>
                                         </div><!-- .course-cost -->
+
+
 
                                         <div class="course-ratings flex justify-content-end align-items-center">
                                             <span class="fa fa-star checked"></span>
                                             <span class="fa fa-star checked"></span>
                                             <span class="fa fa-star checked"></span>
                                             <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star"></span>
+                                            <span class="fa fa-star-o"></span>
 
-                                            <span class="course-ratings-count">(4 votes)</span>
+                                            <!-- <span class="course-ratings-count">(4 votos)</span> -->
                                         </div><!-- .course-ratings -->
                                     </footer><!-- .entry-footer -->
                                 </div><!-- .course-content-wrap -->
                             </div><!-- .course-content -->
                         </div><!-- .col -->
-
-
-
-
-
-
-
-
                     </div><!-- .row -->
                 </div><!-- .related-course -->
+
             </div><!-- .single-course-wrap -->
         </div><!-- .col -->
     </div><!-- .row -->
