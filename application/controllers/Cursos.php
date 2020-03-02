@@ -162,6 +162,7 @@ class Cursos extends CI_Controller
                 $this->db->select('*');
                 $this->db->from('tbl_cursos_modulos');
                 $this->db->where('Curso_id', $result[0]["Curso_id"]);
+                $this->db->order_by("Id", "asc");
                 
                 $query = $this->db->get();
                 $array_modulos = $query->result_array();
@@ -257,6 +258,8 @@ class Cursos extends CI_Controller
                                     Descripcion_modulo');
                 $this->db->from('tbl_cursos_modulos');
                 $this->db->where('Curso_id', $result[0]["Curso_id"]);
+                $this->db->order_by("Id", "asc");
+                
                 $query = $this->db->get();
                 $array_modulos = $query->result_array();
             
