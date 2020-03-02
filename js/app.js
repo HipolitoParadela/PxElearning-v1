@@ -1567,7 +1567,7 @@ new Vue({
             var url = base_url + '/elementoscomunes/eliminar'; // url donde voy a mandar los datos
 
             //SOLICITANDO CONFIRMACIÓN PARA ELIMINAR
-            var opcion = confirm("¿Esta seguro de eliminar a este usuario?");
+            var opcion = confirm("¿Esta seguro de eliminar a este contenido?");
             if (opcion == true) {
 
                 axios.post(url, {
@@ -1575,11 +1575,8 @@ new Vue({
                     Id: Id, tabla: tbl
                 }).then(_response => {
 
-                    switch (pathname) {
-                        case '/usuarios':
-                            this.getListadoPrincipal('/usuarios/obtener_Usuarios');
-                            break;
-                    }
+                    this.get_contenido_2('/cursos/obtener_modulos');
+                    
                     toastr.success('Eliminado correctamente', '-')
 
                 }).catch(error => {

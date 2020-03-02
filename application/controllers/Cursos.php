@@ -19,7 +19,7 @@ class Cursos extends CI_Controller
                     "body_class" => 'class="courses-page"',
                     "div_inicial_class" => 'class="page-header"',
 					"TituloPagina" => "Control de cursos",
-					"Descripcion" => "Cursos de formación Online del Instituto Jerónimo Luis de Caberar Río Segundo, certificados por el Concejo Provincial de Informática de Córdoba y por la UTN Córdoba",
+					"Descripcion" => "Cursos de formación Online del Instituto Jerónimo Luis de Cabrera Río Segundo, certificados por el Concejo Provincial de Informática de Córdoba y por la UTN Córdoba",
 				);
 				$this->load->view('cursos_listado',$data);
 			} 
@@ -45,7 +45,7 @@ class Cursos extends CI_Controller
                     "body_class" => 'class="single-courses-page"',
                     "div_inicial_class" => 'class="page-header"',
 					"TituloPagina" => "Control de cursos",
-					"Descripcion" => "Cursos de formación Online del Instituto Jerónimo Luis de Caberar Río Segundo, certificados por el Concejo Provincial de Informática de Córdoba y por la UTN Córdoba",
+					"Descripcion" => "Cursos de formación Online del Instituto Jerónimo Luis de Cabrera Río Segundo, certificados por el Concejo Provincial de Informática de Córdoba y por la UTN Córdoba",
 				);
                 $this->load->view('cursos_datos', $data);
                 
@@ -70,7 +70,7 @@ class Cursos extends CI_Controller
                     "body_class" => 'class="courses-page"',
                     "div_inicial_class" => 'class="page-header"',
                     "TituloPagina" => "Pago exitoso",
-                    "Descripcion" => "Cursos de formación Online del Instituto Jerónimo Luis de Caberar Río Segundo, certificados por el Concejo Provincial de Informática de Córdoba y por la UTN Córdoba",
+                    "Descripcion" => "Cursos de formación Online del Instituto Jerónimo Luis de Cabrera Río Segundo, certificados por el Concejo Provincial de Informática de Córdoba y por la UTN Córdoba",
                 );
                 $this->load->view('cursos_pagos_exitoso', $data);
                 
@@ -95,7 +95,7 @@ class Cursos extends CI_Controller
                     "body_class" => 'class="courses-page"',
                     "div_inicial_class" => 'class="page-header"',
                     "TituloPagina" => "Pago en proceso",
-                    "Descripcion" => "Cursos de formación Online del Instituto Jerónimo Luis de Caberar Río Segundo, certificados por el Concejo Provincial de Informática de Córdoba y por la UTN Córdoba",
+                    "Descripcion" => "Cursos de formación Online del Instituto Jerónimo Luis de Cabrera Río Segundo, certificados por el Concejo Provincial de Informática de Córdoba y por la UTN Córdoba",
                 );
                 $this->load->view('cursos_pagos_proceso', $data);
                 
@@ -121,7 +121,7 @@ class Cursos extends CI_Controller
                     "body_class" => 'class="courses-page"',
                     "div_inicial_class" => 'class="page-header"',
                     "TituloPagina" => "Control de modulo de un curso",
-                    "Descripcion" => "Cursos de formación Online del Instituto Jerónimo Luis de Caberar Río Segundo, certificados por el Concejo Provincial de Informática de Córdoba y por la UTN Córdoba",
+                    "Descripcion" => "Cursos de formación Online del Instituto Jerónimo Luis de Cabrera Río Segundo, certificados por el Concejo Provincial de Informática de Córdoba y por la UTN Córdoba",
                 );
                 $this->load->view('cursos_datos_modulo', $data);
                 
@@ -205,7 +205,7 @@ class Cursos extends CI_Controller
                     "div_inicial_class" => 'class="page-header"',
                 "TituloPagina" => $result[0]["Titulo_curso"],
                 "Curso" => $result[0],
-                "Descripcion" => "Cursos de formación Online del Instituto Jerónimo Luis de Caberar Río Segundo, certificados por el Concejo Provincial de Informática de Córdoba y por la UTN Córdoba",
+                "Descripcion" => "Cursos de formación Online del Instituto Jerónimo Luis de Cabrera Río Segundo, certificados por el Concejo Provincial de Informática de Córdoba y por la UTN Córdoba",
                 "Modulos" => $Datos_modulos,
             );
             
@@ -610,32 +610,7 @@ class Cursos extends CI_Controller
 
     }
 
-//// CURSOS	        | OBTENER LIDERES
-    public function obtener_lideres()
-    {
 
-        //Esto siempre va es para instanciar la base de datos
-        $CI = &get_instance();
-        $CI->load->database();
-        
-        //Seguridad
-        $token = @$CI->db->token;
-        $this->datosObtenidos = json_decode(file_get_contents('php://input'));
-        if ($this->datosObtenidos->token != $token) {
-            exit("No coinciden los token");
-        }
-
-        $this->db->select('	tbl_cursos.Id,
-							tbl_cursos.Nombre');
-        $this->db->from('tbl_cursos');
-        $this->db->where('Lider', 1);
-        $this->db->order_by("Nombre", "desc");
-        $query = $this->db->get();
-        $result = $query->result_array();
-
-        echo json_encode($result);
-
-    }
 
 
 
@@ -700,6 +675,7 @@ class Cursos extends CI_Controller
         $this->db->select('*');
         $this->db->from('tbl_cursos_modulos');
         $this->db->where('Curso_id', $Id);
+        $this->db->order_by("Id", "asc");
         
         $query = $this->db->get();
         $result = $query->result_array();

@@ -68,7 +68,7 @@ include("aa_barra_navegacion.php");
 
             </ul>
 
-            <!-- SECCION DATOS EDITABLES DEL USUARIO -->
+            <!-- SECCION DATOS EDITABLES DEL CURSO -->
             <div class="row" v-show="mostrar == '1'">
                 <div class="col-lg-12">
                     <div class="card">
@@ -164,7 +164,7 @@ include("aa_barra_navegacion.php");
                 </div>
             </div>
 
-            <!-- SECCION DATOS DE FORMACIÓN -->
+            <!-- SECCION DATOS DE MÓDULOS -->
             <div class="row" v-show="mostrar == '2'">
                 <div class="col-lg-12">
                     <div class="card">
@@ -207,7 +207,7 @@ include("aa_barra_navegacion.php");
                                                     <button class="item" v-on:click="editarForm_cont_2(modulo)" data-toggle="modal" data-target="#modalModulos" data-placement="top" title="Edición rápida">
                                                         <i class="fas fa-pen-square"></i>
                                                     </button>
-                                                    <button v-on:click="desactivarUsuario(modulo.Id)" class="item" data-toggle="tooltip" data-placement="top" title="Eliminar">
+                                                    <button v-on:click="eliminar(modulo.Id, 'tbl_cursos_modulos')" class="item" data-toggle="tooltip" data-placement="top" title="Eliminar">
                                                         <i class="fas fa-eraser"></i>
                                                     </button>
                                                 </td>

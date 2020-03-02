@@ -51,7 +51,7 @@ include("aa_barra_navegacion.php");
             </div>
         </div>
 
-        <!-- SECCION FICHA USUARIO -->
+        <!-- SECCION FICHA MÓDULO -->
         <div class="col-lg-8">
 
             <ul class="nav nav-tabs">
@@ -63,7 +63,7 @@ include("aa_barra_navegacion.php");
                 </li>
             </ul>
 
-            <!-- SECCION DATOS EDITABLES DEL USUARIO -->
+            <!-- SECCION DATOS EDITABLES DEL MÓDULO -->
             <div class="row" v-show="mostrar == '1'">
                 <div class="col-lg-12">
                     <div class="card">
@@ -166,20 +166,20 @@ include("aa_barra_navegacion.php");
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr v-for="modulo in listaContenido_2">
+                                            <tr v-for="examen in listaContenido_2">
 
                                                 <td>
-                                                    <button class="btn" v-on:click="editarForm_cont_2(modulo)" data-toggle="modal" data-target="#modalModulos" data-placement="top" title="Edición rápida">
-                                                        {{ modulo.Titulo_examen }}
+                                                    <button class="btn" v-on:click="editarForm_cont_2(examen)" data-toggle="modal" data-target="#modalModulos" data-placement="top" title="Edición rápida">
+                                                        {{ examen.Titulo_examen }}
                                                     </button>
                                                 </td>
-                                                <td>{{ modulo.Descripcion_examen }}</td>
-                                                <td>{{ modulo.Fecha_ult_actualizacion | FechaB_datos }}</td>
+                                                <td>{{ examen.Descripcion_examen }}</td>
+                                                <td>{{ examen.Fecha_ult_actualizacion | FechaB_datos }}</td>
                                                 <td>
-                                                    <button class="item" v-on:click="editarForm_cont_2(modulo)" data-toggle="modal" data-target="#modalModulos" data-placement="top" title="Edición rápida">
+                                                    <button class="item" v-on:click="editarForm_cont_2(examen)" data-toggle="modal" data-target="#modalModulos" data-placement="top" title="Edición rápida">
                                                         <i class="fas fa-pen-square"></i>
                                                     </button>
-                                                    <button v-on:click="eliminar(modulo.Id, 'tbl_cursos_modulos')" class="item" data-toggle="tooltip" data-placement="top" title="Eliminar">
+                                                    <button v-on:click="eliminar(examen.Id, 'tbl_cursos_examen')" class="item" data-toggle="tooltip" data-placement="top" title="Eliminar">
                                                         <i class="fas fa-eraser"></i>
                                                     </button>
                                                 </td>
@@ -216,7 +216,7 @@ include("aa_barra_navegacion.php");
                     </p>
                     <hr>
                     <div class="horizontal-form">
-                        <!-- <form class="form-horizontal" action="post" enctype="multipart/form-data" v-on:submit.prevent="crearUsuarios()">  -->
+                        <!-- <form class="form-horizontal" action="post" enctype="multipart/form-data" v-on:submit.prevent="crearMÓDULOs()">  -->
                         <form class="form-horizontal" action="post" enctype="multipart/form-data" v-on:submit.prevent="upload( datosFoto.Id, 'tbl_cursos' )">
                             <div class="form-group">
 
