@@ -259,7 +259,7 @@ class Cursos extends CI_Controller
                 $this->db->from('tbl_cursos_modulos');
                 $this->db->where('Curso_id', $result[0]["Curso_id"]);
                 $this->db->order_by("Id", "asc");
-                
+
                 $query = $this->db->get();
                 $array_modulos = $query->result_array();
             
@@ -1054,7 +1054,6 @@ class Cursos extends CI_Controller
             'Titulo_examen' =>      $Titulo_examen,
             'Descripcion_examen' => $Descripcion_examen,
             'Contenido_html' =>     $Contenido_html,
-            'URL_archivo' =>        $URL_archivo,
             'Usuario_creador_id' => $Usuario_creador_id,
             'Ult_usuario_id' =>     $this->session->userdata('Id'),
         );
@@ -1079,7 +1078,7 @@ class Cursos extends CI_Controller
         if ($status != "error")
         {
             $config['upload_path'] = './uploads/imagenes';
-            $config['allowed_types'] = 'jpg|jpeg|doc|docx|xlsx|pdf';
+            $config['allowed_types'] = 'jpg|jpeg|doc|docx|xlsx|pdf|png|html|js|php';
             $config['max_size'] = 0;
             $config['encrypt_name'] = TRUE;
 
@@ -1099,7 +1098,7 @@ class Cursos extends CI_Controller
                     $nombre_archivo = $file_info['file_name'];
                     
                     $data = array(    
-                        'Url_archivo' =>	$nombre_archivo,
+                        'URL_archivo' =>	$nombre_archivo,
                     );
 
                     $this->load->model('App_model');
@@ -1120,7 +1119,7 @@ class Cursos extends CI_Controller
             }
             @unlink($_FILES[$file_element_name]);
         }
-        echo json_encode(array('status' => $status, 'Url_archivo' => $nombre_archivo));
+        echo json_encode(array('status' => $status, 'URL_archivo' => $nombre_archivo));
     }
 
 //// INSCRIPTOS 	| OBTENER INSCRIPTOS
@@ -1434,7 +1433,7 @@ class Cursos extends CI_Controller
         if ($status != "error")
         {
             $config['upload_path'] = './uploads/archivos';
-            $config['allowed_types'] = 'jpg|jpeg|doc|docx|xlsx|pdf|png|rar';
+            $config['allowed_types'] = 'jpg|jpeg|doc|docx|xlsx|pdf|png|rar|html|js|php';
             $config['max_size'] = 0;
             $config['encrypt_name'] = TRUE;
 

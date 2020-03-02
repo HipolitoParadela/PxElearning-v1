@@ -125,7 +125,7 @@ new Vue({
 
 
                 // si eso se ralizó bien, debe comprobar si hay un archivo a cargar.
-                if (this.Archivo != null) {
+                if (this.Archivo != '') {
                     var url = base_url + '/blog/subir_archivo/?Id=' + this.datosFormularioPrincipal.Id;
                     this.preloader = 1;
 
@@ -1133,7 +1133,7 @@ new Vue({
                 this.seguimientoData.Id = response.data.Id;
 
                 /// si eso se ralizó bien, debe comprobar si hay un archivo a cargar.
-                if (this.Archivo != null) {
+                if (this.Archivo != '') {
                     var url = base_url + url_controller_upload + '/?Id=' + this.seguimientoData.Id;
                     this.preloader = 1;
 
@@ -1523,7 +1523,7 @@ new Vue({
                 this.seguimientoData.Id = response.data.Id;
 
                 /// si eso se ralizó bien, debe comprobar si hay un archivo a cargar.
-                if (this.Archivo != null) {
+                if (this.Archivo != '') {
                     var url = base_url + url_controller_upload + '/?Id=' + this.seguimientoData.Id;
                     this.preloader = 1;
 
@@ -1786,15 +1786,15 @@ new Vue({
                 Curso_id: this.datosFormularioPrincipal.Curso_id
             }).then(response => {
 
-                toastr.success('Datos actualizados correctamente', 'Usuarios')
+                toastr.success('Datos actualizados correctamente', 'Cursos')
 
                 this.cont2Data.Id = response.data.Id;
                 this.texto_boton = "Actualizar"
                 this.get_contenido_2(url_controller_get);
 
                 /// si eso se ralizó bien, debe comprobar si hay un archivo a cargar.
-                if (this.Archivo != null) {
-                    var url = base_url + url_controller_upload + '/?Id=' + this.datosFormularioPrincipal.Id;
+                if (this.Archivo != '') {
+                    var url = base_url + url_controller_upload + '/?Id=' + this.cont2Data.Id;
                     this.preloader = 1;
 
                     //const formData = event.target.files[0];
@@ -1807,9 +1807,9 @@ new Vue({
                     axios.post(url, formData)
                         .then(response => {
 
-                            this.cont2Data.Url_archivo = response.data.Url_archivo;
+                            this.cont2Data.URL_archivo = response.data.URL_archivo;
 
-                            toastr.success('El archivo se cargo correctamente', 'Proveedores')
+                            toastr.success('El archivo se cargo correctamente', 'Cursos')
                             this.preloader = 0;
                             this.get_contenido_2(url_controller_get);
 
@@ -2197,7 +2197,7 @@ new Vue({
                 this.seguimientoData.Id = response.data.Id;
 
                 /// si eso se ralizó bien, debe comprobar si hay un archivo a cargar.
-                if (this.Archivo != null) {
+                if (this.Archivo != '') {
                     var url = base_url + url_controller_upload + '/?Id=' + this.seguimientoData.Id;
                     this.preloader = 1;
 
@@ -2473,7 +2473,7 @@ new Vue({
                 this.datosExamen_curso.Estado = response.data.Estado;
 
                 /// si eso se ralizó bien, debe comprobar si hay un archivo a cargar.
-                if (this.Archivo != null) 
+                if (this.Archivo != '') 
                 {
                     var url = base_url + url_controller_upload + '/?Id=' + this.datosExamen_curso.Id;
                     this.preloader = 1;
@@ -2714,7 +2714,7 @@ new Vue({
                 this.seguimientoData.Id = response.data.Id;
 
                 /// si eso se ralizó bien, debe comprobar si hay un archivo a cargar.
-                if (this.Archivo != null) {
+                if (this.Archivo != '') {
                     var url = base_url + url_controller_upload + '/?Id=' + this.seguimientoData.Id;
                     this.preloader = 1;
 
@@ -3062,7 +3062,7 @@ new Vue({
                 this.seguimientoData.Id = response.data.Id;
 
                 /// si eso se ralizó bien, debe comprobar si hay un archivo a cargar.
-                if (this.Archivo != null) {
+                if (this.Archivo != '') {
                     var url = base_url + url_controller_upload + '/?Id=' + this.seguimientoData.Id;
                     this.preloader = 1;
 

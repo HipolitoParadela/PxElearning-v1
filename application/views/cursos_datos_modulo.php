@@ -157,6 +157,7 @@ include("aa_barra_navegacion.php");
 
                                                 <th>Título</th>
                                                 <th>Descripción</th>
+                                                <th>Archivo</th>
                                                 <th>Ult. Actualización</th>
                                                 <th>
                                                     <button class="btn btn-primary" v-on:click="limpiarForm_cont_2()" data-toggle="modal" data-target="#modalModulos" data-placement="top" title="Edición rápida">
@@ -174,6 +175,9 @@ include("aa_barra_navegacion.php");
                                                     </button>
                                                 </td>
                                                 <td>{{ examen.Descripcion_examen }}</td>
+                                                <td>
+                                                    <a v-if="examen.URL_archivo" target="_blank" v-bind:href="'<?php echo base_url(); ?>uploads/imagenes/'+examen.URL_archivo"> Ver archivo</a>
+                                                </td>
                                                 <td>{{ examen.Fecha_ult_actualizacion | FechaB_datos }}</td>
                                                 <td>
                                                     <button class="item" v-on:click="editarForm_cont_2(examen)" data-toggle="modal" data-target="#modalModulos" data-placement="top" title="Edición rápida">
