@@ -1651,6 +1651,43 @@ class Cursos extends CI_Controller
         echo json_encode($result);
         
     }
+
+//// CURSOS         | RESEÑAS DEL CURSO
+    public function guardar_comentario_curso()
+    {
+        $CI = &get_instance();
+        $CI->load->database();
+
+        $token = @$CI->db->token;
+        $this->datosObtenidos = json_decode(file_get_contents('php://input'));
+        if ($this->datosObtenidos->token != $token)
+        { exit("No coinciden los token"); }
+
+        $Id = $_GET["Id"];
+        $Mejoras = null;            if (isset($this->datosObtenidos->Datos->Mejoras))       { $Mejoras = $this->datosObtenidos->Datos->Mejoras; }
+        $Comentario_general = null;              if (isset($this->datosObtenidos->Datos->Comentario_general))         { $Comentario_general = $this->datosObtenidos->Datos->Comentario_general; }
+        $Puntaje = null;              if (isset($this->datosObtenidos->Datos->Puntaje))         { $Puntaje = $this->datosObtenidos->Datos->Puntaje; }
+
+
+            $data = array(
+
+                'Comentario_general' => $Comentario_general,
+                'Mejoras' =>            $Mejoras,
+                'Puntaje' =>            $Puntaje,
+            );
+
+            $this->load->model('App_model');
+            $insert_id = $this->App_model->insertar($data, $Id, 'tbl_cursos_alumnos');
+
+            if ($insert_id >= 0) {
+                echo json_encode(array("Id" => $insert_id));
+            } else {
+                echo json_encode(array("Id" => 0));
+            }
+        
+
+
+    }
     
 ///// fin documento
 }

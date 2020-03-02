@@ -136,7 +136,7 @@ include("aa_barra_navegacion.php");
 
                     <hr>
                     <div class="single-course-wrap" style="border-right: 8px solid midnightblue; padding: 30px; background-color:ghostwhite; border-radius: 0px 20px 0px 20px;">
-                        <h4>Comentarios</h4>
+                        <h2>Preguntas</h2>
                         <div id="fb-root"></div>
                         <script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v3.3&appId=311617306413197&autoLogAppEvents=1"></script>
                         <div class="fb-comments" data-href="<?= base_url(); ?>cursos/informaciondelcurso/?Id=<?= $_GET["Id"]; ?>" data-width="600" data-numposts="5"></div>

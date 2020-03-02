@@ -62,6 +62,7 @@ include("aa_barra_navegacion.php");
                                 <th scope="col">Rol</th>
                                 <th scope="col">Teléfono</th>
                                 <th scope="col">Email</th>
+                                <th scope="col">Alta</th>
                                 <th scope="col">
 
                                 </th>
@@ -93,6 +94,9 @@ include("aa_barra_navegacion.php");
                                     <a v-bind:href="'mailto:' + usuario.Email">
                                         {{usuario.Email}}
                                     </a>
+                                </td>
+                                <td valign="baseline">
+                                    {{usuario.Fecha_alta | Fecha}}
                                 </td>
                                 <td>
                                     <div class="table-data-feature">

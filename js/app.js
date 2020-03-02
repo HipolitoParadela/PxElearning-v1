@@ -1984,7 +1984,9 @@ new Vue({
         /// email
         asunto : '',
         destinatario : '',
-        mensaje : ''
+        mensaje : '',
+
+        opinion_curso: {}
 
 
     },
@@ -2053,25 +2055,25 @@ new Vue({
             });
         },
 
-        //// CREAR O EDITAR una formación
-        crear_contenido_2: function (url_controller, url_controller_get) {
+        //// CREAR O EDITAR UNA RESEÑA
+        crear_contenido_2: function (url_controller) {
 
             var url = base_url + url_controller + '/?Id=' + Get_Id; // url donde voy a mandar los datos
             console.log(url)
             axios.post(url, {
                 token: token,
-                Datos: this.cont2Data
+                Datos: this.datosFormularioPrincipal
             }).then(response => {
 
-                toastr.success('Datos actualizados correctamente', 'Usuarios')
+                toastr.success('Datos actualizados correctamente', 'Cursos')
 
-                this.cont2Data.Id = response.data.Id;
+                this.datosFormularioPrincipal.Id = response.data.Id;
                 this.texto_boton = "Actualizar"
-                this.get_contenido_2(url_controller_get);
+                //this.get_contenido_2(url_controller_get);
 
             }).catch(error => {
                 console.log(error.response.data)
-                toastr.error('Error en la recuperación de los datos', 'Usuarios')
+                toastr.error('Error en la recuperación de los datos', 'Cursos')
             });
         },
 

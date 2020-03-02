@@ -281,7 +281,8 @@
                     <div class="row">
                         <div class="col-12 col-lg-6 d-none d-md-flex flex-wrap justify-content-center justify-content-lg-start mb-3 mb-lg-0">
                             <div class="header-bar-email d-flex align-items-center">
-                                <i class="fa fa-envelope"></i><a href="mailto:info@institutojlc.com">info@institutojlc.com</a>
+                                <i class="fa fa-envelope"></i>
+                                <a href="mailto:info@institutojlc.com">info@institutojlc.com</a>
                             </div><!-- .header-bar-email -->
 
                             <div class="header-bar-text lg-flex align-items-center">
@@ -289,6 +290,14 @@
                                     <i class="fa fa-phone"></i>
                                     03572 423471
 
+                                </p>
+                            </div><!-- .header-bar-text -->
+                            <div class="header-bar-text lg-flex align-items-center">
+                                <p>
+                                    <b>
+                                        <i class="fab fa-whatsapp text-success"></i>
+                                        <a href="https://api.whatsapp.com/send?phone=5493513615144&text=Hola%21%20Necesito%20m%E1s%20informaci%F3n%20sobre...">+54 9 351 3615144</a>
+                                    </b>
                                 </p>
                             </div><!-- .header-bar-text -->
                         </div><!-- .col -->

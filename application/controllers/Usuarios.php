@@ -81,6 +81,7 @@ class Usuarios extends CI_Controller
                             tbl_usuarios.Id,
                             tbl_usuarios.Imagen,
                             tbl_usuarios.Rol_acceso,
+                            tbl_usuarios.Fecha_alta,
                             tbl_usuarios.Pass,
                             tbl_roles.Nombre_rol'); 
                             /* tbl_empresas.Nombre_empresa, tbl_puestos.Nombre_puesto, tbl_lider.Nombre as Nombre_lider */

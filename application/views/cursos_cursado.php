@@ -11,14 +11,14 @@ include("aa_barra_navegacion.php");
             <div class="col-12">
                 <header class="entry-header">
                     <h1 class="entry-title"><?= $TituloPagina; ?></h1>
-                    <div class="ratings flex justify-content-center align-items-center">
+                    <!-- <div class="ratings flex justify-content-center align-items-center">
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star-o"></i>
                         <span>(4 votes)</span>
-                    </div><!-- .ratings -->
+                    </div> --><!-- .ratings -->
                 </header><!-- .entry-header -->
             </div><!-- .col -->
         </div><!-- .row -->
@@ -177,6 +177,52 @@ include("aa_barra_navegacion.php");
                         </div>
                     </div><!-- .entry-contents -->
                 </div><!-- .single-course-accordion-cont  -->
+
+                <div class="instructors-info">
+                    <header class="entry-heading">
+                        <h2 class="entry-title">Queremos saber tu opinión</h2>
+                    </header><!-- .entry-heading -->
+
+                    <div class="instructor-short-info flex flex-wrap">
+                        <div class="row">
+                            <form action="post" v-on:submit.prevent="crear_contenido_2('/cursos/guardar_comentario_curso')">
+
+                                <p><b>¿Qué te parecio este curso y la experiencia de aprender Online?</b></p>
+                                <textarea class="form-control" rows="3" v-model="datosFormularioPrincipal.Comentario_general"></textarea>
+
+
+                                <p><b>¿En que podriamos mejorar?</b></p>
+                                <textarea class="form-control" rows="3" v-model="datosFormularioPrincipal.Mejoras" v-disabled="datosFormularioPrincipal.Comentario_general == null"></textarea>
+
+
+                                <p><b>Puntúa este curso</b></p>
+                                <select class="form-control" v-model="datosFormularioPrincipal.Puntaje" v-disabled="datosFormularioPrincipal.Mejoras == null">
+                                    <option value="10">10</option>
+                                    <option value="9">9</option>
+                                    <option value="8">8</option>
+                                    <option value="7">7</option>
+                                    <option value="6">6</option>
+                                    <option value="5">5</option>
+                                    <option value="4">4</option>
+                                    <option value="3">3</option>
+                                    <option value="2">2</option>
+                                    <option value="1">1</option>
+                                </select>
+                                <p><br></p>
+                                <button type="submit" class="btn btn-success" v-disabled="datosFormularioPrincipal.Puntaje == null">Guardar reseña</button>
+                            </form>
+                        </div>
+
+
+
+                    </div><!-- .instructor-short-info -->
+                </div><!-- .instructors-info -->
+
+
+
+
+
+
                 <a name="profesor"></a>
                 <div class="instructors-info">
                     <header class="entry-heading">
