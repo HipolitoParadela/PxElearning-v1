@@ -163,7 +163,7 @@ include("aa_barra_navegacion.php");
             <div class="row">
                 <div class="col-xl-1"></div>
                 <div class="col-xl-5">
-                    <h3>Alumnos curzando actualmente</h3>
+                    <h3>Alumnos curzando actualmente | <a v-if="Rol_acceso > 3" class="btn" href="<?php echo base_url(); ?>usuarios">Ver Todos</a></h3>
                     <table class="table table-striped">
                         <thead class="thead-dark">
                             <tr>
@@ -174,7 +174,7 @@ include("aa_barra_navegacion.php");
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="usuario in lista_alumnos_cursando">
+                            <tr v-for="(usuario, index) in lista_alumnos_cursando" v-show="(pag - 1) * NUM_RESULTS <= index  && pag * NUM_RESULTS > index">
                                 <td>
                                     <div class="course-author flex flex-wrap">
 
@@ -204,7 +204,7 @@ include("aa_barra_navegacion.php");
                                     <span class="text-info" v-else>
                                         <a v-bind:href="'<?php echo base_url(); ?>cursos/datos/?Id=' + usuario.Curso_id">Asignar profesor</a>
                                     </span>
-                                    
+
                                 </td>
                                 <td>
                                     {{usuario.Fecha_inicio | Fecha }}
@@ -212,15 +212,47 @@ include("aa_barra_navegacion.php");
                             </tr>
                         </tbody>
                     </table>
-                    <hr>
-                    <p v-if="Rol_acceso > 3">
-                        <a class="btn" href="<?php echo base_url(); ?>usuarios">Gestionar usuarios inscriptos</a>
-                    </p>
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <nav aria-label="Page navigation" class="text-center">
+                                <hr>
+                                <ul class="pagination text-center">
+                                    <li>
+                                        <a href="#" class="btn btn-secondary btn-sm" aria-label="Previous" v-show="pag_inscriptos != 1" @click.prevent="pag_inscriptos -= 1">
+                                            <span aria-hidden="true">Anterior</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="btn btn-secondary btn-sm" aria-label="Next" v-show="pag_inscriptos * NUM_RESULTS / lista_alumnos_cursando.length < 1" @click.prevent="pag_inscriptos += 1">
+                                            <span aria-hidden="true">Siguiente</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                        <div class="col-lg-2">
+                            <nav aria-label="Page navigation" class="text-center">
+                                <hr>
+                                <ul class="pagination text-center">
+                                    <li>
+                                        <select class="form-control" v-model="NUM_RESULTS">
+                                            <option value="10">10</option>
+                                            <option value="20">20</option>
+                                            <option value="50">50</option>
+                                            <option value="100">100</option>
+                                            <option value="500">500</option>
+                                        </select>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+
+
 
 
                 </div>
                 <div class="col-xl-5">
-
                     <h3>Últimos movimientos en examenes</h3>
                     <table class="table table-striped">
                         <thead class="thead-dark">
@@ -231,17 +263,15 @@ include("aa_barra_navegacion.php");
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="movimiento in lista_movimientos_examen">
+                            <tr v-for="(movimiento, index) in lista_movimientos_examen" v-show="(pag - 1) * NUM_RESULTS <= index  && pag * NUM_RESULTS > index">
                                 <td>
                                     <a v-bind:href="'<?php echo base_url(); ?>cursos/cursado_modulo/?Id=' + movimiento.Id">
                                         {{movimiento.Titulo_curso}}
                                         <br>
-                                         
                                         <span v-if="movimiento.Estado==1"> <b> Habilitado</b></span>
                                         <span v-if="movimiento.Estado==2"><b>Examen realizado</b></span>
                                         <span v-if="movimiento.Estado==3"><b>Examen Corregido</b></span>
-                                        <span class="text-info">{{movimiento.Titulo_modulo}}</span> 
-
+                                        <span class="text-info">{{movimiento.Titulo_modulo}}</span>
                                     </a>
                                 </td>
                                 <td valign="baseline">
@@ -255,8 +285,44 @@ include("aa_barra_navegacion.php");
                             </tr>
                         </tbody>
                     </table>
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <nav aria-label="Page navigation" class="text-center">
+                                <hr>
+                                <ul class="pagination text-center">
+                                    <li>
+                                        <a href="#" class="btn btn-secondary btn-sm" aria-label="Previous" v-show="pag != 1" @click.prevent="pag -= 1">
+                                            <span aria-hidden="true">Anterior</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="btn btn-secondary btn-sm" aria-label="Next" v-show="pag * NUM_RESULTS / lista_movimientos_examen.length < 1" @click.prevent="pag += 1">
+                                            <span aria-hidden="true">Siguiente</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                        <div class="col-lg-2">
+                            <nav aria-label="Page navigation" class="text-center">
+                                <hr>
+                                <ul class="pagination text-center">
+                                    <li>
+                                        <select class="form-control" v-model="NUM_RESULTS">
+                                            <option value="10">10</option>
+                                            <option value="20">20</option>
+                                            <option value="50">50</option>
+                                            <option value="100">100</option>
+                                            <option value="500">500</option>
+                                        </select>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
 
                 </div>
+
                 <div class="col-xl-1"></div>
 
             </div>

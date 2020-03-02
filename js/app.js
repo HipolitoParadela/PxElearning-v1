@@ -686,7 +686,16 @@ new Vue({
         datosFoto: { 'Id': '', 'Nombre_principal': '', 'Imagen': '' },
         Archivo: '',
         preloader: '0',
-        listaFiltro_1: []
+        listaFiltro_1: [],
+
+        // PAGINACION
+        NUM_RESULTS: 10, // Numero de resultados por página
+            // finanzas  
+            pag_movimientos: 1, // Página inicial Movimientos de examen
+            pag_inscriptos: 1, // Página inicial Inscriptos
+
+            // comun
+            pag : 1,
     },
 
     methods:
@@ -1634,7 +1643,7 @@ new Vue({
     }
 });
 
-//// Elemento para el manejo de Modulos de CURSOS por Id
+//// Elemento para el manejo de MODULOS CURSOS por Id
 new Vue({
     el: '#app_cursos_modulos',
 
@@ -1723,7 +1732,8 @@ new Vue({
 
 
                 /// si eso se ralizó bien, debe comprobar si hay un archivo a cargar.
-                if (this.Archivo != null) {
+                if (this.Archivo != '') 
+                {
                     var url = base_url + url_controller_upload + '/?Id=' + this.datosFormularioPrincipal.Id;
                     this.preloader = 1;
 
@@ -1741,7 +1751,7 @@ new Vue({
 
                             toastr.success('El archivo se cargo correctamente', 'Proveedores')
                             this.preloader = 0;
-                            this.getListadoSeguimiento(url_controller_get);
+                            
 
                         }).catch(error => {
                             alert("MAL LA CARGA EN FUNCIÓN DE CARGAR ARCHIVO");
