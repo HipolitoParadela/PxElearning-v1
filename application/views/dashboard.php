@@ -331,23 +331,74 @@ include("aa_barra_navegacion.php");
     <section class="about-section">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-xl-1"></div>
-                <div class="col-sm-4">
-                    <h2>Facebook</h2>
-                    <div id="fb-root"></div>
-                    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v3.3&appId=1902946569932282&autoLogAppEvents=1"></script>
-                    <div class="fb-page" data-href="https://www.facebook.com/institutojlc/" data-tabs="timeline" data-height="600" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
-                        <blockquote cite="https://www.facebook.com/institutojlc/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/institutojlc/">Instituto Jerónimo Luis de Cabrera</a></blockquote>
+                <div class="col-sm-8">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <h2>Nuestro</h2>
+                            <div id="fb-root"></div>
+                            <script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v3.3&appId=1902946569932282&autoLogAppEvents=1"></script>
+                            <div class="fb-page" data-href="https://www.facebook.com/institutojlc/" data-tabs="timeline" data-height="600" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
+                                <blockquote cite="https://www.facebook.com/institutojlc/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/institutojlc/">Instituto Jerónimo Luis de Cabrera</a></blockquote>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <h2>Villa María</h2>
+                            <div id="fb-root"></div>
+                            <script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v3.3&appId=1902946569932282&autoLogAppEvents=1"></script>
+                            <div class="fb-page" data-href="https://www.facebook.com/cursosvillamariaeduca/" data-tabs="timeline" data-height="600" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
+                                <blockquote cite="https://www.facebook.com/cursosvillamariaeduca/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/cursosvillamariaeduca/">Villa María Educa</a></blockquote>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <h2>Mariano Moreno</h2>
+                            <div id="fb-root"></div>
+                            <script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v3.3&appId=1902946569932282&autoLogAppEvents=1"></script>
+                            <div class="fb-page" data-href="https://www.facebook.com/institutommoreno" data-tabs="timeline" data-height="600" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
+                                <blockquote cite="https://www.facebook.com/institutommoreno" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/institutommoreno">Mariano Moreno</a></blockquote>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <h2>Ceicos</h2>
+                            <div id="fb-root"></div>
+                            <script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v3.3&appId=1902946569932282&autoLogAppEvents=1"></script>
+                            <div class="fb-page" data-href="https://www.facebook.com/InstitutoCeicos/" data-tabs="timeline" data-height="600" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
+                                <blockquote cite="https://www.facebook.com/InstitutoCeicos/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/InstitutoCeicos/">Ceicos</a></blockquote>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <h2>Cetsi</h2>
+                            <div id="fb-root"></div>
+                            <script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v3.3&appId=1902946569932282&autoLogAppEvents=1"></script>
+                            <div class="fb-page" data-href="https://www.facebook.com/cetcicordoba/" data-tabs="timeline" data-height="600" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
+                                <blockquote cite="https://www.facebook.com/cetcicordoba/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/cetcicordoba/">Cetsi</a></blockquote>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <h2>Ralseef</h2>
+                            <div id="fb-root"></div>
+                            <script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v3.3&appId=1902946569932282&autoLogAppEvents=1"></script>
+                            <div class="fb-page" data-href="https://www.facebook.com/ralseffcursos/" data-tabs="timeline" data-height="600" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
+                                <blockquote cite="https://www.facebook.com/ralseffcursos/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/ralseffcursos/">Instituto Ralseef</a></blockquote>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="col-sm-7">
-                    <h2>Noticias del rubro</h2>
-                    Cumpleaños en los próximos 7 días
+                <div class="col-sm-4">
+                    <h2>Noticias sobre cursos online</h2>
+
+                    <div class="row" v-for="noticia in listaNoticias.articles" class="au-message__item">
+                        <div class="col-4">
+                            <img class="img-fluid" v-bind:src="noticia.urlToImage">
+                        </div>
+                        <div class="col-8">
+                            <h5 class="name">{{noticia.title}}</h5>
+                            <p>{{noticia.content}}</p>
+                            <p><a target="_blank" v-bind:href="noticia.url">Leer más </a></p>
+                        </div>
+                    </div>
 
                 </div>
-                <div class="col-xl-1"></div>
-            </div>
-        </div><!-- .container -->
+            </div><!-- .container -->
     </section><!-- .about-section -->
 
 

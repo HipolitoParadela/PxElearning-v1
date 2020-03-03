@@ -663,6 +663,8 @@ new Vue({
         this.getDatosUsuario();
 
         this.setVariablesUsuario(Usuario_id, Rol_acceso);
+
+        this.noticiasGoogle();
     },
 
     data:
@@ -687,6 +689,8 @@ new Vue({
         Archivo: '',
         preloader: '0',
         listaFiltro_1: [],
+
+        listaNoticias: {},
 
         // PAGINACION
         NUM_RESULTS: 10, // Numero de resultados por página
@@ -900,6 +904,20 @@ new Vue({
         editarFormularioFoto(datos) {
             this.datosFoto = datos;
             this.texto_boton = "Actualizar";
+        },
+
+        //// NOTICIAS DE INTERES
+        noticiasGoogle: function () {
+            var url = 'https://newsapi.org/v2/everything?q=cursos-online&apiKey=469fb6edbe7243b2ac2544b5058e30f8';
+
+            axios.get(url).then(response => {
+                this.listaNoticias = response.data
+                //console.log(response.data)
+            }).catch(error => {
+                alert("mal");
+                console.log(error.response.data)
+
+            });
         },
 
 
