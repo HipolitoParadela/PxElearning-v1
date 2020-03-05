@@ -334,6 +334,7 @@ include("aa_barra_navegacion.php");
                 <div class="col-sm-8">
                     <div class="row">
                         <div class="col-sm-4">
+                            <br>
                             <h2>Nuestro</h2>
                             <div id="fb-root"></div>
                             <script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v3.3&appId=1902946569932282&autoLogAppEvents=1"></script>
@@ -342,6 +343,7 @@ include("aa_barra_navegacion.php");
                             </div>
                         </div>
                         <div class="col-sm-4">
+                            <br>
                             <h2>Villa María</h2>
                             <div id="fb-root"></div>
                             <script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v3.3&appId=1902946569932282&autoLogAppEvents=1"></script>
@@ -350,6 +352,7 @@ include("aa_barra_navegacion.php");
                             </div>
                         </div>
                         <div class="col-sm-4">
+                            <br>
                             <h2>Mariano Moreno</h2>
                             <div id="fb-root"></div>
                             <script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v3.3&appId=1902946569932282&autoLogAppEvents=1"></script>
@@ -358,6 +361,7 @@ include("aa_barra_navegacion.php");
                             </div>
                         </div>
                         <div class="col-sm-4">
+                            <br>
                             <h2>Ceicos</h2>
                             <div id="fb-root"></div>
                             <script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v3.3&appId=1902946569932282&autoLogAppEvents=1"></script>
@@ -366,6 +370,7 @@ include("aa_barra_navegacion.php");
                             </div>
                         </div>
                         <div class="col-sm-4">
+                            <br>
                             <h2>Cetsi</h2>
                             <div id="fb-root"></div>
                             <script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v3.3&appId=1902946569932282&autoLogAppEvents=1"></script>
@@ -374,6 +379,7 @@ include("aa_barra_navegacion.php");
                             </div>
                         </div>
                         <div class="col-sm-4">
+                            <br>
                             <h2>Ralseef</h2>
                             <div id="fb-root"></div>
                             <script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v3.3&appId=1902946569932282&autoLogAppEvents=1"></script>

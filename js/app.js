@@ -908,7 +908,7 @@ new Vue({
 
         //// NOTICIAS DE INTERES
         noticiasGoogle: function () {
-            var url = 'https://newsapi.org/v2/everything?q=cursos-online&apiKey=469fb6edbe7243b2ac2544b5058e30f8';
+            var url = 'https://newsapi.org/v2/everything?q=marketing&apiKey=469fb6edbe7243b2ac2544b5058e30f8';
 
             axios.get(url).then(response => {
                 this.listaNoticias = response.data
