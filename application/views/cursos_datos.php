@@ -96,15 +96,18 @@ include("aa_barra_navegacion.php");
 
                                             <div class="form-group">
                                                 <label class="control-label">Descripción sobre ¿Que aprenderá?</label>
-                                                <textarea class="form-control" rows="5" placeholder="" v-model="datosFormularioPrincipal.Descripcion_corta"></textarea>
+                                                <!-- <textarea class="form-control" rows="5" placeholder="" v-model="datosFormularioPrincipal.Descripcion_corta"></textarea> -->
+                                                <ckeditor :editor="editor" v-model="datosFormularioPrincipal.Descripcion_corta" :config="editorConfig"></ckeditor>
                                             </div>
                                             <div class="form-group">
                                                 <label class="control-label">Descripción larga</label>
-                                                <textarea class="form-control" rows="5" placeholder="" v-model="datosFormularioPrincipal.Descripcion_larga"></textarea>
+                                                <!-- <textarea class="form-control" rows="5" placeholder="" v-model="datosFormularioPrincipal.Descripcion_larga"></textarea> -->
+                                                <ckeditor :editor="editor" v-model="datosFormularioPrincipal.Descripcion_larga" :config="editorConfig"></ckeditor>
                                             </div>
                                             <div class="form-group">
                                                 <label class="control-label">Objetivos del curso</label>
-                                                <textarea class="form-control" rows="5" placeholder="" v-model="datosFormularioPrincipal.Objetivos_curso"></textarea>
+                                                <!-- <textarea class="form-control" rows="5" placeholder="" v-model="datosFormularioPrincipal.Objetivos_curso"></textarea> -->
+                                                <ckeditor :editor="editor" v-model="datosFormularioPrincipal.Objetivos_curso" :config="editorConfig"></ckeditor>
                                             </div>
                                             <div class="form-group">
                                                 <label class="control-label">Categoria de curso</label>
@@ -120,7 +123,8 @@ include("aa_barra_navegacion.php");
 
                                             <div class="form-group">
                                                 <label class="control-label">Info privada</label>
-                                                <textarea class="form-control" rows="5" placeholder="" v-model="datosFormularioPrincipal.Info_privada"></textarea>
+                                                <!-- <textarea class="form-control" rows="5" placeholder="" v-model="datosFormularioPrincipal.Info_privada"></textarea> -->
+                                                <ckeditor :editor="editor" v-model="datosFormularioPrincipal.Info_privada" :config="editorConfig"></ckeditor>
                                             </div>
                                             <div class="form-group">
                                                 <label class="control-label">Monto costo normal</label>

@@ -86,12 +86,14 @@ include("aa_barra_navegacion.php");
 
                                             <div class="form-group">
                                                 <label class="control-label">Descripción del módulo</label>
-                                                <textarea class="form-control" rows="5" placeholder="" v-model="datosFormularioPrincipal.Descripcion_modulo"></textarea>
+                                                <!-- <textarea class="form-control" rows="5" placeholder="" v-model="datosFormularioPrincipal.Descripcion_modulo"></textarea> -->
+                                                <ckeditor :editor="editor" v-model="datosFormularioPrincipal.Descripcion_modulo" :config="editorConfig"></ckeditor>
                                             </div>
 
                                             <div class="form-group">
-                                                <label class="control-label">Contenido del curso en formato HTML</label>
-                                                <textarea class="form-control" rows="30" placeholder="" v-model="datosFormularioPrincipal.Contenido_html"></textarea>
+                                                <label class="control-label">Contenido del curso</label>
+                                                <!-- <textarea class="form-control" rows="30" placeholder="" v-model="datosFormularioPrincipal.Contenido_html"></textarea> -->
+                                                <ckeditor :editor="editor" v-model="datosFormularioPrincipal.Contenido_html" :config="editorConfig"></ckeditor>
                                             </div>
 
                                             <div class="row">
@@ -280,7 +282,8 @@ include("aa_barra_navegacion.php");
                             </div>
                             <hr>
                             <label class="control-label">Contenido del examen</label>
-                            <textarea class="form-control" placeholder="" v-model="cont2Data.Contenido_html" cols="30" rows="15"></textarea>
+                            <!-- <textarea class="form-control" placeholder="" v-model="cont2Data.Contenido_html" cols="30" rows="15"></textarea> -->
+                            <ckeditor :editor="editor" v-model="cont2Data.Contenido_html" :config="editorConfig"></ckeditor>
                             <hr>
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                             <button type="submit" class="btn btn-success">{{texto_boton}}</button>

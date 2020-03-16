@@ -170,7 +170,8 @@ include("aa_barra_navegacion.php");
                         <div class="horizontal-form">
 
                             <label class="control-label">Escribe aquí tus respuestas</label>
-                            <textarea class="form-control" placeholder="" v-model="datosExamen_curso.Respuesta_html" cols="30" rows="20" :disabled="datosExamen_curso.Estado != 1"></textarea>
+                            <!-- <textarea class="form-control" placeholder="" v-model="datosExamen_curso.Respuesta_html" cols="30" rows="20" :disabled="datosExamen_curso.Estado != 1"></textarea> -->
+                            <ckeditor :editor="editor" v-model="datosExamen_curso.Respuesta_html" :config="editorConfig"></ckeditor>
                             <hr>
                             <label class="control-label">Si se lo solicita puede adjuntar un archivo aquí</label>
                             <div class="form-group">

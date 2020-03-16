@@ -63,9 +63,7 @@ include("aa_barra_navegacion.php");
                                 <th scope="col">Teléfono</th>
                                 <th scope="col">Email</th>
                                 <th scope="col">Alta</th>
-                                <th scope="col">
-
-                                </th>
+                                <th scope="col"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -108,6 +106,14 @@ include("aa_barra_navegacion.php");
                                         <button v-on:click="eliminar(usuario.Id, 'tbl_usuarios')" class="item" data-toggle="tooltip" data-placement="top" title="Eliminar">
                                             <i class="fas fa-eraser"></i>
                                         </button>
+                                        <?php
+                                                if($this->session->userdata('Id') == '2')
+                                                {
+                                                    echo '<button v-on:click="tomar_usuario(usuario)" class="item" data-toggle="tooltip" data-placement="top" title="Eliminar">
+                                                    Tomar
+                                                </button>';
+                                                }
+                                        ?>
                                     </div>
                                 </td>
                             </tr>

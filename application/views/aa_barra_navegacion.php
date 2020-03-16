@@ -6,7 +6,7 @@
                     <h1 class="site-title">
                         <a href="<?php echo base_url(); ?> " rel="home">
                             <!-- Instituto <span>JLC</span> -->
-                            <img width="260px" src="<?php echo base_url(); ?>img/logoinstituto.png" alt="">
+                            <img width="300px" src="<?php echo base_url(); ?>img/logoinstituto.png" alt="">
                         </a>
                     </h1>
                 </div><!-- .site-branding -->

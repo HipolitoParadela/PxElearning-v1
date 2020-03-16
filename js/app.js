@@ -1,11 +1,3 @@
- /// *********************************************************************************************/////
-//// PLUGGINGS
-/// ******************************************* 
-    // CKEDITOR
-    
-    
-    //import ClassicEditor from '../node_modules/@ckeditor/ckeditor5-build-classic';
-    //Vue.use( CKEditor ),
 
 /// ELEMENTOS COMUNES PARA LA WEB
 new Vue({
@@ -71,6 +63,13 @@ new Vue({
         mostrar: '1',
         texto_boton: "Cargar",
         Rol_usuario: '',
+
+        //// CKEDITOR
+        editor: ClassicEditor,
+        editorData: '<p>Content of the editor.</p>',
+        editorConfig: {
+            // The configuration of the editor.
+        }
         
     },
 
@@ -389,8 +388,30 @@ new Vue({
             });
         },
 
+        ///// funciones especiales
+        ////  TOMAR ROL USUARIO
+        tomar_usuario: function (datos) {
+            var url = base_url + '/usuarios/tomar_usuario?Id='+datos.Id; // url donde voy a mandar los datos
 
+            axios.post(url, {
+                token: token,
+                Datos: datos
+            }).then(response => {
 
+                toastr.success('Proceso realizado correctamente', 'SISTEMA')
+
+                this.filtro_Data.Id = response.data.Id;
+                this.texto_boton = "Actualizar"
+
+                /// si salio bien me debe mandar al dashboard ahora mismo
+                location.href="http://institutojlc.com/dashboard";
+
+            }).catch(error => {
+
+                //console.log(error.response.data)
+                toastr.error('Error en la recuperación de los datos', 'SISTEMA')
+            });
+        },
     },
 
     ////// ACCIONES COMPUTADAS     
@@ -635,6 +656,10 @@ new Vue({
                 toastr.error('Error en la recuperación de los datos', 'Sistema')
             });
         },
+
+        
+
+
 
     },
 
@@ -908,7 +933,7 @@ new Vue({
 
         //// NOTICIAS DE INTERES
         noticiasGoogle: function () {
-            var url = 'https://newsapi.org/v2/everything?q=marketing&apiKey=469fb6edbe7243b2ac2544b5058e30f8';
+            var url = 'https://newsapi.org/v2/everything?q=redes-sociales&apiKey=469fb6edbe7243b2ac2544b5058e30f8';
 
             axios.get(url).then(response => {
                 this.listaNoticias = response.data
@@ -1303,6 +1328,13 @@ new Vue({
         /// INSCRIPCIONES
         listaAlumnos: [],
         listaProfesores: [],
+
+        //// CKEDITOR
+        editor: ClassicEditor,
+        editorData: '<p>Content of the editor.</p>',
+        editorConfig: {
+            // The configuration of the editor.
+        }
     },
 
     methods:
@@ -1695,6 +1727,13 @@ new Vue({
         /* listaPuestos: [], */
 
         lista_cursos_sugeridos: [],
+
+        //// CKEDITOR
+        editor: ClassicEditor,
+        editorData: '<p>Content of the editor.</p>',
+        editorConfig: {
+            // The configuration of the editor.
+        }
     },
 
     methods:
@@ -2004,8 +2043,14 @@ new Vue({
         destinatario : '',
         mensaje : '',
 
-        opinion_curso: {}
+        opinion_curso: {},
 
+        //// CKEDITOR
+        editor: ClassicEditor,
+        editorData: '<p>Content of the editor.</p>',
+        editorConfig: {
+            // The configuration of the editor.
+        }
 
     },
 
@@ -2429,8 +2474,14 @@ new Vue({
         /// email
         asunto : '',
         destinatario : '',
-        mensaje : ''
+        mensaje : '',
 
+        //// CKEDITOR
+        editor: ClassicEditor,
+        editorData: '<p>Content of the editor.</p>',
+        editorConfig: {
+            // The configuration of the editor.
+        }
 
     },
 
@@ -3336,5 +3387,4 @@ new Vue({
 /// ******************************************* 
     
     // CKEDITOR
-    /* import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-    Vue.use( CKEditor ); */
+    Vue.use( CKEditor );

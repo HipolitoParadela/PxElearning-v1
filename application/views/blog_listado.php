@@ -178,8 +178,15 @@ include("aa_barra_navegacion.php");
                     <div class="modal-body">
                         <div class="contact-form">
                             <input type="text" placeholder="Titulo de la entrada" v-model="datosFormularioPrincipal.Titulo_curso" required>
+                            <br>
+
                             <textarea placeholder="Copete" v-model="datosFormularioPrincipal.Copete" rows="3" required></textarea>
-                            <textarea id="ckeditor" placeholder="Contenido de la noticia" v-model="datosFormularioPrincipal.Contenido" rows="7" required></textarea>
+                            <br>
+
+                            <!-- <textarea id="ckeditor" placeholder="Contenido de la noticia" v-model="datosFormularioPrincipal.Contenido" rows="7" required></textarea> -->
+                            <ckeditor :editor="editor" v-model="datosFormularioPrincipal.Contenido" :config="editorConfig"></ckeditor>
+                            <br>
+                            
                             
                             <!--  -->
                             <div class="form-group">

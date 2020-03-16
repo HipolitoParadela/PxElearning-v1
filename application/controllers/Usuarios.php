@@ -697,5 +697,31 @@ class Usuarios extends CI_Controller
 		echo json_encode($result);
 		
     }
+
+///// TOMAR USUARIO
+    public function tomar_usuario()
+    {
+            
+        //Esto siempre va es para instanciar la base de datos
+        $CI =& get_instance();
+        $CI->load->database();
+        //Seguridad
+        $token = @$CI->db->token;
+        $this->datosObtenidos = json_decode(file_get_contents('php://input'));
+        if ($this->datosObtenidos->token != $token) { exit("No coinciden los token"); }
+    
+
+        $data = array(
+            
+            'Nombre'        => $this->datosObtenidos->Datos->Nombre_principal,
+            'Id'            => $_GET["Id"],
+            'Email'         => $this->datosObtenidos->Datos->Email,
+            'Login'         => true,
+            'Rol_acceso'    => 1,
+            
+        );
+
+        $this->session->set_userdata($data);
+    }
 ///// fin documento
 }
