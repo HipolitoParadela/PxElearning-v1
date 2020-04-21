@@ -105,8 +105,13 @@ include("aa_barra_navegacion.php");
 
                             <?php
 
-                            foreach ($Modulos as $modulo) {
-                                echo '<h3 class="entry-title flex flex-wrap justify-content-between align-items-lg-center">
+                            foreach ($Modulos as $modulo) 
+                            {
+                                echo '<h3';
+                                
+                                if($modulo["Final"] == 1){ echo ' style="border:medium solid gray" ';} 
+
+                                echo ' class="entry-title flex flex-wrap justify-content-between align-items-lg-center">
                                     <span class="arrow-r"><i class="fa fa-plus"></i><i class="fa fa-minus"></i></span>
                                     <span class="lecture-group-title">' . $modulo["Titulo_modulo"] . '</span>
                                     <span class="number-of-lectures">
@@ -119,11 +124,7 @@ include("aa_barra_navegacion.php");
 
                                 <div class="entry-content">
                                     
-                                    <p> ' . $modulo["Descripcion_modulo"] . ' </p>';
-
-
-                                echo '
-                                        
+                                    <p> ' . $modulo["Descripcion_modulo"] . ' </p>
                                 </div>';
                             }
 
@@ -142,146 +143,142 @@ include("aa_barra_navegacion.php");
                         <div class="fb-comments" data-href="<?= base_url(); ?>cursos/informaciondelcurso/?Id=<?= $_GET["Id"]; ?>" data-width="600" data-numposts="5"></div>
                     </div>
                 </div><!-- .single-course-accordion-cont  -->
-                
-                
-                        </div>
-                <a name="comprar"></a>
-                <div class="container-fluid" style="margin-top:50px; border-left: 8px solid greenyellow; padding: 30px;">
-                    <div class="card-deck mb-3 text-center">
-                    
+
+
+            </div>
+            <a name="comprar"></a>
+            <div class="container-fluid" style="margin-top:50px; border-left: 8px solid greenyellow; padding: 30px;">
+                <div class="card-deck mb-3 text-center">
+
                     <h3> Compra ahora curso a distancia de <span class="text-success"><?= $TituloPagina; ?> </span></h3>
-                        <p>Podes elegir abonar con todos los medios de pago y con la seguridad que te brinda el sistema de Mercado Pago</p>
-                        
-                        <div class="card mb-6 box-shadow">
-                            <div class="card-header">
-                                <h4 class="my-0 font-weight-normal">Compra segura</h4>
-                            </div>
-                            <div class="card-body">
-                            <img  class="rounded img-fluid" src="http://institutojlc.com/img/mercadopago.jpg">
-                            <p>Abona en cuotas con todas las tarjetas. O con efectivo en un Pago Facil o Rapipago.  
+                    <p>Podes elegir abonar con todos los medios de pago y con la seguridad que te brinda el sistema de Mercado Pago</p>
+
+                    <div class="card mb-6 box-shadow">
+                        <div class="card-header">
+                            <h4 class="my-0 font-weight-normal">Compra segura</h4>
+                        </div>
+                        <div class="card-body">
+                            <img class="rounded img-fluid" src="http://institutojlc.com/img/mercadopago.jpg">
+                            <p>Abona en cuotas con todas las tarjetas. O con efectivo en un Pago Facil o Rapipago.
                                 Siempre con la garantìa de compra segura de Mercado Pago.
                             </p>
-                            </div>
                         </div>
-                        <div class="card mb-6 box-shadow">
-                            <div class="card-header">
-                                <h4 class="my-0 font-weight-normal">Compralo ahora</h4>
-                            </div>
-                            <div class="card-body">
-                                <h1 class="card-title pricing-card-title">
+                    </div>
+                    <div class="card mb-6 box-shadow">
+                        <div class="card-header">
+                            <h4 class="my-0 font-weight-normal">Compralo ahora</h4>
+                        </div>
+                        <div class="card-body">
+                            <h1 class="card-title pricing-card-title">
                                 <span style="font-size:20px">$</span>
-                                        <?
-                                        if ($Datos_curso["Costo_promocional"] == 0 || $Datos_curso["Costo_promocional"] == null) {
-                                            echo $Datos_curso["Costo_normal"];
-                                        } else {
-                                            echo $Datos_curso["Costo_promocional"];
-                                            echo ' / <span style="margin-left: 10px;
+                                <?
+                                if ($Datos_curso["Costo_promocional"] == 0 || $Datos_curso["Costo_promocional"] == null) {
+                                    echo $Datos_curso["Costo_normal"];
+                                } else {
+                                    echo $Datos_curso["Costo_promocional"];
+                                    echo ' / <span style="margin-left: 10px;
                                             font-size: 18px;
                                             font-weight: 400;
                                             font-style: italic;
                                             color: #c0c1cd;
                                             text-decoration: line-through">$' . $Datos_curso["Costo_normal"] . '</span>
                                             <br><span class="text-success" style="font-size:18px"> Estas ahorrando $';
-                                            $ahorro = $Datos_curso["Costo_normal"] - $Datos_curso["Costo_promocional"];
+                                    $ahorro = $Datos_curso["Costo_normal"] - $Datos_curso["Costo_promocional"];
 
-                                            echo $ahorro;
-                                            echo '</spán>';
-                                        }
-                                        ?>
-                                </h1>
-                                <p align="center">
-                                        <?php
-                                        if ($this->session->userdata('Login') == true) 
-                                        {
-                                            if ($Datos_curso["Costo_promocional"] == 0 || $Datos_curso["Costo_promocional"] == null) {
-                                                echo $Datos_curso["Script_pago_normal"];
-                                            } 
-                                            else 
-                                            {
-                                                echo $Datos_curso["Script_pago_promocional"];
-                                            }
-                                        } 
-                                        else 
-                                        {
-                                            echo '<em>Debes <a href="#inicio">iniciar sesión</a> con tu cuenta de google para poder comprar este curso </em> <br><a class="btn" href="#inicio">Iniciar</a>';
-                                        }
+                                    echo $ahorro;
+                                    echo '</spán>';
+                                }
+                                ?>
+                            </h1>
+                            <p align="center">
+                                <?php
+                                if ($this->session->userdata('Login') == true) {
+                                    if ($Datos_curso["Costo_promocional"] == 0 || $Datos_curso["Costo_promocional"] == null) {
+                                        echo $Datos_curso["Script_pago_normal"];
+                                    } else {
+                                        echo $Datos_curso["Script_pago_promocional"];
+                                    }
+                                } else {
+                                    echo '<em>Debes <a href="#inicio">iniciar sesión</a> con tu cuenta de google para poder comprar este curso </em> 
+                                            <br><div style="margin-top:8px" id="my-signin3"></div><!-- <a class="btn" href="#inicio">Iniciar</a> --> ';
+                                }
 
 
-                                        ?>
-                                    </p>
-                            </div>
+                                ?>
+                            </p>
                         </div>
-                        </div>
-                        <h4>¿Tienes dudas?</h4>
-
-                        <p>Escribenos un mensaje para que un representante de ventas pueda asesorarte y acordar un método de pago adecuado a tus necesidades.</p>
-
-                        <a class="btn" href="https://api.whatsapp.com/send?phone=5493513615144&text=Estoy%20interesado%20en%20comprar%20un%20curso%20">Enviar whatsapp</a>
-                        <a class="btn" href="mailto:info@institutojlc.com">Enviar email a info@institutojlc.com</a>
-                    
+                    </div>
                 </div>
+                <h4>¿Tienes dudas?</h4>
+
+                <p>Escribenos un mensaje para que un representante de ventas pueda asesorarte y acordar un método de pago adecuado a tus necesidades.</p>
+
+                <a class="btn" href="https://api.whatsapp.com/send?phone=5493513615144&text=Estoy%20interesado%20en%20comprar%20un%20curso%20">Enviar whatsapp</a>
+                <a class="btn" href="mailto:info@institutojlc.com">Enviar email a info@institutojlc.com</a>
+
+            </div>
 
 
 
-                
-                <div class="related-courses">
-                    <header class="entry-heading flex flex-wrap justify-content-between align-items-center">
-                        <h2 class="entry-title">Cursos que podrian interesarte</h2>
 
-                        <a href="<?php echo base_url(); ?>cursos/listado">Ver todos</a>
-                    </header><!-- .entry-heading -->
+            <div class="related-courses">
+                <header class="entry-heading flex flex-wrap justify-content-between align-items-center">
+                    <h2 class="entry-title">Cursos que podrian interesarte</h2>
 
-                    <div class="row mx-m-25">
-                        <div class="col-12 col-lg-6 px-25" v-for="curso in listaContenido_2">
-                            <div class="course-content">
-                                <figure class="course-thumbnail">
-                                    <a v-bind:href="'<?php echo base_url(); ?>cursos/informaciondelcurso/?Id=' + curso.Id">
-                                        <img v-if="curso.Imagen != null" v-bind:src="'<?php echo base_url(); ?>uploads/imagenes/'+curso.Imagen" alt="">
-                                    </a>
-                                    <img v-else src="<?php echo base_url(); ?>uploads/addimagen.jpg" alt="">
-                                </figure><!-- .course-thumbnail -->
+                    <a href="<?php echo base_url(); ?>cursos/listado">Ver todos</a>
+                </header><!-- .entry-heading -->
 
-                                <div class="course-content-wrap">
-                                    <header class="entry-header">
-                                        <h2 class="entry-title"><a v-bind:href="'<?php echo base_url(); ?>cursos/informaciondelcurso/?Id=' + curso.Id">{{curso.Titulo_curso}}</a></h2>
+                <div class="row mx-m-25">
+                    <div class="col-12 col-lg-6 px-25" v-for="curso in listaContenido_2">
+                        <div class="course-content">
+                            <figure class="course-thumbnail">
+                                <a v-bind:href="'<?php echo base_url(); ?>cursos/informaciondelcurso/?Id=' + curso.Id">
+                                    <img v-if="curso.Imagen != null" v-bind:src="'<?php echo base_url(); ?>uploads/imagenes/'+curso.Imagen" alt="">
+                                </a>
+                                <img v-else src="<?php echo base_url(); ?>uploads/addimagen.jpg" alt="">
+                            </figure><!-- .course-thumbnail -->
 
-                                        <!-- <div class="entry-meta flex flex-wrap align-items-center">
+                            <div class="course-content-wrap">
+                                <header class="entry-header">
+                                    <h2 class="entry-title"><a v-bind:href="'<?php echo base_url(); ?>cursos/informaciondelcurso/?Id=' + curso.Id">{{curso.Titulo_curso}}</a></h2>
+
+                                    <!-- <div class="entry-meta flex flex-wrap align-items-center">
                                             <div class="course-author"><a href="#">Ms. Lucius</a></div>
 
                                             <div class="course-date">Dec 18, 2018</div>
                                         </div>.course-date -->
-                                    </header><!-- .entry-header -->
+                                </header><!-- .entry-header -->
 
-                                    <footer class="entry-footer flex flex-wrap justify-content-between align-items-center">
+                                <footer class="entry-footer flex flex-wrap justify-content-between align-items-center">
 
 
-                                        <div class="course-cost" v-if="curso.Costo_promocional == null || curso.Costo_promocional == 0">
-                                            $ {{curso.Costo_normal | Moneda}} <!-- <span class="price-drop">{{curso.Costo_promocional}}</span> -->
-                                        </div><!-- .course-cost -->
-                                        <div class="course-cost" v-if="curso.Costo_promocional > 0">
-                                            $ {{curso.Costo_promocional | Moneda}} <span class="price-drop">$ {{curso.Costo_normal | Moneda}}</span>
-                                        </div><!-- .course-cost -->
+                                    <div class="course-cost" v-if="curso.Costo_promocional == null || curso.Costo_promocional == 0">
+                                        $ {{curso.Costo_normal | Moneda}} <!-- <span class="price-drop">{{curso.Costo_promocional}}</span> -->
+                                    </div><!-- .course-cost -->
+                                    <div class="course-cost" v-if="curso.Costo_promocional > 0">
+                                        $ {{curso.Costo_promocional | Moneda}} <span class="price-drop">$ {{curso.Costo_normal | Moneda}}</span>
+                                    </div><!-- .course-cost -->
 
-                                        
 
-                                        <div class="course-ratings flex justify-content-end align-items-center">
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star-o"></span>
 
-                                            <!-- <span class="course-ratings-count">(4 votos)</span> -->
-                                        </div><!-- .course-ratings -->
-                                    </footer><!-- .entry-footer -->
-                                </div><!-- .course-content-wrap -->
-                            </div><!-- .course-content -->
-                        </div><!-- .col -->
-                    </div><!-- .row -->
-                </div><!-- .related-course -->
-            </div><!-- .single-course-wrap -->
-        </div>
+                                    <div class="course-ratings flex justify-content-end align-items-center">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star-o"></span>
+
+                                        <!-- <span class="course-ratings-count">(4 votos)</span> -->
+                                    </div><!-- .course-ratings -->
+                                </footer><!-- .entry-footer -->
+                            </div><!-- .course-content-wrap -->
+                        </div><!-- .course-content -->
+                    </div><!-- .col -->
+                </div><!-- .row -->
+            </div><!-- .related-course -->
+        </div><!-- .single-course-wrap -->
     </div>
+</div>
 </div>
 </div><!-- .col -->
 </div><!-- .row -->

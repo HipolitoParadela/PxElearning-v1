@@ -454,9 +454,16 @@ include("aa_barra_navegacion.php");
                         <div class="horizontal-form">
                             <label class="control-label">Título del módulo</label>
                             <input type="text" class="form-control" placeholder="" v-model="cont2Data.Titulo_modulo">
-
+                            <br>
                             <label class="control-label">Descripción del módulo</label>
                             <textarea class="form-control" placeholder="" v-model="cont2Data.Descripcion_modulo" cols="30" rows="6"></textarea>
+                            <br>
+                            <label class="control-label">Tipo de módulo</label>
+                            
+                            <select class="form-control" v-model="cont2Data.Final">
+                                <option value="0" >Módulo comun</option>
+                                <option value="1" >Módulo Final</option>
+                            </select>
                             <hr>
                             <!-- <input @change="archivoSeleccionado" type="file" class="form-control" name="Imagen">
 

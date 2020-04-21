@@ -7,13 +7,15 @@ class Login extends CI_Controller
     public function index()
     {
 
-        $data = array(
+        /* $data = array(
             "body_class" => '',
             "div_inicial_class" => 'class="hero-content"',
             "TituloPagina" => "Iniciar Sesión",
             "Descripcion" => "Cursos de formación Online del Instituto Jerónimo Luis de Caberar Río Segundo, certificados por el Concejo Provincial de Informática de Córdoba y por la UTN Córdoba",
         );
-        $this->load->view('login', $data);
+        $this->load->view('login', $data); */
+
+        header("Location: " . base_url());
     }
 
     public function iniciar_session()

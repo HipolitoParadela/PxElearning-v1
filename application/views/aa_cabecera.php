@@ -169,6 +169,7 @@
                     //alert('Bien');
                     //console.log(json)
                     window.location = "http://institutojlc.com/dashboard";
+                    //window.location.reload()
                 },
 
                 // código a ejecutar si la petición falla;
@@ -197,6 +198,16 @@
             gapi.signin2.render('my-signin2', {
                 'scope': 'profile email',
                 'width': 300,
+                'height': 40,
+                'longtitle': false,
+                'theme': 'dark',
+                'onsuccess': onSuccess,
+                'onfailure': onFailure,
+            });
+
+            gapi.signin2.render('my-signin3', {
+                'scope': 'profile email',
+                'width': 250,
                 'height': 40,
                 'longtitle': false,
                 'theme': 'dark',

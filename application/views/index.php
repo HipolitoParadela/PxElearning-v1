@@ -22,6 +22,14 @@ include("aa_barra_navegacion.php");
 
                     <footer class="entry-footer read-more">
                         <a href="<?php echo base_url(); ?>cursos/listado">CONOCÉ NUESTROS CURSOS</a>
+                        <?php
+                        if ($this->session->userdata('Login') != true) 
+                        {
+                            echo '<div style="margin-top:8px" id="my-signin3">Registrate gratis</div>';
+                        }
+
+
+                        ?>
                     </footer><!-- .entry-footer -->
                 </div><!-- .hero-content-wrap -->
             </div><!-- .col -->
@@ -182,19 +190,25 @@ include("aa_barra_navegacion.php");
                     <div class="entry-content ezuca-stats">
                         <div class="stats-wrap flex flex-wrap justify-content-lg-between">
                             <!-- <div class="stats-count">
-                                {{cantidad_inscriptos}} --><!-- <span>M+</span> -->
-                                <!-- <p>INSCRIPTOS</p>
-                            </div> --><!-- .stats-count -->
+                                {{cantidad_inscriptos}} -->
+                            <!-- <span>M+</span> -->
+                            <!-- <p>INSCRIPTOS</p>
+                            </div> -->
+                            <!-- .stats-count -->
 
                             <!-- <div class="stats-count">
-                                {{cantidad_cursos_gratuitos}} --><!-- <span>K+</span> -->
-                                <!-- <p>CURSOS GRATUITOS</p>
-                            </div> --><!-- .stats-count -->
+                                {{cantidad_cursos_gratuitos}} -->
+                            <!-- <span>K+</span> -->
+                            <!-- <p>CURSOS GRATUITOS</p>
+                            </div> -->
+                            <!-- .stats-count -->
 
                             <!-- <div class="stats-count">
-                                {{cantidad_profesores}} --><!-- <span>M+</span> -->
-                                <!-- <p>INSTRUCTORES</p>
-                            </div> --><!-- .stats-count -->
+                                {{cantidad_profesores}} -->
+                            <!-- <span>M+</span> -->
+                            <!-- <p>INSTRUCTORES</p>
+                            </div> -->
+                            <!-- .stats-count -->
 
                             <div class="stats-count">
                                 {{cantidad_cursos}}<!-- <span>+</span> -->
@@ -403,8 +417,8 @@ include("aa_barra_navegacion.php");
                             </h2>
 
                             <div class="entry-content">
-                                    <p>{{blog.Copete}}</p>
-                                </div><!-- .entry-content -->
+                                <p>{{blog.Copete}}</p>
+                            </div><!-- .entry-content -->
                         </header><!-- .entry-header -->
                     </div><!-- .featured-event-content -->
                 </div><!-- .col -->

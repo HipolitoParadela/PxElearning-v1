@@ -18,7 +18,8 @@ include("aa_barra_navegacion.php");
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star-o"></i>
                         <span>(4 votes)</span>
-                    </div> --><!-- .ratings -->
+                    </div> -->
+                    <!-- .ratings -->
                 </header><!-- .entry-header -->
             </div><!-- .col -->
         </div><!-- .row -->
@@ -115,7 +116,12 @@ include("aa_barra_navegacion.php");
                             <?php
 
                             foreach ($Modulos as $modulo) {
-                                echo '<h3 class="entry-title flex flex-wrap justify-content-between align-items-lg-center">
+                                echo '
+                                <h3';
+                                
+                                if($modulo["Datos_modulo"]["Final"] == 1){ echo ' style="border:medium solid gray" ';} 
+
+                                echo ' class="entry-title flex flex-wrap justify-content-between align-items-lg-center">
                                     <span class="arrow-r"><i class="fa fa-plus"></i><i class="fa fa-minus"></i></span>
                                     <span class="lecture-group-title">' . $modulo["Datos_modulo"]["Titulo_modulo"] . '</span>';
 
@@ -148,9 +154,6 @@ include("aa_barra_navegacion.php");
                                         Nota: <b>' . $modulo["Info_examen"]["Nota"] . '</b>
                                     </span>';
                                 }
-
-
-
 
                                 echo '
                                 </h3>

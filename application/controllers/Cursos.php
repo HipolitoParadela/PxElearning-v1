@@ -255,7 +255,8 @@ class Cursos extends CI_Controller
 
             /// BUSCANDO DATOS DE LOS MODULOS DE ESTE CURSO
                 $this->db->select(' Titulo_modulo,
-                                    Descripcion_modulo');
+                                    Descripcion_modulo,
+                                    Final');
                 $this->db->from('tbl_cursos_modulos');
                 $this->db->where('Curso_id', $result[0]["Curso_id"]);
                 $this->db->order_by("Id", "asc");
@@ -748,6 +749,7 @@ class Cursos extends CI_Controller
         $Descripcion_modulo = null;     if (isset($this->datosObtenidos->Datos->Descripcion_modulo))    { $Descripcion_modulo = $this->datosObtenidos->Datos->Descripcion_modulo; }
         $Contenido_html = null;         if (isset($this->datosObtenidos->Datos->Contenido_html))        { $Contenido_html = $this->datosObtenidos->Datos->Contenido_html; }
         $URL_archivo = null;            if (isset($this->datosObtenidos->Datos->URL_archivo))           { $URL_archivo = $this->datosObtenidos->Datos->URL_archivo; }
+        $Final = 0;            if (isset($this->datosObtenidos->Datos->Final))           { $Final = $this->datosObtenidos->Datos->Final; }
         $Usuario_creador_id = $this->session->userdata('Id');     if (isset($this->datosObtenidos->Datos->Usuario_creador_id))    { $Usuario_creador_id = $this->datosObtenidos->Datos->Usuario_creador_id; }
 
         $data = array(
@@ -757,6 +759,7 @@ class Cursos extends CI_Controller
             'Descripcion_modulo' => $Descripcion_modulo,
             'Contenido_html' =>     $Contenido_html,
             'URL_archivo' =>        $URL_archivo,
+            'Final' =>              $Final,
             'Usuario_creador_id' => $Usuario_creador_id,
             'Ult_usuario_id' =>     $this->session->userdata('Id'),
         );
